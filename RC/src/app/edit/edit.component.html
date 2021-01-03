@@ -1,75 +1,85 @@
-<p>edit works!</p>
+<script>
+    $(document).ready(function() {
 
-<div class="container mt-5">
-    <h2 text-align="center"> {{ header }} </h2>
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        $('.input').focus(function() {
+            $(this).parent().find(".label-txt").addClass('label-active');
+        });
 
-        <div class="form-group col-md-6">
-            <label for="">Nome</label>
-            <input type="text" class="form-control" [(ngModel)]="usersList.nome" name="nome" />
+        $(".input").focusout(function() {
+            if ($(this).val() == '') {
+                $(this).parent().find(".label-txt").removeClass('label-active');
+            };
+        });
+
+    });
+</script>
+
+
+<h2 text-align="center"> {{ header }} </h2>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <label>
+        <p class="label-txt">Nome</p>
+        <input type="text" class="input" [(ngModel)]="usersList.nome" place="nome" >
+        <div class="line-box">
+            <div class="line"></div>
         </div>
+    </label>
 
-        <div class="form-group col-md-6">
-            <label for="Cognome">Cognome </label>
-            <input type="text" class="form-control" [(ngModel)]="usersList.cognome" name="cognome" />
+    <label>
+        <p class="label-txt">Cognome</p>
+        <input type="text" class="input" [(ngModel)]="usersList.cognome" name="cognome" >
+        <div class="line-box">
+            <div class="line"></div>
         </div>
+    </label>
 
-        <div class="form-group col-md-6">
-            <label for="Data Nascita">Data nascita </label>
-            <input type="date" class="form-control" value="0000-00-00" [(ngModel)]="usersList.dataNascita" name="dataNascita"
-            min="1900-01-01" max="2018-12-31" />
+    <label>
+        <p class="label-txt">Data Nascita</p>
+        <input type="date" class="input" [(ngModel)]="usersList.dataNascita" name="dataNascita" >
+        <div class="line-box">
+            <div class="line"></div>
         </div>
+    </label>
 
-        <div class="form-group col-md-6">
-            <label for="Codice Fiscale">Codice Fiscale </label>
-            <input type="text" class="form-control" [(ngModel)]="usersList.codiceFiscale" name="codiceFiscale" />
+    <label>
+        <p class="label-txt">Codice Fiscale</p>
+        <input type="text" class="input" [(ngModel)]="usersList.codiceFiscale" name="codiceFiscale" >
+        <div class="line-box">
+            <div class="line"></div>
         </div>
+    </label>
 
-        <div class="form-group col-md-6">
-            <label for="Email">Email</label>
-            <input type="text" class="form-control" [(ngModel)]="usersList.email" name="email" />
+    <label>
+        <p class="label-txt">Email</p>
+        <input type="email" class="input" [(ngModel)]="usersList.email" name="email" >
+        <div class="line-box">
+            <div class="line"></div>
         </div>
+    </label>
 
-        <div class="form-group col-md-6">
-            <label for="Username">Username</label>
-            <input type="text" class="form-control" [(ngModel)]="usersList.username" name="username" />
+    <label>
+        <p class="label-txt">Username</p>
+        <input type="text" class="input" [(ngModel)]="usersList.username" name="username" >
+        <div class="line-box">
+            <div class="line"></div>
         </div>
+    </label>
 
-        <div class="form-group col-md-6">
-            <label for="Password">Password</label>
-            <input type="password" class="form-control" [(ngModel)]="usersList.password" name="password" />
+    <label>
+        <p class="label-txt">Password</p>
+        <input type="password" class="input" [(ngModel)]="usersList.password" name="password" >
+        <div class="line-box">
+            <div class="line"></div>
         </div>
+    </label>
 
-        <p>
-            <label>Role:
-                <input type="radio" value="SuperUser" [(ngModel)]="usersList.role" name="role"> SuperUser
-                <input type="radio" value="Customer" [(ngModel)]="usersList.role" name="role"> Customer
-            </label>
-        </p>
-        <!-- <td colspan="2"><input type="submit" value="Aggiorna"></td> -->
-        <div>
-            <button type="submit" class="btn btn-primary">Salva</button>
-        </div>
-    </form>
-</div>
+    <label>
+        <p class="label-txt">Role</p>
+        <label>
+            <input type="radio" value="SuperUser" [(ngModel)]="usersList.role" name="role"> Super
+            <input type="radio" value="Customer" [(ngModel)]="usersList.role" name="role"> User
+        </label>
+    </label>
 
-<br><br><br><br>
-<!-- <div class="it-datepicker-wrapper theme-dark">
-  <div class="form-group">
-    <input class="form-control it-date-datepicker" id="date2" type="text" placeholder="inserisci la data in formato gg/mm/aaaa">
-    <label for="date2">Date label</label>
-  </div>
-</div>
-
-<div class="it-datepicker-wrapper">
-  <div class="form-group">
-    <input class="form-control it-date-datepicker" id="date1" type="text" placeholder="inserisci la data in formato gg/mm/aaaa">
-    <label for="date1">Date label</label>
-  </div>
-</div>
-
-<label for="start">Start date:</label>
-<input type="date" id="start" name="trip-start"
-       value="2018-07-22"
-       min="2018-01-01" max="2018-12-31">
- -->
+    <button type="submit" class="btn btn-primary">Salva</button>
+</form>
