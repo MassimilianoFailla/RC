@@ -11,38 +11,39 @@
 
         <div class="form-group col-md-6">
             <label for="Cognome">Cognome </label>
-            <input type="text" class="form-control" [ngModel]="usersList.cognome" name="cognome" />
+            <input type="text" class="form-control" [(ngModel)]="usersList.cognome" name="cognome" />
         </div>
 
         <div class="form-group col-md-6">
             <label for="Data Nascita">Data nascita </label>
-            <input type="date" class="form-control" [ngModel]="usersList.dataNascita" name="dataNascita" />
+            <input type="date" class="form-control" value="0000-00-00" [(ngModel)]="usersList.dataNascita" name="dataNascita"
+            min="1900-01-01" max="2018-12-31" />
         </div>
 
         <div class="form-group col-md-6">
             <label for="Codice Fiscale">Codice Fiscale </label>
-            <input type="text" class="form-control" [ngModel]="usersList.codiceFiscale" name="codiceFiscale" />
+            <input type="text" class="form-control" [(ngModel)]="usersList.codiceFiscale" name="codiceFiscale" />
         </div>
 
         <div class="form-group col-md-6">
             <label for="Email">Email</label>
-            <input type="text" class="form-control" [ngModel]="usersList.email" name="email" />
+            <input type="text" class="form-control" [(ngModel)]="usersList.email" name="email" />
         </div>
 
         <div class="form-group col-md-6">
             <label for="Username">Username</label>
-            <input type="text" class="form-control" [ngModel]="usersList.username" name="username" />
+            <input type="text" class="form-control" [(ngModel)]="usersList.username" name="username" />
         </div>
 
         <div class="form-group col-md-6">
             <label for="Password">Password</label>
-            <input type="text" class="form-control" [ngModel]="usersList.password" name="password" />
+            <input type="password" class="form-control" [(ngModel)]="usersList.password" name="password" />
         </div>
 
         <p>
             <label>Role:
-                <input type="radio" value="SuperUser" [ngModel]="usersList.role" name="role"> SuperUser
-                <input type="radio" value="Customer" [ngModel]="usersList.role" name="role"> Customer
+                <input type="radio" value="SuperUser" [(ngModel)]="usersList.role" name="role"> SuperUser
+                <input type="radio" value="Customer" [(ngModel)]="usersList.role" name="role"> Customer
             </label>
         </p>
         <!-- <td colspan="2"><input type="submit" value="Aggiorna"></td> -->
@@ -51,3 +52,24 @@
         </div>
     </form>
 </div>
+
+<br><br><br><br>
+<!-- <div class="it-datepicker-wrapper theme-dark">
+  <div class="form-group">
+    <input class="form-control it-date-datepicker" id="date2" type="text" placeholder="inserisci la data in formato gg/mm/aaaa">
+    <label for="date2">Date label</label>
+  </div>
+</div>
+
+<div class="it-datepicker-wrapper">
+  <div class="form-group">
+    <input class="form-control it-date-datepicker" id="date1" type="text" placeholder="inserisci la data in formato gg/mm/aaaa">
+    <label for="date1">Date label</label>
+  </div>
+</div>
+
+<label for="start">Start date:</label>
+<input type="date" id="start" name="trip-start"
+       value="2018-07-22"
+       min="2018-01-01" max="2018-12-31">
+ -->
