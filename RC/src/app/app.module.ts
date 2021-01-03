@@ -20,15 +20,16 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { UserComponent } from './Entities/user/user.component';
 import { VehicleComponent } from './Entities/vehicle/vehicle.component';
 import { ReservationComponent } from './Entities/reservation/reservation.component';
+import { AddComponent } from './add/add.component';
+import { EditComponent } from './edit/edit.component';
 
 const appRoutes: Routes = [
   // { path: '**', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'users', component: UserComponent },
-  // { path: 'add/:id', component: EditComponent},
-  // { path: 'modify', component: UpdateComponent},
-  // { path: 'delete/:id', component: EditComponent},
+  { path: 'add/:id', component: EditComponent},
+  { path: 'modify', component: EditComponent},
   { path: 'vehicles', component: VehicleComponent },
   { path: 'reservations', component: ReservationComponent },
 
@@ -50,6 +51,8 @@ const appRoutes: Routes = [
     HomeComponent,
     JumbotronComponent,
     NavbarComponent,
+    AddComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,

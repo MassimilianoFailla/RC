@@ -1,0 +1,53 @@
+<p>edit works!</p>
+
+<div class="container mt-5">
+    <h2 text-align="center"> {{ header }} </h2>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+        <div class="form-group col-md-6">
+            <label for="">Nome</label>
+            <input type="text" class="form-control" [(ngModel)]="usersList.nome" name="nome" />
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="Cognome">Cognome </label>
+            <input type="text" class="form-control" [ngModel]="usersList.cognome" name="cognome" />
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="Data Nascita">Data nascita </label>
+            <input type="date" class="form-control" [ngModel]="usersList.dataNascita" name="dataNascita" />
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="Codice Fiscale">Codice Fiscale </label>
+            <input type="text" class="form-control" [ngModel]="usersList.codiceFiscale" name="codiceFiscale" />
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="Email">Email</label>
+            <input type="text" class="form-control" [ngModel]="usersList.email" name="email" />
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="Username">Username</label>
+            <input type="text" class="form-control" [ngModel]="usersList.username" name="username" />
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="Password">Password</label>
+            <input type="text" class="form-control" [ngModel]="usersList.password" name="password" />
+        </div>
+
+        <p>
+            <label>Role:
+                <input type="radio" value="SuperUser" [ngModel]="usersList.role" name="role"> SuperUser
+                <input type="radio" value="Customer" [ngModel]="usersList.role" name="role"> Customer
+            </label>
+        </p>
+        <!-- <td colspan="2"><input type="submit" value="Aggiorna"></td> -->
+        <div>
+            <button type="submit" class="btn btn-primary">Salva</button>
+        </div>
+    </form>
+</div>
