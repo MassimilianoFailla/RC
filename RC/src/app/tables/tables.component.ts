@@ -104,4 +104,6 @@ export class TablesComponent implements OnInit {
     this.operation.emit(operation);
   }
 
+  onDelete(){}
+
 }
