@@ -38,6 +38,8 @@ export class TablesComponent implements OnInit {
   @Input() paginationConfig: Paginations;  // per la
 
   @Output() operation = new EventEmitter<number>();
+  @Output() like = new EventEmitter<number>();
+
 
   // per le operazioni
   idUsr: number;
@@ -102,6 +104,10 @@ export class TablesComponent implements OnInit {
 
   op(operation: number) {
     this.operation.emit(operation);
+  }
+
+  clicca(){
+    alert('grazie per aver cliccato!');
   }
 
   onDelete(){}

@@ -1,59 +1,59 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 
-    <a class="navbar-brand" href="/">RentalCar</a>
+        <a class="navbar-brand" href="/">RentalCar</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-         
-          <li class="nav-item active">
-            <a class="nav-link" routerLink="">
-              <!-- <span class="oi oi-home" title="home" aria-hidden="true"></span>
+
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="">
+                    <!-- <span class="oi oi-home" title="home" aria-hidden="true"></span>
               Home -->
-              <button [ngClass]="buttonHome.customCssClass">
+                    <button [ngClass]="buttonHome.customCssClass">
                 <mat-icon> {{buttonHome.icon}} </mat-icon> {{buttonHome.text}}
               </button>
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
 
-          <li class="nav-item">
-            <a class="nav-link"  routerLink="/users" >
-              <button [ngClass]="buttonUser.customCssClass">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/users">
+                    <button [ngClass]="buttonUser.customCssClass">
                 <mat-icon> {{buttonUser.icon}} </mat-icon> {{buttonUser.text}}
               </button>
-            </a>
-          </li>
+                </a>
+            </li>
 
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/vehicles">
-              <button [ngClass]="buttonVehicle.customCssClass">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/vehicles">
+                    <button [ngClass]="buttonVehicle.customCssClass">
                 <mat-icon> {{buttonVehicle.icon}} </mat-icon> {{buttonVehicle.text}}
               </button>
-            </a>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/reservations">
-              <button [ngClass]="buttonReservation.customCssClass">
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/reservations">
+                    <button [ngClass]="buttonReservation.customCssClass">
                 <mat-icon> {{buttonReservation.icon}} </mat-icon> {{buttonReservation.text}}
               </button>
-            </a>
-          </li>
+                </a>
+            </li>
 
-      </ul>
+        </ul>
 
 
-      <!-- <div>
+        <!-- <div>
         <button [ngClass]="button.customCssClass">
           <mat-icon aria-hidden="false" aria-label="Example home icon"> {{button.icon}} </mat-icon> {{button.text}}
         </button>
         </div> -->
 
 
-      <!-- dropdown menu -->
-      <!-- <div class="dropdown">
+        <!-- dropdown menu -->
+        <!-- <div class="dropdown">
         <button class="btn btn-default dropdown-toggle thumbnail"
           type="button"
           aria-haspopup="true"
