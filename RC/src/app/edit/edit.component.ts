@@ -107,5 +107,9 @@ export class EditComponent implements OnInit {
     // this.reservationService.onDelete(id);
   }
 
-
+  edit(){
+      this.usersService.onUpdate(this.usersList);
+      this.vehicleService.onUpdate(this.vehiclesList);
+  
+  }
 }

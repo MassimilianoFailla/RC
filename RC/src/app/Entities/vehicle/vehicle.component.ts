@@ -1,3 +1,4 @@
+import { VehicleService } from './../../Service/Services-Entities/vehicle.service';
 import { EventEmitter, Input, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Actions } from 'src/app/Config/Actions';
@@ -7,6 +8,7 @@ import { Paginations } from 'src/app/Config/Paginations';
 import { Search } from 'src/app/Config/Search';
 import { TablesConfig } from 'src/app/Config/TablesConfig';
 import { listaVeicoli } from 'src/app/Mock/mock-vehicles';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vehicle',
@@ -15,12 +17,26 @@ import { listaVeicoli } from 'src/app/Mock/mock-vehicles';
 })
 export class VehicleComponent implements OnInit {
 
+
+  constructor(private vehicleService: VehicleService, private router: Router) { }
+
+
   @Input() tabVeh: TablesConfig;
   @Input() datiVeicoli = listaVeicoli;
   @Input() headersVeicoli: Headers[]
   @Output() operation = new EventEmitter<number>();
 
-
+  operazioni: ButtonsConfig[] = [{
+    text: 'edit',
+    customCssClass: 'btn btn-secondary btn-sm',
+    icon: '',
+  },
+  {
+    text: 'delete',
+    customCssClass: 'btn btn-danger btn-sm',
+    icon: '',
+  }
+  ];
 
   // configurazione bottone
   buttonConfig1: ButtonsConfig = {
@@ -28,7 +44,6 @@ export class VehicleComponent implements OnInit {
     icon: 'home',
     customCssClass: 'myStyle',
   };
-
 
   // creo la key e la label per i veicoli
   headerVehi = [
@@ -76,4 +91,25 @@ export class VehicleComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  opButton(op: string) {
+    switch (op) {
+      case 'Edit':
+        this.router.navigate([`${'ciao'}`]);
+      
+    }
+  }
+
+  opSuRiga(object: any) {
+  //   if (this.operazioni.values === 'delete') {
+  //     alert('hai cliccato su delete');
+  //     this.userService.onDelete(object.id);
+
+  //   } else if (this.button.text === 'edit') {
+  //     alert('hai cliccato su edit');
+
+  //     // this.userService.onUpdate(this.user);
+  //   }
+  // }
+  }
 }

@@ -28,12 +28,14 @@ export class UserService {
     }
 
     onDelete(id: Number){
+      alert('stai cancellando')
       let usersList = this.users.find(x=>x.id === id);
       let index = this.users.indexOf(usersList, 0);
       this.users.splice(index, 1);
     }
 
     onUpdate(usersList: Users){
+      alert('sei su modifica');
       let oldUsers = this.users.find(x=>x.id === usersList.id);
       oldUsers.nome = usersList.nome;
       oldUsers.cognome = usersList.cognome;

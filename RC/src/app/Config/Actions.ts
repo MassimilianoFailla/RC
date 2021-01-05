@@ -1,6 +1,8 @@
 export enum Actions{
 
-    NEW_ROW, EDIT, DELETE
+    NEW_ROW ='Add',
+    EDIT = "Edit", 
+    DELETE = 'Delete'
   
   }
   

@@ -1,3 +1,6 @@
+import { listaUtenti } from './../../Mock/mock-users';
+import { TablesComponent } from './../../tables/tables.component';
+import { UserService } from './../../Service/Services-Entities/user.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Actions } from 'src/app/Config/Actions';
 import { ButtonsConfig } from 'src/app/Config/ButtonsConfig';
@@ -6,6 +9,9 @@ import { Paginations } from 'src/app/Config/Paginations';
 import { Search } from 'src/app/Config/Search';
 import { TablesConfig } from 'src/app/Config/TablesConfig';
 import { listaUtenti } from 'src/app/Mock/mock-users';
+import { ReservationService } from 'src/app/Service/Services-Entities/reservation.service';
+import { Router } from '@angular/router';
+import { Users } from './Users';
 
 @Component({
   selector: 'app-user',
@@ -14,11 +20,25 @@ import { listaUtenti } from 'src/app/Mock/mock-users';
 })
 export class UserComponent implements OnInit {
 
-
   @Input() tabUrs: TablesConfig;
   @Input() datiUtenti = listaUtenti;
   @Input() headersUrs: Headers[];
   @Output() operation = new EventEmitter<number>();
+
+  // operazioni button
+  operazioni: ButtonsConfig[] = [{
+    text: 'edit',
+    customCssClass: 'btn btn-secondary btn-sm',
+    icon: '',
+  },
+  {
+    text: 'delete',
+    customCssClass: 'btn btn-danger btn-sm',
+    icon: '',
+  }
+  ];
+
+  constructor(private userService: UserService, private router: Router) { }
 
   // configurazione bottone
   buttonConfig: ButtonsConfig = {
@@ -53,7 +73,6 @@ export class UserComponent implements OnInit {
     columns: ['id', 'nome', 'cognome', 'dataNascita', 'codiceFiscale', 'email', 'username', 'password', 'role'],
   };
 
-
   // configPages
   pagesConfig: Paginations = {
     itemPerPage: 2,
@@ -77,4 +96,35 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  clicca(object: any){
+    alert('hai cliccato edit!');
+    this.userService.onUpdate(object);
+  }
+
+  opButton(op: string) {
+    switch (op) {
+      case 'Edit':
+        this.router.navigate([`${'ciao'}`]);
+      
+    }
+  }
+
+  opSuRiga(object: any) {
+  //   if (this.operazioni.values === 'delete') {
+  //     alert('hai cliccato su delete');
+  //     this.userService.onDelete(object.id);
+
+  //   } else if (this.button.text === 'edit') {
+  //     alert('hai cliccato su edit');
+
+  //     // this.userService.onUpdate(this.user);
+  //   }
+  // }
+  if(object.text === 'edit'){
+    this.clicca(object);
+
+  }
+
+  }
 }
+

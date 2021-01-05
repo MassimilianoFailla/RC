@@ -22,6 +22,10 @@ import { VehicleComponent } from './Entities/vehicle/vehicle.component';
 import { ReservationComponent } from './Entities/reservation/reservation.component';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
+import * as $ from 'jquery';
+import * as bootstrap from 'bootstrap';
+import { ButtonComponent } from './button/button.component';
+
 
 const appRoutes: Routes = [
   // { path: '**', component: HomeComponent},
@@ -29,7 +33,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'users', component: UserComponent },
   { path: 'add/:id', component: EditComponent},
-  { path: 'modify', component: EditComponent},
+  { path: 'edit', component: EditComponent},
   { path: 'vehicles', component: VehicleComponent },
   { path: 'reservations', component: ReservationComponent },
 
@@ -53,6 +57,7 @@ const appRoutes: Routes = [
     NavbarComponent,
     AddComponent,
     EditComponent,
+    ButtonComponent,
   ],
   imports: [
     BrowserModule,
