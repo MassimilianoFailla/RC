@@ -17,9 +17,7 @@ import { Router } from '@angular/router';
 })
 export class VehicleComponent implements OnInit {
 
-
   constructor(private vehicleService: VehicleService, private router: Router) { }
-
 
   @Input() tabVeh: TablesConfig;
   @Input() datiVeicoli = listaVeicoli;
@@ -91,25 +89,31 @@ export class VehicleComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  edit(object: any){
+    alert('Stai per essere indirizzato...!');
+    this.router.navigate([`${'/edit'}`]);
+    this.vehicleService.onUpdate(object);
+  }
+
+  delete(object: any){
+    alert('Sei Sicuro di voler cancellare?');
+    this.vehicleService.onDelete(object);
+  }
 
   opButton(op: string) {
     switch (op) {
       case 'Edit':
-        this.router.navigate([`${'ciao'}`]);
-      
+        this.router.navigateByUrl('edit');
     }
   }
 
   opSuRiga(object: any) {
-  //   if (this.operazioni.values === 'delete') {
-  //     alert('hai cliccato su delete');
-  //     this.userService.onDelete(object.id);
 
-  //   } else if (this.button.text === 'edit') {
-  //     alert('hai cliccato su edit');
-
-  //     // this.userService.onUpdate(this.user);
-  //   }
-  // }
+  if(object.text === 'edit'){
+    this.edit(object);
   }
+  else if(object.text === 'delete'){
+    this.delete(object);
+  }
+}
 }

@@ -95,32 +95,31 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  clicca(object: any){
-    alert('hai cliccato edit!');
+  edit(object: any){
+    alert('Stai per essere indirizzato...!');
+    this.router.navigate([`${'/edit'}`]);
     this.userService.onUpdate(object);
   }
 
   delete(object: any){
-    alert('hai cliccato su delete!!');
+    alert('Sei Sicuro di voler cancellare?');
     this.userService.onDelete(object);
   }
 
   opButton(op: string) {
     switch (op) {
-      case 'Edit':
-        this.router.navigate([`${'ciao'}`]);
-
+      case 'edit':
+        this.router.navigate([`${'edit'}`]);
     }
   }
 
   opSuRiga(object: any) {
 
   if(object.text === 'edit'){
-    this.clicca(object);
+    this.edit(object);
   }
   else if(object.text === 'delete'){
     this.delete(object);
   }
 }
 }
-

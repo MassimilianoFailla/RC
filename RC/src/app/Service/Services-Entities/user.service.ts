@@ -35,7 +35,7 @@ export class UserService {
     }
 
     onUpdate(usersList: Users){
-      alert('sei su modifica');
+      // alert('sei su modifica');
       let oldUsers = this.users.find(x=>x.id === usersList.id);
       oldUsers.nome = usersList.nome;
       oldUsers.cognome = usersList.cognome;
