@@ -13,6 +13,7 @@ import { VehicleService } from '../Service/Services-Entities/vehicle.service';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
+
 export class EditComponent implements OnInit {
 
   id: number;
@@ -110,6 +111,6 @@ export class EditComponent implements OnInit {
   edit(){
       this.usersService.onUpdate(this.usersList);
       this.vehicleService.onUpdate(this.vehiclesList);
-  
+
   }
 }

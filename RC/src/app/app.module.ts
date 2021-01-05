@@ -25,6 +25,7 @@ import { EditComponent } from './edit/edit.component';
 import * as $ from 'jquery';
 import * as bootstrap from 'bootstrap';
 import { ButtonComponent } from './button/button.component';
+import { AddFormComponent } from './add/add-form/add-form.component';
 
 
 const appRoutes: Routes = [
@@ -32,11 +33,10 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'users', component: UserComponent },
-  { path: 'add/:id', component: EditComponent},
+  { path: 'add/:id', component: AddComponent},
   { path: 'edit', component: EditComponent},
   { path: 'vehicles', component: VehicleComponent },
   { path: 'reservations', component: ReservationComponent },
-
 ];
 
 @NgModule({
@@ -58,6 +58,7 @@ const appRoutes: Routes = [
     AddComponent,
     EditComponent,
     ButtonComponent,
+    AddFormComponent,
   ],
   imports: [
     BrowserModule,
