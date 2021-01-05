@@ -1,4 +1,3 @@
-import { listaUtenti } from './../../Mock/mock-users';
 import { TablesComponent } from './../../tables/tables.component';
 import { UserService } from './../../Service/Services-Entities/user.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
@@ -101,30 +100,27 @@ export class UserComponent implements OnInit {
     this.userService.onUpdate(object);
   }
 
+  delete(object: any){
+    alert('hai cliccato su delete!!');
+    this.userService.onDelete(object);
+  }
+
   opButton(op: string) {
     switch (op) {
       case 'Edit':
         this.router.navigate([`${'ciao'}`]);
-      
+
     }
   }
 
   opSuRiga(object: any) {
-  //   if (this.operazioni.values === 'delete') {
-  //     alert('hai cliccato su delete');
-  //     this.userService.onDelete(object.id);
 
-  //   } else if (this.button.text === 'edit') {
-  //     alert('hai cliccato su edit');
-
-  //     // this.userService.onUpdate(this.user);
-  //   }
-  // }
   if(object.text === 'edit'){
     this.clicca(object);
-
   }
-
+  else if(object.text === 'delete'){
+    this.delete(object);
   }
+}
 }
 

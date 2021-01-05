@@ -15,7 +15,6 @@ import { ButtonsConfig } from '../Config/ButtonsConfig';
 import { data } from 'jquery';
 declare var $: any;
 
-
 @Component({
   selector: 'app-tables',
   templateUrl: './tables.component.html',
@@ -109,7 +108,6 @@ export class TablesComponent implements OnInit {
   tempOP: string;
   tempOB: any;
 
-
   ngOnInit(): void {
 
     // configurazione dell'ordinamento utenti
@@ -169,7 +167,7 @@ export class TablesComponent implements OnInit {
     // if(this.but.text === 'delete'){
     //   this.userService.onDelete(this.idUsr);
     // }
-    
+
     this.tempOB = object;
     this.tempOP = opriga.text;
     if (opriga.ref) {
