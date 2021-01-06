@@ -48,36 +48,7 @@ export class TablesComponent implements OnInit {
   @Input() gestRighe: ButtonsConfig[];
   @Output() opRiga = new EventEmitter<any>();
   @Output() azioni: Actions[];
-
-  // but: ButtonsConfig[] = [{
-  //   text: 'clicca',
-  //   customCssClass: 'btn btn-secondary btn-sm',
-  //   icon: '',
-  // },
-  // {
-  //   text: 'delete',
-  //   customCssClass: 'btn btn-secondary btn-sm',
-  //   icon: '',
-  // }
-  // ];
-
-  // @Input() butClick: ButtonsConfig = {
-  //   text: 'clicca',
-  //   customCssClass: 'btn btn-secondary btn-sm',
-  //   icon: '',
-  // };
-
-  // @Input() modBut: ButtonsConfig = {
-  //   text: 'edit',
-  //   customCssClass: 'btn btn-secondary btn-sm',
-  //   icon: '',
-  // };
-
-  // @Input() addBut: ButtonsConfig = {
-  //   text: 'new data',
-  //   customCssClass: 'btn btn-secondary btn-sm',
-  //   icon: '',
-  // }
+  @Input() addBut : ButtonsConfig[];
 
   // per le operazioni
   idUsr: number;
@@ -142,31 +113,31 @@ export class TablesComponent implements OnInit {
     }
   }
 
-  clicca() {
-    alert('hai cliccato clicca!');
-  }
+  // clicca() {
+  //   alert('hai cliccato clicca!');
+  // }
 
-  modifica() {
-    alert('stai per modificare questo elemento')
-    // this.userService.onUpdate(listaUtenti);
-  }
+  // modifica() {
+  //   alert('stai per modificare questo elemento')
+  //   // this.userService.onUpdate(listaUtenti);
+  // }
 
-  onDelete() {
-    alert('hai cliccato onDelete!');
-   }
+  // onDelete() {
+  //   alert('hai cliccato onDelete!');
+  //  }
 
-  op(operation: string) {
-    this.operation.emit(operation);
+  // op(operation: string) {
+  //   this.operation.emit(operation);
+  // }
+
+  op(object: any) {
+    this.tempOB = object;
+
+      this.opRiga.emit({obj: object});
+
   }
 
   opSuRiga(opriga: any, object: any) {
-
-    // if(this.but.find.name === 'clicca'){
-    //   this.userService.onUpdate(data);
-    // }
-    // if(this.but.text === 'delete'){
-    //   this.userService.onDelete(this.idUsr);
-    // }
 
     this.tempOB = object;
     this.tempOP = opriga.text;
@@ -178,11 +149,4 @@ export class TablesComponent implements OnInit {
 
   }
 
-  salva(opriga: string, object: any) {
-    opriga = this.tempOP;
-    object = this.tempOB;
-
-    this.opRiga.emit({opriga, object});
-    $('#gestEl').modal('hide');
-  }
 }

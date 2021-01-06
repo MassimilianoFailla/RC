@@ -1,4 +1,3 @@
-import { TablesComponent } from './../../tables/tables.component';
 import { UserService } from './../../Service/Services-Entities/user.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Actions } from 'src/app/Config/Actions';
@@ -8,9 +7,7 @@ import { Paginations } from 'src/app/Config/Paginations';
 import { Search } from 'src/app/Config/Search';
 import { TablesConfig } from 'src/app/Config/TablesConfig';
 import { listaUtenti } from 'src/app/Mock/mock-users';
-import { ReservationService } from 'src/app/Service/Services-Entities/reservation.service';
 import { Router } from '@angular/router';
-import { Users } from './Users';
 
 @Component({
   selector: 'app-user',
@@ -36,6 +33,12 @@ export class UserComponent implements OnInit {
     icon: '',
   }
   ];
+
+  addBut: ButtonsConfig = {
+    text: 'add',
+    customCssClass: 'btn btn-danger btn-sm',
+    icon: '',
+  };
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -102,14 +105,26 @@ export class UserComponent implements OnInit {
   }
 
   delete(object: any){
-    alert('Sei Sicuro di voler cancellare?');
+    alert('Sei sicuro di voler cancellare?');
     this.userService.onDelete(object);
   }
 
-  opButton(op: string) {
-    switch (op) {
-      case 'edit':
-        this.router.navigate([`${'edit'}`]);
+  add(object: any){
+    alert('Hai cliccato add! Stai per aggiungere un nuovo user!');
+    this.router.navigate([`${'/add/:id'}`]);
+    this.userService.onAdd(object);
+  }
+
+  // opButton(op: string) {
+  //   switch (op) {
+  //     case 'edit':
+  //       this.router.navigate([`${'edit'}`]);
+  //   }
+  // }
+
+  opButton(object: any) {
+    if(object.text === 'add'){
+      this.add(object);
     }
   }
 

@@ -43,7 +43,9 @@
                 {{column.label}}
             </th>
             <td>
-                <button type="button" class="btn btn-secondary btn-sm" routerLink="/add/0">New Data</button>
+                <!-- <button type="button" class="btn btn-secondary btn-sm" routerLink="/add/0">add</button> -->
+                <app-button [button]="addBut" ></app-button>
+                <!-- (click)="op(opRiga)" -->
             </td>
         </tr>
     </thead>
