@@ -19,7 +19,7 @@ export class AddFormComponent implements OnInit {
   values: any[];
   form: FormGroup;
   campi: any[];
-  tipo: number;
+  @Input() tipo: number;
   idUser: number;
   targa: string;
 
