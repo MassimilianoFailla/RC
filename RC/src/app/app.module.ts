@@ -22,8 +22,6 @@ import { VehicleComponent } from './Entities/vehicle/vehicle.component';
 import { ReservationComponent } from './Entities/reservation/reservation.component';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
-import * as $ from 'jquery';
-import * as bootstrap from 'bootstrap';
 import { ButtonComponent } from './button/button.component';
 import { AddUsersComponent } from './add/add-users/add-users.component';
 import { AddVehiclesComponent } from './add/add-vehicles/add-vehicles.component';

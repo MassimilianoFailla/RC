@@ -49,6 +49,8 @@ export class TablesComponent implements OnInit {
   @Output() opRiga = new EventEmitter<any>();
   @Output() azioni: Actions[];
 
+  @Input() add = new EventEmitter<any>();
+
   // per le operazioni
   idUsr: number;
   idVeh: number;
@@ -111,28 +113,13 @@ export class TablesComponent implements OnInit {
     }
   }
 
-  // clicca() {
-  //   alert('hai cliccato clicca!');
-  // }
+  op(operation: string) {
+    this.operation.emit(operation);
+  }
 
-  // modifica() {
-  //   alert('stai per modificare questo elemento')
-  //   // this.userService.onUpdate(listaUtenti);
-  // }
-
-  // onDelete() {
-  //   alert('hai cliccato onDelete!');
-  //  }
-
-  // op(operation: string) {
-  //   this.operation.emit(operation);
-  // }
-
-  op(object: any) {
-    this.tempOB = object;
-
-      this.opRiga.emit({obj: object});
-
+  addEl(object: any[]){
+    alert('hai cliccato su add!');
+      this.router.navigate([`${'/add/users'}`]);
   }
 
   opSuRiga(opriga: any, object: any) {

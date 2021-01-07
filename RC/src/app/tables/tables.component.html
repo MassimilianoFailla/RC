@@ -6,12 +6,13 @@
                 {{column.label}}
             </th>
             <td>
-                <button type="button" class="btn btn-md btn-outline-primary" routerLink="/add/users"><i class="fa fa-user"></i>add</button>
+                <button type="button" class="btn btn-secondary btn-sm" (click)="addEl()"><i class="fa fa-user"></i>add</button>
+                <!-- routerLink="/add " -->
             </td>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor=" let row of tables.data | pagination: perPage: selectedPage">
+        <tr *ngFor=" let row of tables.data | pagination: perPage: selectedPage ">
             <td *ngFor="let column of tables.headers ">
                 {{row[column.key]}}
             </td>

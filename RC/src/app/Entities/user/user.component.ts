@@ -111,25 +111,18 @@ export class UserComponent implements OnInit {
 
   add(object: any) {
     alert('Hai cliccato add! Stai per aggiungere un nuovo user!');
-    this.router.navigate([`${'/add'}`]);
+    this.router.navigate([`${'/add/users'}`]);
     this.userService.onAdd(object);
   }
 
-  // opButton(op: string) {
-  //   switch (op) {
-  //     case 'edit':
-  //       this.router.navigate([`${'edit'}`]);
-  //   }
-  // }
-
   opButton(object: any) {
-    if (object.text === 'add/:id') {
+    if (object.text === 'add') {
+      alert('hai cliccato su add!');
       this.add(object);
     }
   }
 
   opSuRiga(object: any) {
-
     if (object.text === 'edit') {
       this.edit(object);
     }

@@ -15,7 +15,6 @@ import { listaPrenotazioni } from 'src/app/Mock/mock-reservations';
 })
 export class ReservationComponent implements OnInit {
 
-
   @Input() tabVeh: TablesConfig;
   @Input() datiReservations = listaPrenotazioni;
   @Input() headersReservations: Headers[]
@@ -66,7 +65,6 @@ export class ReservationComponent implements OnInit {
     button: this.buttonConfig1,
     actions: this.actionConfig,
   };
-
 
   ngOnInit(): void {
   }
