@@ -49,6 +49,8 @@ export class TablesComponent implements OnInit {
   @Output() opRiga = new EventEmitter<any>();
   @Output() azioni: Actions[];
 
+  @Output() provaBut = new EventEmitter<string>();
+
   @Input() add = new EventEmitter<any>();
 
   // per le operazioni
@@ -113,13 +115,13 @@ export class TablesComponent implements OnInit {
     }
   }
 
-  op(operation: string) {
-    this.operation.emit(operation);
-  }
+  // op(operation: string) {
+  //   this.operation.emit(operation);
+  // }
 
   addEl(object: any[]){
     alert('hai cliccato su add!');
-      this.router.navigate([`${'/add/users'}`]);
+      this.router.navigate([`${'/add'}`]);
   }
 
   opSuRiga(opriga: any, object: any) {

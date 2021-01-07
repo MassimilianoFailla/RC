@@ -97,7 +97,7 @@ export class AddFormComponent implements OnInit {
     console.log('sono in add-fomr');
     this.values = this.form.value;
     
-    this.submitter.emit({values: this.values, targa: this.targa, idUser: this.idUser});
-
+    this.submitter.emit({values: this.values});
+    // , targa: this.targa, idUser: this.idUser
   }
 }

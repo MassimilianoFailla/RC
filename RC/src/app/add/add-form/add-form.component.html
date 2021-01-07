@@ -1,8 +1,8 @@
 <p>add-form works!</p>
-
+<!-- <h1>{{campi}}</h1>
 <form *ngIf="tipo != 3" class='form' [formGroup]="form">
 
-    <div *ngFor="let campo of campi" class="form-group col-md-9">
+    <div *ngFor="let campo of campi" class="form-group col-md-4">
         <label>{{campo}}</label>
         <input type="text" class="form-control" formControlName="{{campo}}" placeholder="Inserire..">
     </div>
@@ -15,18 +15,26 @@
         <input type="text" class="form-control" formControlName="{{campo}}" placeholder="Inserire..">
     </div>
 
-    <!-- <div class="form-group col-md-6">
+    <div class="form-group col-md-6">
         <label>Targa</label>
         <select class="custom-select" [(ngModel)]="targa" [ngModelOptions]="{standalone: true}">
         <option  *ngFor = "let vehicle of vehicles" >
           {{vehicle.targa}}
         </option>
       </select>
-    </div> -->
+    </div>
 
     <app-button [button]="configadd" (click)="submit()"></app-button>
 </form>
 <div *ngIf="tipo === 3">
 
-    <!-- <app-table []="configTable" [data]="vehicles"></app-table> -->
+     <app-table []="configTable" [data]="vehicles"></app-table> 
+</div>-->
+
+<div *ngIf="tipo === 1">
+    <app-add-vehicles></app-add-vehicles>
+</div>
+
+<div *ngIf="tipo === 2">
+    <app-add-users></app-add-users>
 </div>
