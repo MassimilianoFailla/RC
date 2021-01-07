@@ -34,7 +34,6 @@ export class UserComponent implements OnInit {
   }
   ];
 
-
   addButt: ButtonsConfig[] = [{
     text: 'add',
     customCssClass: 'btn btn-secondary btn-sm',
@@ -99,18 +98,18 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  edit(object: any){
+  edit(object: any) {
     alert('Stai per essere indirizzato...!');
     this.router.navigate([`${'/edit'}`]);
     this.userService.onUpdate(object);
   }
 
-  delete(object: any){
+  delete(object: any) {
     alert('Sei sicuro di voler cancellare?');
     this.userService.onDelete(object);
   }
 
-  add(object: any){
+  add(object: any) {
     alert('Hai cliccato add! Stai per aggiungere un nuovo user!');
     this.router.navigate([`${'/add/:id'}`]);
     this.userService.onAdd(object);
@@ -124,18 +123,18 @@ export class UserComponent implements OnInit {
   // }
 
   opButton(object: any) {
-    if(object.text === 'add/:id'){
+    if (object.text === 'add/:id') {
       this.add(object);
     }
   }
 
   opSuRiga(object: any) {
 
-  if(object.text === 'edit'){
-    this.edit(object);
+    if (object.text === 'edit') {
+      this.edit(object);
+    }
+    else if (object.text === 'delete') {
+      this.delete(object);
+    }
   }
-  else if(object.text === 'delete'){
-    this.delete(object);
-  }
-}
 }

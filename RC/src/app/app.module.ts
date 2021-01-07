@@ -27,7 +27,6 @@ import * as bootstrap from 'bootstrap';
 import { ButtonComponent } from './button/button.component';
 import { AddFormComponent } from './add/add-form/add-form.component';
 
-
 const appRoutes: Routes = [
   // { path: '**', component: HomeComponent},
   { path: 'login', component: LoginComponent},

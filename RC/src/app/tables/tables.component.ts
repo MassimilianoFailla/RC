@@ -39,8 +39,8 @@ export class TablesComponent implements OnInit {
   @Input() headersVeh: Headers[];
   @Input() headersRes: MyHeaders[];
 
-  @Input() searchConfig: Search;      // ricerca custom
-  @Input() paginationConfig: Paginations;  // per la
+  @Input() searchConfig: Search;   // ricerca custom
+  @Input() paginationConfig: Paginations;  // per la paginazione
 
   @Output() operation = new EventEmitter<string>();
   @Output() like = new EventEmitter<number>();
@@ -48,7 +48,6 @@ export class TablesComponent implements OnInit {
   @Input() gestRighe: ButtonsConfig[];
   @Output() opRiga = new EventEmitter<any>();
   @Output() azioni: Actions[];
-
 
   // per le operazioni
   idUsr: number;
@@ -97,7 +96,6 @@ export class TablesComponent implements OnInit {
     // paginazione
     this.perPage = this.tables.pagination.itemPerPage;
     this.selectedPage = 0;
-
   }
 
   // sorting
@@ -146,7 +144,5 @@ export class TablesComponent implements OnInit {
     } else {
       this.opRiga.emit({text: opriga.text, obj: object});
     }
-
   }
-
 }
