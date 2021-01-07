@@ -111,7 +111,7 @@ export class UserComponent implements OnInit {
 
   add(object: any) {
     alert('Hai cliccato add! Stai per aggiungere un nuovo user!');
-    this.router.navigate([`${'/add/:id'}`]);
+    this.router.navigate([`${'/add'}`]);
     this.userService.onAdd(object);
   }
 

@@ -1,38 +1,42 @@
 .full-width-table {
     width: 100%;
-  }
-  
-  .app-table {
+}
+
+.app-table {
     width: 20%;
     margin: 20px auto;
-  }
-  
-  table {
+}
+
+table {
     width: auto;
     margin: auto;
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serifà
-  }
-  
-  th {
+}
+
+th {
     text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
-  
-  .example-additional-selection {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.example-additional-selection {
     opacity: 0.75;
     font-size: 0.75em;
-  }
-  
-  select{
+}
+
+select {
     width: 20%;
     align-items: center;
-  }
-  
-  div{
+}
+
+div {
     text-align: center;
-  }
-  
-  pagination-controls{
+}
+
+pagination-controls {
     text-align: center;
-  }
-  
+}
+
+table .btn {
+    margin: 2px;
+}
