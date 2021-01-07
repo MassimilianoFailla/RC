@@ -34,12 +34,6 @@ export class UserComponent implements OnInit {
   }
   ];
 
-  addBut: ButtonsConfig = {
-    text: 'add',
-    customCssClass: 'btn btn-danger btn-sm',
-    icon: '',
-  };
-
   constructor(private userService: UserService, private router: Router) { }
 
   // configurazione bottone
