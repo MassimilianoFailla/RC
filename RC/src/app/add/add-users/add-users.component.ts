@@ -15,7 +15,6 @@ import { VehicleService } from 'src/app/Service/Services-Entities/vehicle.servic
 })
 export class AddUsersComponent implements OnInit {
 
-
   id: number;
   header: string;
 
