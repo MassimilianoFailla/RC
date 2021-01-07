@@ -25,7 +25,6 @@ import { EditComponent } from './edit/edit.component';
 import * as $ from 'jquery';
 import * as bootstrap from 'bootstrap';
 import { ButtonComponent } from './button/button.component';
-import { AddFormComponent } from './add/add-form/add-form.component';
 
 const appRoutes: Routes = [
   // { path: '**', component: HomeComponent},
@@ -57,7 +56,6 @@ const appRoutes: Routes = [
     AddComponent,
     EditComponent,
     ButtonComponent,
-    AddFormComponent,
   ],
 
   imports: [
