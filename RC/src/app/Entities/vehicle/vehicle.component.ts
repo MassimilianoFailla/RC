@@ -96,7 +96,7 @@ export class VehicleComponent implements OnInit {
   }
 
   delete(object: any){
-    alert('Sei Sicuro di voler cancellare?');
+    alert('Sei sicuro di voler cancellare?');
     this.vehicleService.onDelete(object);
   }
 

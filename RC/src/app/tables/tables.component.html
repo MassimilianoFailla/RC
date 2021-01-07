@@ -6,7 +6,7 @@
                 {{column.label}}
             </th>
             <td>
-                <button type="button" class="btn btn-secondary btn-sm" (click)="addEl()"><i class="fa fa-user"></i>add</button>
+                <button type="button" class="btn btn-secondary btn-sm" (click)="addEl($event)"><i class="fa fa-user"></i>add</button>
                 <!-- routerLink="/add " -->
             </td>
         </tr>
@@ -26,7 +26,7 @@
 <br><br>
 <div>
     Quantità Elementi Per Pagina: <select [(ngModel)]="perPage ">
-        <option *ngFor="let itemPerPage of tables.pagination.itemPerPageOptions ">
+        <option *ngFor="let itemPerPage of tables.pagination.itemPerPageOptions">
             {{itemPerPage}}
         </option>
     </select>
