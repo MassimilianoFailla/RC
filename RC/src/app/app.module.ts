@@ -25,13 +25,17 @@ import { EditComponent } from './edit/edit.component';
 import * as $ from 'jquery';
 import * as bootstrap from 'bootstrap';
 import { ButtonComponent } from './button/button.component';
+import { AddUsersComponent } from './add/add-users/add-users.component';
+import { AddVehiclesComponent } from './add/add-vehicles/add-vehicles.component';
+import { AddReservationsComponent } from './add/add-reservations/add-reservations.component';
 
 const appRoutes: Routes = [
   // { path: '**', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'users', component: UserComponent },
-  { path: 'add/:id', component: AddComponent},
+  { path: 'add/users', component: AddUsersComponent},
+  { path: 'add/vehicle', component: AddVehiclesComponent},
   { path: 'edit', component: EditComponent},
   { path: 'vehicles', component: VehicleComponent },
   { path: 'reservations', component: ReservationComponent },
@@ -56,6 +60,9 @@ const appRoutes: Routes = [
     AddComponent,
     EditComponent,
     ButtonComponent,
+    AddUsersComponent,
+    AddVehiclesComponent,
+    AddReservationsComponent,
   ],
 
   imports: [

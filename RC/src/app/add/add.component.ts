@@ -51,8 +51,8 @@ export class AddComponent implements OnInit {
      private vehicleService: VehicleService, private reservationService: ReservationService) { }
 
   ngOnInit(): void {
-    this.usersList.id = +this.route.snapshot.paramMap.get('id');
-    this.header = this.usersList.id === 0 ? 'Adding page' : 'Editing page';
+    this.id = +this.route.snapshot.paramMap.get('id');
+    this.header = this.id === 0 ? 'Adding page' : 'Editing page';
 
     if (this.id != 0) {
       this.usersList = this.usersService.onGetUsers(this.id);
