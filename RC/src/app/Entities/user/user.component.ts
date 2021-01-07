@@ -34,6 +34,13 @@ export class UserComponent implements OnInit {
   }
   ];
 
+
+  addButt: ButtonsConfig[] = [{
+    text: 'add',
+    customCssClass: 'btn btn-secondary btn-sm',
+    icon: '',
+  }];
+
   constructor(private userService: UserService, private router: Router) { }
 
   // configurazione bottone
@@ -117,7 +124,7 @@ export class UserComponent implements OnInit {
   // }
 
   opButton(object: any) {
-    if(object.text === 'add'){
+    if(object.text === 'add/:id'){
       this.add(object);
     }
   }

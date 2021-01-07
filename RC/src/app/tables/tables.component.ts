@@ -48,7 +48,7 @@ export class TablesComponent implements OnInit {
   @Input() gestRighe: ButtonsConfig[];
   @Output() opRiga = new EventEmitter<any>();
   @Output() azioni: Actions[];
-  @Input() addBut : ButtonsConfig[];
+
 
   // per le operazioni
   idUsr: number;

@@ -60,6 +60,7 @@ const appRoutes: Routes = [
     ButtonComponent,
     AddFormComponent,
   ],
+
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -71,6 +72,7 @@ const appRoutes: Routes = [
       appRoutes, {enableTracing: true}
       ),
   ],
+  
   providers: [],
   bootstrap: [AppComponent],
 })
