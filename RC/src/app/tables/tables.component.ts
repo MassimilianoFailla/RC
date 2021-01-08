@@ -13,6 +13,8 @@ import { listaVeicoli } from '../Mock/mock-vehicles';
 import { listaPrenotazioni } from '../Mock/mock-reservations';
 import { ButtonsConfig } from '../Config/ButtonsConfig';
 import { data } from 'jquery';
+import { Vehicles } from '../Entities/vehicle/Vehicles';
+import { Reservations } from '../Entities/reservation/Reservations';
 declare var $: any;
 
 @Component({
@@ -25,7 +27,8 @@ export class TablesComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserService){}
 
   @Input() users: Users[];
-
+  @Input() vehicles: Vehicles[];
+  @Input() reservations : Reservations[];
   // unica configurazione tabella
   @Input() tables: TablesConfig;
 
@@ -122,7 +125,8 @@ export class TablesComponent implements OnInit {
   addEl(object: any[]){
     alert('hai cliccato su add!');
       this.router.navigate([`${'/add'}`]);
-  }
+}
+
 
   opSuRiga(opriga: any, object: any) {
 

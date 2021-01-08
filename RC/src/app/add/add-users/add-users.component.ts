@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { TablesConfig } from './../../Config/TablesConfig';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Reservations } from 'src/app/Entities/reservation/Reservations';
@@ -17,6 +18,8 @@ export class AddUsersComponent implements OnInit {
 
   id: number;
   header: string;
+  @Input() tables: TablesConfig;
+  campi: any[]; // per i lable dell'html
 
   // utenti
   usersList: Users = {
@@ -40,6 +43,7 @@ export class AddUsersComponent implements OnInit {
     if (this.id != 0) {
       this.usersList = this.usersService.onGetUsers(this.id);
     }
+    this.campi = this.tables.headers;
   }
 
   onSubmit(form: NgForm) {
@@ -53,7 +57,6 @@ export class AddUsersComponent implements OnInit {
       username: form.value.username,
       password: form.value.password,
       role: form.value.role,
-
 
     }
     if (this.id === 0) {
