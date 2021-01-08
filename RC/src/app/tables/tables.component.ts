@@ -130,24 +130,6 @@ export class TablesComponent implements OnInit {
     }
   }
 
-  // op(operation: string) {
-  //   this.operation.emit(operation);
-  // }
-
-  //   addEl(object: any[]) {
-  //         // differenziazione dei tipi 
-
-  //         alert('Add Users!');
-  //         this.router.navigate([`${'add'}`, { tipo: 1 }]);
-  //   }
-
-  //         // alert('Add Vehicles!');
-  //         // this.router.navigate([`${'/add'}`, { tipo: 2 }]);
-
-  //         // alert('Add Reservations!');
-  //         // this.router.navigate([`${'/add'}`, { tipo: 3 }]);
-  // // }
-
   addEl(adBut: number) {
 
     switch (this.adBut) {
@@ -168,8 +150,6 @@ export class TablesComponent implements OnInit {
         break;
     }
   }
-
-
 
   opSuRiga(opriga: any, object: any) {
 

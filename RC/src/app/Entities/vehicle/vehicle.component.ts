@@ -91,7 +91,7 @@ export class VehicleComponent implements OnInit {
 
   edit(object: any){
     alert('Stai per essere indirizzato...!');
-    this.router.navigate([`${'/edit'}`]);
+    this.router.navigate([`${'/edit'}`, {tipo: 2}]);
     this.vehicleService.onUpdate(object);
   }
 

@@ -102,7 +102,7 @@ export class UserComponent implements OnInit {
 
   edit(object: any) {
     alert('Stai per essere indirizzato...!');
-    this.router.navigate([`${'/edit'}`]);
+    this.router.navigate([`${'/edit'}`, {tipo: 1}]);
     this.userService.onUpdate(object);
   }
 

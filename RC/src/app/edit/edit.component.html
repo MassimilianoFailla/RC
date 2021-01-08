@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     $(document).ready(function() {
 
         $('.input').focus(function() {
@@ -82,3 +82,7 @@
 
     <button type="submit" class="btn btn-primary">Salva</button>
 </form>
+
+ -->
+
+<app-edit-form [config]="config" (submitter)="onSubmit($event)"></app-edit-form>

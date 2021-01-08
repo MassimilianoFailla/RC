@@ -27,6 +27,10 @@ import { AddUsersComponent } from './add/add-users/add-users.component';
 import { AddVehiclesComponent } from './add/add-vehicles/add-vehicles.component';
 import { AddReservationsComponent } from './add/add-reservations/add-reservations.component';
 import { AddFormComponent } from './add/add-form/add-form.component';
+import { EditFormComponent } from './edit/edit-form/edit-form.component';
+import { EditUsersComponent } from './edit/edit-users/edit-users.component';
+import { EditVehiclesComponent } from './edit/edit-vehicles/edit-vehicles.component';
+import { EditReservationsComponent } from './edit/edit-reservations/edit-reservations.component';
 
 const appRoutes: Routes = [
   // { path: '**', component: HomeComponent},
@@ -62,6 +66,10 @@ const appRoutes: Routes = [
     AddVehiclesComponent,
     AddReservationsComponent,
     AddFormComponent,
+    EditFormComponent,
+    EditUsersComponent,
+    EditVehiclesComponent,
+    EditReservationsComponent,
   ],
 
   imports: [

@@ -16,51 +16,6 @@ import { VehicleService } from '../Service/Services-Entities/vehicle.service';
 })
 export class AddComponent implements OnInit {
 
-  // id: number;
-  // header: string;
-
-  // // utenti
-  // usersList: Users = {
-  //   id: 0,
-  //   nome: '',
-  //   cognome: '',
-  //   dataNascita: '',
-  //   codiceFiscale: '',
-  //   email: '',
-  //   username: '',
-  //   password: '',
-  //   role: '',
-  // };
-
-  // // veicoli
-  // vehiclesList: Vehicles = {
-  //   id: 0,
-  //   casaCostruttrice: '',
-  //   annoImmatricolazione: '',
-  //   modello: '',
-  //   targa: '',
-  // }
-
-  // // reservation
-  // reservationsList: Reservations = {
-  //   id: 0,
-  //   dataInizio: '',
-  //   dataFine: '',
-  // }
-
-  // constructor(private router: Router, private route: ActivatedRoute, private usersService: UserService,
-  //    private vehicleService: VehicleService, private reservationService: ReservationService) { }
-
-  // ngOnInit(): void {
-  //   this.id = +this.route.snapshot.paramMap.get('id');
-  //   this.header = this.id === 0 ? 'Adding page' : 'Editing page';
-
-  //   if (this.id != 0) {
-  //     this.usersList = this.usersService.onGetUsers(this.id);
-  //     this.vehiclesList = this.vehicleService.onGetVehicles(this.id);
-  //   }
-  // }
-
   tipo: number;
   config: any;
   message: string;

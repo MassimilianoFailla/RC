@@ -19,6 +19,11 @@ export class EditComponent implements OnInit {
   id: number;
   header: string;
 
+  tipo: number;
+  config: any;
+  message: string;
+
+
   // utenti
   usersList: Users = {
     id: 0,
@@ -49,7 +54,8 @@ export class EditComponent implements OnInit {
   }
 
   constructor(private router: Router, private route: ActivatedRoute, private usersService: UserService,
-     private vehicleService: VehicleService, private reservationService: ReservationService) { }
+    private vehicleService: VehicleService, private reservationService: ReservationService) { }
+
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
@@ -58,6 +64,30 @@ export class EditComponent implements OnInit {
     if (this.id != 0) {
       this.usersList = this.usersService.onGetUsers(this.id);
       this.vehiclesList = this.vehicleService.onGetVehicles(this.id);
+    }
+
+
+    console.log(this.tipo);
+    if (this.tipo === 1) {
+      this.config = {
+        campi: ['Nome', 'Cognome', 'Anno Nascita', 'Codice Fiscale', 'Email', 'Username', 'Password', 'Role'],
+        tipo: 1,
+      };
+    }
+
+
+    if (this.tipo === 2) {
+      this.config = {
+        campi: ['Casa Costruttrice', 'Anno Immatricolazione', 'Modello', 'Targa'],
+        tipo: 2,
+      };
+    }
+
+    if (this.tipo === 3) {
+      this.config = {
+        campi: ['dataInizio', 'dataFine'],
+        tipo: 3,
+      };
     }
   }
 
@@ -74,43 +104,35 @@ export class EditComponent implements OnInit {
       role: form.value.role,
     }
 
-    let vehicles: Vehicles = {
-      id: form.value.id,
-      annoImmatricolazione: form.value.annoImmatricolazione,
-      casaCostruttrice: form.value.casaCostruttrice,
-      modello: form.value.modello,
-      targa: form.value.targa,
-    }
+    // let vehicles: Vehicles = {
+    //   id: form.value.id,
+    //   annoImmatricolazione: form.value.annoImmatricolazione,
+    //   casaCostruttrice: form.value.casaCostruttrice,
+    //   modello: form.value.modello,
+    //   targa: form.value.targa,
+    // }
 
-    let reservations: Reservations = {
-      id: form.value.id,
-      dataInizio: form.value.dataInizio,
-      dataFine: form.value.dataFine,
-    }
+    // let reservations: Reservations = {
+    //   id: form.value.id,
+    //   dataInizio: form.value.dataInizio,
+    //   dataFine: form.value.dataFine,
+    // }
 
-    if (this.id === 0) {
-      this.usersService.onAdd(users);
-      this.vehicleService.onAdd(vehicles);
-      // this.reservationService.onAdd(reservations);
-    }
-    else {
-      this.usersService.onUpdate(users);
-      this.vehicleService.onUpdate(vehicles);
-      // this.reservationService.onUpdate(reservations);
-    }
-    this.router.navigateByUrl('');
+    // if (this.id === 0) {
+    //   this.usersService.onAdd(users);
+    //   this.vehicleService.onAdd(vehicles);
+    //   // this.reservationService.onAdd(reservations);
+    // }
+    // else {
+    //   this.usersService.onUpdate(users);
+    //   this.vehicleService.onUpdate(vehicles);
+    //   // this.reservationService.onUpdate(reservations);
+    // }
+    // this.router.navigateByUrl('');
   }
 
-  // spostarlo fuori eventEmitter
-  onDelete(id: Number) {
-    this.usersService.onDelete(id);
-    this.vehicleService.onDelete(id);
-    // this.reservationService.onDelete(id);
-  }
-
-  edit(){
-      this.usersService.onUpdate(this.usersList);
-      this.vehicleService.onUpdate(this.vehiclesList);
-
-  }
+  // edit() {
+  //   this.usersService.onUpdate(this.usersList);
+  //   this.vehicleService.onUpdate(this.vehiclesList);
+  // }
 }
