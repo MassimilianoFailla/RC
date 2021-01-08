@@ -183,7 +183,6 @@ export class TablesComponent implements OnInit {
           this.opRiga.emit({ text: opriga.text, obj: object });
         }
         break;
-
     }
   }
 }
