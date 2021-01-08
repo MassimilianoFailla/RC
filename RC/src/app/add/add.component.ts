@@ -16,52 +16,93 @@ import { VehicleService } from '../Service/Services-Entities/vehicle.service';
 })
 export class AddComponent implements OnInit {
 
-    id: number;
-    header: string;
+  // id: number;
+  // header: string;
 
-    // utenti
-    usersList: Users = {
-      id: 0,
-      nome: '',
-      cognome: '',
-      dataNascita: '',
-      codiceFiscale: '',
-      email: '',
-      username: '',
-      password: '',
-      role: '',
-    };
+  // // utenti
+  // usersList: Users = {
+  //   id: 0,
+  //   nome: '',
+  //   cognome: '',
+  //   dataNascita: '',
+  //   codiceFiscale: '',
+  //   email: '',
+  //   username: '',
+  //   password: '',
+  //   role: '',
+  // };
 
-    // veicoli
-    vehiclesList: Vehicles = {
-      id: 0,
-      casaCostruttrice: '',
-      annoImmatricolazione: '',
-      modello: '',
-      targa: '',
+  // // veicoli
+  // vehiclesList: Vehicles = {
+  //   id: 0,
+  //   casaCostruttrice: '',
+  //   annoImmatricolazione: '',
+  //   modello: '',
+  //   targa: '',
+  // }
+
+  // // reservation
+  // reservationsList: Reservations = {
+  //   id: 0,
+  //   dataInizio: '',
+  //   dataFine: '',
+  // }
+
+  // constructor(private router: Router, private route: ActivatedRoute, private usersService: UserService,
+  //    private vehicleService: VehicleService, private reservationService: ReservationService) { }
+
+  // ngOnInit(): void {
+  //   this.id = +this.route.snapshot.paramMap.get('id');
+  //   this.header = this.id === 0 ? 'Adding page' : 'Editing page';
+
+  //   if (this.id != 0) {
+  //     this.usersList = this.usersService.onGetUsers(this.id);
+  //     this.vehiclesList = this.vehicleService.onGetVehicles(this.id);
+  //   }
+  // }
+
+  tipo: number;
+  config: any;
+  message: string;
+
+
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private userService: UserService,
+    private reservationService: ReservationService, private vehicleService: VehicleService) { }
+
+  ngOnInit(): void {
+    this.tipo = Number(this.route.snapshot.paramMap.get('tipo'));
+
+    if (this.tipo === 1) {
+      this.message = 'Aggiungi Utente';
+      this.config = {
+
+        campi: ['Nome', 'Cognome', 'Anno Nascita', 'Codice Fiscale', 'Email', 'Username', 'Password', 'Role'],
+        tipo: 1,
+      };
     }
 
-    // reservation
-    reservationsList: Reservations = {
-      id: 0,
-      dataInizio: '',
-      dataFine: '',
+
+    if (this.tipo === 2) {
+      this.message = 'Aggiungi Veicolo';
+      this.config = {
+
+        campi: ['Casa Costruttrice', 'Anno Immatricolazione', 'Modello', 'Targa'],
+        tipo: 2,
+      };
     }
 
-    constructor(private router: Router, private route: ActivatedRoute, private usersService: UserService,
-       private vehicleService: VehicleService, private reservationService: ReservationService) { }
+    if (this.tipo === 3) {
+      this.message = 'Aggiungi Prenotazione';
+      this.config = {
 
-    ngOnInit(): void {
-      this.id = +this.route.snapshot.paramMap.get('id');
-      this.header = this.id === 0 ? 'Adding page' : 'Editing page';
-
-      if (this.id != 0) {
-        this.usersList = this.usersService.onGetUsers(this.id);
-        this.vehiclesList = this.vehicleService.onGetVehicles(this.id);
-      }
+        campi: ['dataInizio', 'dataFine'],
+        tipo: 3,
+      };
     }
+  }
 
-    onSubmit(form: NgForm) {
+  onSubmit(form: NgForm) {
+    if (this.tipo === 1) {
       let users: Users = {
         id: form.value.id,
         nome: form.value.nome,
@@ -73,6 +114,8 @@ export class AddComponent implements OnInit {
         password: form.value.password,
         role: form.value.role,
       }
+    }
+    if (this.tipo === 2) {
 
       let vehicles: Vehicles = {
         id: form.value.id,
@@ -81,7 +124,8 @@ export class AddComponent implements OnInit {
         modello: form.value.modello,
         targa: form.value.targa,
       }
-
+    }
+    if (this.tipo === 3) {
       let reservations: Reservations = {
         id: form.value.id,
         dataInizio: form.value.dataInizio,
@@ -89,5 +133,6 @@ export class AddComponent implements OnInit {
       }
     }
   }
+  } 
 
   // ----------------- ^ vecchia configurazione ---------------------------------------

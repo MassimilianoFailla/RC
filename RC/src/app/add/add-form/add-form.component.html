@@ -1,0 +1,30 @@
+<p>add-form works!</p>
+
+<form *ngIf="tipo != 3" class='form' [formGroup]="form">
+    <div *ngFor="let campo of campi" class="form-group col-md-9">
+        <label>{{campo}}</label>
+        <input type="text" class="form-control" formControlName="{{campo}}" placeholder="Inserire..">
+    </div>
+
+    <app-button [button]="configadd" (click)="submit()"></app-button>
+</form>
+<form *ngIf="tipo === 3" class='form' [formGroup]="form">
+
+    <div *ngFor="let campo of campi" class="form-group col-md-9">
+        <label>{{campo}}</label>
+        <input type="date" class="form-control" formControlName="{{campo}}" placeholder="Inserire..">
+    </div>
+    <div class="form-group col-md-6">
+        <label>Targa</label>
+        <select class="custom-select" [(ngModel)]="targa" [ngModelOptions]="{standalone: true}">
+        <option  *ngFor = "let vehicle of vehicles" >
+        </option>
+      </select>
+
+    </div>
+    <app-button [button]="configadd" (click)="submit()"></app-button>
+</form>
+
+<div *ngIf="tipo === 3">
+    <app-tables [tables]="tables" []=""></app-tables>
+</div>
