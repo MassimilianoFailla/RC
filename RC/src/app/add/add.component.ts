@@ -95,7 +95,6 @@ export class AddComponent implements OnInit {
     if (this.tipo === 3) {
       this.message = 'Aggiungi Prenotazione';
       this.config = {
-
         campi: ['dataInizio', 'dataFine'],
         tipo: 3,
       };

@@ -34,8 +34,6 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'users', component: UserComponent },
   { path: 'add', component: AddComponent},
-  // { path: 'add/Vehicles', component: AddVehiclesComponent},
-  // { path: 'add/Reservations', component: AddReservationsComponent},
   { path: 'edit', component: EditComponent},
   { path: 'vehicles', component: VehicleComponent },
   { path: 'reservations', component: ReservationComponent },

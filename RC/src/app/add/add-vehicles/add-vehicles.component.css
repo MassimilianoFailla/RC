@@ -16,6 +16,7 @@ label {
     display: block;
     position: relative;
     margin: 30px 10px;
+    text-align: center;
 }
 
 a.label-txt {
@@ -27,6 +28,7 @@ a.label-txt {
     letter-spacing: 1px;
     color: rgb(120, 120, 120);
     transition: ease .3s;
+    text-align: center;
 }
 
 .input {
@@ -35,6 +37,7 @@ a.label-txt {
     background: transparent;
     border: none;
     outline: none;
+    text-align: center;
 }
 
 .line-box {

@@ -15,7 +15,7 @@ import { VehicleService } from 'src/app/Service/Services-Entities/vehicle.servic
   styleUrls: ['./add-form.component.css']
 })
 export class AddFormComponent implements OnInit {
-  
+
   @Input() config: any;
   @Output() submitter = new EventEmitter<any>();
 
@@ -70,24 +70,6 @@ export class AddFormComponent implements OnInit {
     }
 
     if (this.tipo === 3) {
-      // this.idUser = 1;
-      // this.vehicleService.getVehicles().subscribe(
-      //   result => {
-      //     this.vehicles = result;
-      //     console.log(this.vehicles);
-      //   }
-      // );
-
-      // this.vehicleConfig = new ShowVehicleConfig();
-
-      // this.configTable = {
-      //   headers: this.vehicleConfig.header,
-      //   order: this.vehicleConfig.orderconfig,
-      //   search: this.vehicleConfig.searchconfig,
-      //   pagination: this.vehicleConfig.pagination,
-      //   actions: [],
-
-      // };
 
       this.form = this.fb.group({
         targa: ['', Validators.required],
@@ -100,7 +82,7 @@ export class AddFormComponent implements OnInit {
   submit() {
     console.log('Add-Fomr');
     this.values = this.form.value;
-    this.submitter.emit({values: this.values});
+    this.submitter.emit({ values: this.values });
     // targa: this.targa, idUser: this.idUser
 
   }
