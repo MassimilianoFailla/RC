@@ -2,12 +2,8 @@ import { TablesConfig } from './../../Config/TablesConfig';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Reservations } from 'src/app/Entities/reservation/Reservations';
 import { Users } from 'src/app/Entities/user/Users';
-import { Vehicles } from 'src/app/Entities/vehicle/Vehicles';
-import { ReservationService } from 'src/app/Service/Services-Entities/reservation.service';
 import { UserService } from 'src/app/Service/Services-Entities/user.service';
-import { VehicleService } from 'src/app/Service/Services-Entities/vehicle.service';
 
 @Component({
   selector: 'app-add-users',
@@ -43,7 +39,6 @@ export class AddUsersComponent implements OnInit {
     if (this.id != 0) {
       this.usersList = this.usersService.onGetUsers(this.id);
     }
-    this.campi = this.tables.headers;
   }
 
   onSubmit(form: NgForm) {
