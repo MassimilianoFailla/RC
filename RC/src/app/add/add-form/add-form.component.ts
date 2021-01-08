@@ -47,7 +47,6 @@ export class AddFormComponent implements OnInit {
     this.campi = this.config.campi;
     this.tipo = this.config.tipo;
 
-
     if (this.tipo === 1) {
       this.form = this.fb.group({
         nome: ['', Validators.required],
@@ -58,7 +57,6 @@ export class AddFormComponent implements OnInit {
         username: ['', Validators.required],
         password: ['', Validators.required],
         role: ['', Validators.required],
-
       });
     }
 
@@ -68,7 +66,6 @@ export class AddFormComponent implements OnInit {
         annoImmatricolazione: ['', Validators.required],
         modello: ['', Validators.required],
         targa: ['', Validators.required],
-
       });
     }
 
@@ -103,7 +100,6 @@ export class AddFormComponent implements OnInit {
   submit() {
     console.log('Add-Fomr');
     this.values = this.form.value;
-
     this.submitter.emit({values: this.values});
     // targa: this.targa, idUser: this.idUser
 

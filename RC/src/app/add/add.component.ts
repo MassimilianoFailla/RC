@@ -133,6 +133,4 @@ export class AddComponent implements OnInit {
       }
     }
   }
-  } 
-
-  // ----------------- ^ vecchia configurazione ---------------------------------------
+} 

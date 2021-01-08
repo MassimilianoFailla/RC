@@ -1,3 +1,4 @@
+import { listaUtenti } from 'src/app/Mock/mock-users';
 import { UserService } from './../Service/Services-Entities/user.service';
 import { Actions } from './../Config/Actions';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
@@ -8,7 +9,6 @@ import * as _ from 'lodash';
 import { MyHeaders } from '../Config/MyHeaders';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Users } from '../Entities/user/Users';
-import { listaUtenti } from '../Mock/mock-users';
 import { listaVeicoli } from '../Mock/mock-vehicles';
 import { listaPrenotazioni } from '../Mock/mock-reservations';
 import { ButtonsConfig } from '../Config/ButtonsConfig';
@@ -28,6 +28,7 @@ export class TablesComponent implements OnInit {
   @Input() users: Users[];
   @Input() vehicles: Vehicles[];
   @Input() reservations: Reservations[];
+
   // unica configurazione tabella
   @Input() tables: TablesConfig;
 
@@ -84,8 +85,8 @@ export class TablesComponent implements OnInit {
   tempOP: string;
   tempOB: any;
 
-  @Output() tipo: number;
-
+  // @Output() tipo: number;
+  // tipo: number;
   ngOnInit(): void {
 
     // configurazione dell'ordinamento utenti
@@ -125,9 +126,9 @@ export class TablesComponent implements OnInit {
 
   addEl(object: any[]) {
     alert('hai cliccato su add!');
-    this.router.navigate([`${'/add'}`, { tipo: 1 }]);
-  
+    this.router.navigate([`${'/add'}`, { tipo: 2 }]);
   }
+
 
   opSuRiga(opriga: any, object: any) {
 
