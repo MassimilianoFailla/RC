@@ -23,6 +23,7 @@ export class VehicleComponent implements OnInit {
   @Input() datiVeicoli = listaVeicoli;
   @Input() headersVeicoli: Headers[]
   @Output() operation = new EventEmitter<number>();
+  @Input() adBut: number;
 
   operazioni: ButtonsConfig[] = [{
     text: 'edit',
@@ -60,7 +61,6 @@ export class VehicleComponent implements OnInit {
     defaultColumn: 'id',
     orderType: 'asc',
   };
-
 
   columnsVeh: Search = {
     columns: ['id', 'casaCostruttrice', 'modello', 'annoImmatricolazione', 'targa'],

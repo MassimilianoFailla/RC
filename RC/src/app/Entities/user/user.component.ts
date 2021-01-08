@@ -21,6 +21,8 @@ export class UserComponent implements OnInit {
   @Input() headersUrs: Headers[];
   @Output() operation = new EventEmitter<number>();
 
+  @Input() adBut: number;
+
   // operazioni button
   operazioni: ButtonsConfig[] = [{
     text: 'edit',
@@ -107,19 +109,6 @@ export class UserComponent implements OnInit {
   delete(object: any) {
     alert('Sei sicuro di voler cancellare?');
     this.userService.onDelete(object);
-  }
-
-  add(object: any) {
-    alert('Hai cliccato add! Stai per aggiungere un nuovo user!');
-    this.router.navigate([`${'/add/users'}`]);
-    this.userService.onAdd(object);
-  }
-
-  opButton(object: any) {
-    if (object.text === 'add') {
-      alert('hai cliccato su add!');
-      this.add(object);
-    }
   }
 
   opSuRiga(object: any) {

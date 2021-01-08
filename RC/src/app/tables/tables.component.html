@@ -6,7 +6,8 @@
                 {{column.label}}
             </th>
             <td>
-                <button type="button" class="btn btn-secondary btn-sm" (click)="addEl($event)">add</button>
+                <!-- <button type="button" class="btn btn-secondary btn-sm" (click)="addEl($event)">add</button> -->
+                <app-button [button]="addButt" (click)="addEl(adBut)"></app-button>
                 <!-- routerLink="/add " -->
             </td>
         </tr>
@@ -17,7 +18,7 @@
                 {{row[column.key]}}
             </td>
             <td *ngFor="let o of gestRighe ">
-                <app-button [button]="o " (click)="opSuRiga(o,row) "></app-button>
+                <app-button [button]="o" (click)="opSuRiga(o,row)"></app-button>
             </td>
         </tr>
     </tbody>

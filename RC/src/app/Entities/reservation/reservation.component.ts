@@ -19,6 +19,7 @@ export class ReservationComponent implements OnInit {
   @Input() datiReservations = listaPrenotazioni;
   @Input() headersReservations: Headers[]
   @Output() operation = new EventEmitter<number>();
+  @Input() adBut: number;
 
   // configurazione bottone
   buttonConfig1: ButtonsConfig = {

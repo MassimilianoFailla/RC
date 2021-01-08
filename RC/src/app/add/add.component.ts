@@ -72,6 +72,7 @@ export class AddComponent implements OnInit {
   ngOnInit(): void {
     this.tipo = Number(this.route.snapshot.paramMap.get('tipo'));
 
+    console.log(this.tipo);
     if (this.tipo === 1) {
       this.message = 'Aggiungi Utente';
       this.config = {

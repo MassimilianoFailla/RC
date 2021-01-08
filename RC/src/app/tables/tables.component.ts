@@ -28,7 +28,7 @@ export class TablesComponent implements OnInit {
   @Input() users: Users[];
   @Input() vehicles: Vehicles[];
   @Input() reservations: Reservations[];
-
+  @Input() adBut: number;
   // unica configurazione tabella
   @Input() tables: TablesConfig;
 
@@ -55,6 +55,13 @@ export class TablesComponent implements OnInit {
   @Output() provaBut = new EventEmitter<string>();
 
   @Input() add = new EventEmitter<any>();
+
+  @Input() addButt: ButtonsConfig = {
+    text: 'Add',
+    customCssClass: 'btn btn-secondary btn-sm',
+    icon: 'oi oi-plus'
+  };
+
 
   // per le operazioni
   idUsr: number;
@@ -86,7 +93,10 @@ export class TablesComponent implements OnInit {
   tempOB: any;
 
   // @Output() tipo: number;
-  // tipo: number;
+
+  @Output() tipo: number;
+  //  new EventEmitter<number>();
+
   ngOnInit(): void {
 
     // configurazione dell'ordinamento utenti
@@ -124,10 +134,41 @@ export class TablesComponent implements OnInit {
   //   this.operation.emit(operation);
   // }
 
-  addEl(object: any[]) {
-    alert('hai cliccato su add!');
-    this.router.navigate([`${'/add'}`, { tipo: 2 }]);
+  //   addEl(object: any[]) {
+  //         // differenziazione dei tipi 
+
+  //         alert('Add Users!');
+  //         this.router.navigate([`${'add'}`, { tipo: 1 }]);
+  //   }
+
+  //         // alert('Add Vehicles!');
+  //         // this.router.navigate([`${'/add'}`, { tipo: 2 }]);
+
+  //         // alert('Add Reservations!');
+  //         // this.router.navigate([`${'/add'}`, { tipo: 3 }]);
+  // // }
+
+  addEl(adBut: number) {
+
+    switch (this.adBut) {
+      case 1:
+        alert('Add Users!');
+        this.router.navigate([`${'add'}`, { tipo: 1 }]);
+        break;
+      case 2:
+        alert('Add Vehicles!');
+        this.router.navigate([`${'add'}`, { tipo: 2 }]);
+        break;
+      case 3:
+        alert('Add Reservation!');
+        this.router.navigate([`${'add'}`, { tipo: 3 }]);
+        break;
+      case 0:
+        alert('!!! ERROR !!!')
+        break;
+    }
   }
+
 
 
   opSuRiga(opriga: any, object: any) {
