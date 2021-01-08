@@ -18,7 +18,7 @@
                 {{row[column.key]}}
             </td>
             <td *ngFor="let o of gestRighe ">
-                <app-button [button]="o" (click)="opSuRiga(o,row)"></app-button>
+                <app-button [button]="o" (click)="opSuRiga(o,row, Ed)"></app-button>
             </td>
         </tr>
     </tbody>

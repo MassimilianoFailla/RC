@@ -90,7 +90,7 @@ export class VehicleComponent implements OnInit {
   }
 
   edit(object: any){
-    alert('Stai per essere indirizzato...!');
+    alert('Stai per modificare un veicolo...!');
     this.router.navigate([`${'/edit'}`, {tipo: 2}]);
     this.vehicleService.onUpdate(object);
   }
@@ -108,7 +108,7 @@ export class VehicleComponent implements OnInit {
   }
 
   opSuRiga(object: any) {
-
+    
   if(object.text === 'edit'){
     this.edit(object);
   }

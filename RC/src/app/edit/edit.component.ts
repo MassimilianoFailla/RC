@@ -104,19 +104,19 @@ export class EditComponent implements OnInit {
       role: form.value.role,
     }
 
-    // let vehicles: Vehicles = {
-    //   id: form.value.id,
-    //   annoImmatricolazione: form.value.annoImmatricolazione,
-    //   casaCostruttrice: form.value.casaCostruttrice,
-    //   modello: form.value.modello,
-    //   targa: form.value.targa,
-    // }
+    let vehicles: Vehicles = {
+      id: form.value.id,
+      annoImmatricolazione: form.value.annoImmatricolazione,
+      casaCostruttrice: form.value.casaCostruttrice,
+      modello: form.value.modello,
+      targa: form.value.targa,
+    }
 
-    // let reservations: Reservations = {
-    //   id: form.value.id,
-    //   dataInizio: form.value.dataInizio,
-    //   dataFine: form.value.dataFine,
-    // }
+    let reservations: Reservations = {
+      id: form.value.id,
+      dataInizio: form.value.dataInizio,
+      dataFine: form.value.dataFine,
+    }
 
     // if (this.id === 0) {
     //   this.usersService.onAdd(users);

@@ -22,7 +22,9 @@ export class UserComponent implements OnInit {
   @Output() operation = new EventEmitter<number>();
 
   @Input() adBut: number;
+  @Input() Ed: number;
 
+  
   // operazioni button
   operazioni: ButtonsConfig[] = [{
     text: 'edit',
@@ -101,7 +103,7 @@ export class UserComponent implements OnInit {
   }
 
   edit(object: any) {
-    alert('Stai per essere indirizzato...!');
+    alert('Stai per modificare un utente...!');
     this.router.navigate([`${'/edit'}`, {tipo: 1}]);
     this.userService.onUpdate(object);
   }

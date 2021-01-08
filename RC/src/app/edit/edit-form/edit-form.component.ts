@@ -29,7 +29,6 @@ export class EditFormComponent implements OnInit {
   reservation: Reservations[];
   tables: TablesConfig;
 
-  
   constructor(private vehicleService: VehicleService, private fb: FormBuilder, private userService: UserService, private reservationService: ReservationService) {
   }
 
@@ -71,7 +70,7 @@ export class EditFormComponent implements OnInit {
   }
 
   submit() {
-    console.log('Add-Form');
+    console.log('Edit-Form');
     this.values = this.form.value;
     this.submitter.emit({ values: this.values });
     // targa: this.targa, idUser: this.idUser
