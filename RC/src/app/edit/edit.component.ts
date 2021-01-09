@@ -11,11 +11,9 @@ import { VehicleService } from '../Service/Services-Entities/vehicle.service';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  styleUrls: ['./edit.component.css'],
 })
-
 export class EditComponent implements OnInit {
-
   id: number;
   header: string;
   tipo: number;
@@ -42,18 +40,22 @@ export class EditComponent implements OnInit {
     annoImmatricolazione: '',
     modello: '',
     targa: '',
-  }
+  };
 
   // reservation
   reservationsList: Reservations = {
     id: 0,
     dataInizio: '',
     dataFine: '',
-  }
+  };
 
-  constructor(private router: Router, private route: ActivatedRoute, private usersService: UserService,
-    private vehicleService: VehicleService, private reservationService: ReservationService) { }
-
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private usersService: UserService,
+    private vehicleService: VehicleService,
+    private reservationService: ReservationService
+  ) {}
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
@@ -65,19 +67,31 @@ export class EditComponent implements OnInit {
       this.vehiclesList = this.vehicleService.onGetVehicles(this.id);
     }
 
-
     console.log(this.tipo);
     if (this.tipo === 1) {
       this.config = {
-        campi: ['Nome', 'Cognome', 'Anno Nascita', 'Codice Fiscale', 'Email', 'Username', 'Password', 'Role'],
+        campi: [
+          'Nome',
+          'Cognome',
+          'Anno Nascita',
+          'Codice Fiscale',
+          'Email',
+          'Username',
+          'Password',
+          'Role',
+        ],
         tipo: 1,
       };
     }
 
-
     if (this.tipo === 2) {
       this.config = {
-        campi: ['Casa Costruttrice', 'Anno Immatricolazione', 'Modello', 'Targa'],
+        campi: [
+          'Casa Costruttrice',
+          'Anno Immatricolazione',
+          'Modello',
+          'Targa',
+        ],
         tipo: 2,
       };
     }
@@ -101,7 +115,7 @@ export class EditComponent implements OnInit {
       username: form.value.username,
       password: form.value.password,
       role: form.value.role,
-    }
+    };
 
     let vehicles: Vehicles = {
       id: form.value.id,
@@ -109,29 +123,12 @@ export class EditComponent implements OnInit {
       casaCostruttrice: form.value.casaCostruttrice,
       modello: form.value.modello,
       targa: form.value.targa,
-    }
+    };
 
     let reservations: Reservations = {
       id: form.value.id,
       dataInizio: form.value.dataInizio,
       dataFine: form.value.dataFine,
-    }
-
-    // if (this.id === 0) {
-    //   this.usersService.onAdd(users);
-    //   this.vehicleService.onAdd(vehicles);
-    //   // this.reservationService.onAdd(reservations);
-    // }
-    // else {
-    //   this.usersService.onUpdate(users);
-    //   this.vehicleService.onUpdate(vehicles);
-    //   // this.reservationService.onUpdate(reservations);
-    // }
-    // this.router.navigateByUrl('');
+    };
   }
-
-  // edit() {
-  //   this.usersService.onUpdate(this.usersList);
-  //   this.vehicleService.onUpdate(this.vehiclesList);
-  // }
 }

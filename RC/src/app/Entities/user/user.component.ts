@@ -24,7 +24,7 @@ export class UserComponent implements OnInit {
   @Input() adBut: number;
   @Input() Ed: number;
 
-  
+
   // operazioni button
   operazioni: ButtonsConfig[] = [{
     text: 'edit',
@@ -39,7 +39,7 @@ export class UserComponent implements OnInit {
   ];
 
   addButt: ButtonsConfig[] = [{
-    text: 'add',
+    text: 'ADD',
     customCssClass: 'btn btn-secondary btn-sm',
     icon: '',
   }];

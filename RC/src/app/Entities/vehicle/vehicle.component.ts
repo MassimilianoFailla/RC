@@ -108,7 +108,7 @@ export class VehicleComponent implements OnInit {
   }
 
   opSuRiga(object: any) {
-    
+
   if(object.text === 'edit'){
     this.edit(object);
   }

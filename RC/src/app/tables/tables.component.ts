@@ -59,7 +59,7 @@ export class TablesComponent implements OnInit {
   @Input() add = new EventEmitter<any>();
 
   @Input() addButt: ButtonsConfig = {
-    text: 'Add',
+    text: 'new data',
     customCssClass: 'btn btn-secondary btn-sm',
     icon: 'oi oi-plus'
   };
@@ -93,7 +93,6 @@ export class TablesComponent implements OnInit {
 
   tempOP: string;
   tempOB: any;
-  tempED: number;
 
   // @Output() tipo: number;
 

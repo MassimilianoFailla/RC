@@ -1,1 +1,81 @@
-<p>register works!</p>
+<script>
+  $(document).ready(function () {
+    $(".input").focus(function () {
+      $(this).parent().find(".label-txt").addClass("label-active");
+    });
+
+    $(".input").focusout(function () {
+      if ($(this).val() == "") {
+        $(this).parent().find(".label-txt").removeClass("label-active");
+      }
+    });
+  });
+</script>
+
+<h2>Register Users Page</h2>
+
+<form action="">
+  <label>
+    <p class="label-txt">Nome</p>
+    <input type="text" class="input" placeholder="nome" />
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+
+  <label>
+    <p class="label-txt">Cognome</p>
+    <input type="text" class="input" placeholder="cognome" />
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+
+  <label>
+    <p class="label-txt">Data Nascita</p>
+    <input type="date" class="input" placeholder="dataNascita" />
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+
+  <label>
+    <p class="label-txt">Codice Fiscale</p>
+    <input type="text" class="input" placeholder="codiceFiscale" />
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+
+  <label>
+    <p class="label-txt">Email</p>
+    <input type="email" class="input" placeholder="email" />
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+
+  <label>
+    <p class="label-txt">Username</p>
+    <input type="text" class="input" placeholder="username" />
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+
+  <label>
+    <p class="label-txt">Password</p>
+    <input type="password" class="input" placeholder="password" />
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+
+  <p class="label-txt">Role</p>
+  <label>
+    <input type="radio" value="Super" name="role" /> Super
+    <input type="radio" value="User" name="role" /> User
+  </label>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
