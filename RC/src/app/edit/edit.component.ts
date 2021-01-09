@@ -58,6 +58,7 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
     this.header = this.id === 0 ? 'Adding page' : 'Editing page';
+    this.tipo = Number(this.route.snapshot.paramMap.get('tipo'));
 
     if (this.id != 0) {
       this.usersList = this.usersService.onGetUsers(this.id);
