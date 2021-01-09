@@ -104,7 +104,7 @@ export class UserComponent implements OnInit {
 
   edit(object: any) {
     alert('Stai per modificare un utente...!');
-    this.router.navigate([`${'/edit'}`, {tipo: 1}]);
+    this.router.navigate([`${'edit'}`, {tipo: 1}]);
     this.userService.onUpdate(object);
   }
 

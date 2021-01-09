@@ -93,6 +93,7 @@ export class TablesComponent implements OnInit {
 
   tempOP: string;
   tempOB: any;
+  tempED: number;
 
   // @Output() tipo: number;
 
@@ -154,35 +155,12 @@ export class TablesComponent implements OnInit {
   }
 
   opSuRiga(opriga: any, object: any, Ed: number) {
-
-    switch (Ed) {
-      case 1:
-        this.tempOB = object;
-        this.tempOP = opriga.text;
-        if (opriga.ref) {
-          $(opriga.ref).modal('show');
-        } else {
-          this.opRiga.emit({ text: opriga.text, obj: object });
-        }
-        break;
-      case 2:
-        this.tempOB = object;
-        this.tempOP = opriga.text;
-        if (opriga.ref) {
-          $(opriga.ref).modal('show');
-        } else {
-          this.opRiga.emit({ text: opriga.text, obj: object });
-        }
-        break;
-      case 3:
-        this.tempOB = object;
-        this.tempOP = opriga.text;
-        if (opriga.ref) {
-          $(opriga.ref).modal('show');
-        } else {
-          this.opRiga.emit({ text: opriga.text, obj: object });
-        }
-        break;
+    this.tempOB = object;
+    this.tempOP = opriga.text;
+    if (opriga.ref) {
+      $(opriga.ref).modal('show');
+    } else {
+      this.opRiga.emit({ text: opriga.text, obj: object });
     }
   }
 }

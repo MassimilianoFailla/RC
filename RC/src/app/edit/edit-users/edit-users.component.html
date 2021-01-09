@@ -107,7 +107,7 @@
 
     <label>
       <p class="label-txt">Nome</p>
-      <input type="text" class="input" [(ngModel)]="usersList.nome" place="nome" >
+      <input type="text" class="input" [(ngModel)]="usersList.nome" placeholder="{{usersList.nome}}">
       <div class="line-box">
           <div class="line"></div>
       </div>
@@ -115,7 +115,7 @@
 
     <label>
       <p class="label-txt">Cognome</p>
-      <input type="text" class="input" [(ngModel)]="usersList.cognome" name="cognome" >
+      <input type="text" class="input" [(ngModel)]="usersList.cognome" placeholder="{{usersList.cognome}}" >
       <div class="line-box">
           <div class="line"></div>
       </div>
@@ -131,7 +131,7 @@
 
     <label>
       <p class="label-txt">Codice Fiscale</p>
-      <input type="text" class="input" [(ngModel)]="usersList.codiceFiscale" name="codiceFiscale" >
+      <input type="text" class="input" [(ngModel)]="usersList.codiceFiscale" placeholder="{{usersList.codiceFiscale}}" >
       <div class="line-box">
           <div class="line"></div>
       </div>
@@ -139,7 +139,7 @@
 
     <label>
       <p class="label-txt">Email</p>
-      <input type="email" class="input" [(ngModel)]="usersList.email" name="email" >
+      <input type="email" class="input" [(ngModel)]="usersList.email" placeholder="{{usersList.email}}" >
       <div class="line-box">
           <div class="line"></div>
       </div>
@@ -147,7 +147,7 @@
 
     <label>
       <p class="label-txt">Username</p>
-      <input type="text" class="input" [(ngModel)]="usersList.username" name="username" >
+      <input type="text" class="input" [(ngModel)]="usersList.username" placeholder="{{usersList.username}}" >
       <div class="line-box">
           <div class="line"></div>
       </div>
@@ -155,7 +155,7 @@
 
     <label>
       <p class="label-txt">Password</p>
-      <input type="password" class="input" [(ngModel)]="usersList.password" name="password" >
+      <input type="password" class="input" [(ngModel)]="usersList.password" nome="aggiorna password..." >
       <div class="line-box">
           <div class="line"></div>
       </div>
@@ -168,5 +168,5 @@
           <input type="radio" value="User" [(ngModel)]="usersList.role" name="role"> User
       </label>
     </label>
-    <button type="submit" class="btn btn-primary">Salva</button>
+    <button type="submit" class="btn btn-primary">Aggiorna</button>
 </form>

@@ -49,6 +49,7 @@ export class EditFormComponent implements OnInit {
         password: ['', Validators.required],
         role: ['', Validators.required],
       });
+      
     }
 
     if (this.tipo === 2) {

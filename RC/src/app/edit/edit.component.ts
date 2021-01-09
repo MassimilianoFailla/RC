@@ -18,11 +18,9 @@ export class EditComponent implements OnInit {
 
   id: number;
   header: string;
-
   tipo: number;
   config: any;
   message: string;
-
 
   // utenti
   usersList: Users = {
