@@ -1,0 +1,54 @@
+<h2> Adding Reservations Page</h2>
+<section class="container">
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+            <div class="caption font-red-sunglo">
+                <i class="oi oi-pencil"></i>
+                <span class="caption-subject bold uppercase"><b> Dati Prenotazione </b> </span>
+            </div>
+        </div>
+        <br><br>
+        <!-- Inizio del form di inserimento dati-->
+        <div class="portlet-body form">
+            <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+                <!-- <form (ngSubmit)="artForm.valid && salva() " #artForm="ngForm "> -->
+
+                <div class="form-body ">
+
+                    <!-- <div class="form-group ">
+                        <label for="id ">ID Utente:</label>
+                        <input name="id " type="text " [(ngModel)]="vehiclesList.id " class="form-control " placeholder="ID utente" />
+                        <span style="color:rgb(2, 0, 134) "></span>
+                    </div> -->
+
+                    <div class="form-group ">
+                        <label for="dataInizio"><b> Inizio Prenotazione: </b></label>
+                        <input name="dataInizio" type="date" [(ngModel)]="reservationsList.dataInizio " class="form-control" />
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="dataFine"><b> Fine Prenotazione: </b></label>
+                        <input name="dataFine" type="date" [(ngModel)]="reservationsList.dataFine " class="form-control" />
+                    </div>
+
+                    <!-- Servirà per la scelta del veicolo -->
+                    <!-- <div class="form-group ">
+                <label for="role ">Role</label>
+                <select name="um " class="form-control " [(ngModel)]="vehiclesList.role ">
+              <option value="Super ">Super</option>
+              <option value="Customer ">User</option>
+            </select>
+            </div> -->
+
+                    <hr class="line-form ">
+                    <button type="submit " id="btnAdd " class="btn btn-primary form-buttons " [disabled]="f.invalid ">
+            <i class="fa fa-floppy-o " aria-hidden="true "></i> Salva
+          </button>
+                    <button id="btnAbort " class="btn btn-warning form-buttons " (click)="abort() ">
+            <i class="fa fa-sign-out " aria-hidden="true "></i> Annulla
+          </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

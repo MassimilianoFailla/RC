@@ -1,4 +1,3 @@
-import { UserService } from './../../Service/Services-Entities/user.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Actions } from 'src/app/Config/Actions';
 import { ButtonsConfig } from 'src/app/Config/ButtonsConfig';
@@ -8,6 +7,9 @@ import { Search } from 'src/app/Config/Search';
 import { TablesConfig } from 'src/app/Config/TablesConfig';
 import { listaUtenti } from 'src/app/Mock/mock-users';
 import { Router } from '@angular/router';
+import { Users } from './Users';
+import { UserService } from 'src/app/Services/Services-Entities/user.service';
+import { UserDataService } from 'src/app/Services/Data/user-data-service.service';
 
 @Component({
   selector: 'app-user',
@@ -16,14 +18,18 @@ import { Router } from '@angular/router';
 })
 export class UserComponent implements OnInit {
 
+  constructor(private userService: UserService, private router: Router, private userDataService: UserDataService) { }
+
   @Input() tabUrs: TablesConfig;
-  @Input() datiUtenti = listaUtenti;
+  @Input() datiUtent = this.InsUsr();
   @Input() headersUrs: Headers[];
   @Output() operation = new EventEmitter<number>();
 
   @Input() adBut: number;
   @Input() Ed: number;
 
+  apiMsg: ApiMsg;
+  messaggio: string;
 
   // operazioni button
   operazioni: ButtonsConfig[] = [{
@@ -43,8 +49,6 @@ export class UserComponent implements OnInit {
     customCssClass: 'btn btn-secondary btn-sm',
     icon: '',
   }];
-
-  constructor(private userService: UserService, private router: Router) { }
 
   // configurazione bottone
   buttonConfig: ButtonsConfig = {
@@ -100,17 +104,20 @@ export class UserComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    // this.userDataService.getUser().subscribe(data => {
+    //   this.tables.data = data;
+    // });
   }
 
   edit(object: any) {
     alert('Stai per modificare un utente...!');
-    this.router.navigate([`${'edit'}`, {tipo: 1}]);
-    this.userService.onUpdate(object);
+    this.router.navigate([`${'edit/users'}`, {tipo: 1}]);
+    this.userDataService.updUser(object);
   }
 
   delete(object: any) {
     alert('Sei sicuro di voler cancellare?');
-    this.userService.onDelete(object);
+    this.userDataService.delUseryId(object);
   }
 
   opSuRiga(object: any) {
@@ -121,4 +128,31 @@ export class UserComponent implements OnInit {
       this.delete(object);
     }
   }
+
+  Elimina(id: number) {
+    console.log(`Eliminazione utente ${id}`);
+
+    this.userDataService.delUseryId(id).subscribe(
+      response => {
+
+        this.apiMsg = response;
+        this.messaggio = this.apiMsg.message;
+        // this.refresh();
+
+      }
+    )
+
+  }
+
+  InsUsr(){
+     this.userDataService.getUser().subscribe(data =>  this.tables.data = data);
+  }
+}
+
+export class ApiMsg {
+
+  constructor(
+    public code: string,
+    public message: string
+  ) {}
 }

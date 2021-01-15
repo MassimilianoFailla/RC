@@ -1,11 +1,10 @@
 import { listaUtenti } from 'src/app/Mock/mock-users';
-import { UserService } from './../Service/Services-Entities/user.service';
 import { Actions } from './../Config/Actions';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Paginations } from '../Config/Paginations';
 import { Search } from '../Config/Search';
 import { TablesConfig } from '../Config/TablesConfig';
-import * as _ from 'lodash';
+import * as _ from 'lodash-es';
 import { MyHeaders } from '../Config/MyHeaders';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Users } from '../Entities/user/Users';
@@ -14,6 +13,7 @@ import { listaPrenotazioni } from '../Mock/mock-reservations';
 import { ButtonsConfig } from '../Config/ButtonsConfig';
 import { Vehicles } from '../Entities/vehicle/Vehicles';
 import { Reservations } from '../Entities/reservation/Reservations';
+import { UserService } from '../Services/Services-Entities/user.service';
 declare var $: any;
 
 @Component({
@@ -63,7 +63,6 @@ export class TablesComponent implements OnInit {
     customCssClass: 'btn btn-secondary btn-sm',
     icon: 'oi oi-plus'
   };
-
 
   // per le operazioni
   idUsr: number;
@@ -137,15 +136,15 @@ export class TablesComponent implements OnInit {
     switch (this.adBut) {
       case 1:
         alert('Add Users!');
-        this.router.navigate([`${'add'}`, { tipo: 1 }]);
+        this.router.navigate([`${'add/user'}`, { tipo: 1 }]);
         break;
       case 2:
         alert('Add Vehicles!');
-        this.router.navigate([`${'add'}`, { tipo: 2 }]);
+        this.router.navigate([`${'add/vehicle'}`, { tipo: 2 }]);
         break;
       case 3:
         alert('Add Reservation!');
-        this.router.navigate([`${'add'}`, { tipo: 3 }]);
+        this.router.navigate([`${'add/reservation'}`, { tipo: 3 }]);
         break;
       case 0:
         alert('!!! ERROR !!!')

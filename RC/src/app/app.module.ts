@@ -20,27 +20,28 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { UserComponent } from './Entities/user/user.component';
 import { VehicleComponent } from './Entities/vehicle/vehicle.component';
 import { ReservationComponent } from './Entities/reservation/reservation.component';
-import { AddComponent } from './add/add.component';
-import { EditComponent } from './edit/edit.component';
 import { ButtonComponent } from './button/button.component';
-import { AddUsersComponent } from './add/add-users/add-users.component';
-import { AddVehiclesComponent } from './add/add-vehicles/add-vehicles.component';
-import { AddReservationsComponent } from './add/add-reservations/add-reservations.component';
-import { AddFormComponent } from './add/add-form/add-form.component';
-import { EditFormComponent } from './edit/edit-form/edit-form.component';
-import { EditUsersComponent } from './edit/edit-users/edit-users.component';
-import { EditVehiclesComponent } from './edit/edit-vehicles/edit-vehicles.component';
-import { EditReservationsComponent } from './edit/edit-reservations/edit-reservations.component';
+import { AddUsersComponent } from './AddEntities/add-users/add-users.component';
+import { AddVehiclesComponent } from './AddEntities/add-vehicles/add-vehicles.component';
+import { AddReservationsComponent } from './AddEntities/add-reservations/add-reservations.component';
+import { EditUsersComponent } from './EditEntities/edit-users/edit-users.component';
+import { EditVehiclesComponent } from './EditEntities/edit-vehicles/edit-vehicles.component';
+import { EditReservationsComponent } from './EditEntities/edit-reservations/edit-reservations.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   // { path: '**', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'users', component: UserComponent },
-  { path: 'add', component: AddComponent},
-  { path: 'edit', component: EditComponent},
+  { path: 'add/user', component: AddUsersComponent},
+  { path: 'edit/users', component: EditUsersComponent},
   { path: 'vehicles', component: VehicleComponent },
+  { path: 'add/vehicle', component: AddVehiclesComponent},
+  { path: 'edit/vehicles', component: EditVehiclesComponent},
   { path: 'reservations', component: ReservationComponent },
+  { path: 'add/reservation', component: AddReservationsComponent},
+  { path: 'edit/reservations', component: EditReservationsComponent},
 ];
 
 @NgModule({
@@ -59,14 +60,10 @@ const appRoutes: Routes = [
     HomeComponent,
     JumbotronComponent,
     NavbarComponent,
-    AddComponent,
-    EditComponent,
     ButtonComponent,
     AddUsersComponent,
     AddVehiclesComponent,
     AddReservationsComponent,
-    AddFormComponent,
-    EditFormComponent,
     EditUsersComponent,
     EditVehiclesComponent,
     EditReservationsComponent,
@@ -79,6 +76,7 @@ const appRoutes: Routes = [
     MatSliderModule,
     MatIconModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(
       appRoutes, {enableTracing: true}
       ),

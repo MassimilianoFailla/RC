@@ -1,0 +1,97 @@
+<h2> Adding User Page</h2>
+<section class="container">
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+            <div class="caption font-red-sunglo">
+                <i class="oi oi-pencil"></i>
+                <span class="caption-subject bold uppercase"> Dati Utente</span>
+            </div>
+        </div>
+        <br><br>
+        <!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm"> -->
+
+        <!--Inizio del form di inserimento dati-->
+        <div class="portlet-body form">
+            <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+                <!-- <form (ngSubmit)="artForm.valid && salva() " #artForm="ngForm "> -->
+
+                <div class="form-body ">
+
+                    <!-- <div class="form-group ">
+                        <label for="id ">ID Utente:</label>
+                        <input name="id " type="text " [(ngModel)]="usersList.id " class="form-control " placeholder="ID utente" />
+                        <span style="color:rgb(2, 0, 134) "></span>
+                    </div> -->
+
+                    <div class="form-group ">
+                        <label for="nome"><b>Nome Utente:</b></label>
+                        <input name="nome" type="text " [(ngModel)]="usersList.nome " class="form-control " placeholder="Nome utente " required minlength="5 " maxlength="30 " />
+                        <span style="color:rgb(2, 0, 134) ">
+              Il nome deve essere compreso fra 5 e 30 caratteri
+            </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cognome"><b>Cognome Utente:</b></label>
+                        <input name="cognome" type="text " [(ngModel)]="usersList.cognome " class="form-control " placeholder="Cognome utente " required minlength="5 " maxlength="30 " />
+                        <span style="color:rgb(2, 0, 134) ">
+              Il cognome deve essere compreso fra 5 e 30 caratteri
+            </span>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="dataNascita "><b>Anno Nascita Utente:</b></label>
+                        <input name="dataNascita " type="date " [(ngModel)]="usersList.dataNascita " class="form-control " placeholder="Anno Nascita utente " required minlength="5 " maxlength="30 " />
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="codiceFiscale "><b>CF Utente:</b></label>
+                        <input name="codiceFiscale " type="text " [(ngModel)]="usersList.codiceFiscale " class="form-control " placeholder="CF utente " required minlength="5 " maxlength="30 " />
+                        <span style="color:rgb(2, 0, 134) ">
+              Il CF deve essere compreso fra 5 e 30 caratteri
+            </span>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="email "><b>Email Utente:</b></label>
+                        <input name="email " type="email " [(ngModel)]="usersList.email " class="form-control " placeholder="Email utente " required minlength="5 " maxlength="30 " />
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="username "><b>Username Utente:</b></label>
+                        <input name="username " type="text " [(ngModel)]="usersList.username " class="form-control " placeholder="Username utente " required minlength="5 " maxlength="30 " />
+                        <span style="color:rgb(2, 0, 134) ">
+              L'usersListname deve essere compreso fra 5 e 30 caratteri
+            </span>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="password "><b>Password Utente:</b></label>
+                        <input name="password " type="password " [(ngModel)]="usersList.password " class="form-control " placeholder="Inserisci password " required minlength="5 " maxlength="30 " />
+                        <span style="color:rgb(2, 0, 134) ">
+              La password deve essere compresa fra 5 e 30 caratteri
+            </span>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="role "><b>Role Utente:</b></label>
+                        <select name="um " class="form-control " [(ngModel)]="usersList.role ">
+              <option value="Super ">Super</option>
+              <option value="Customer ">User</option>
+            </select>
+                    </div>
+
+                    <hr class="line-form ">
+
+                    <button type="submit " id="btnAdd " class="btn btn-primary form-buttons " [disabled]="f.invalid ">
+            <i class="fa fa-floppy-o " aria-hidden="true "></i> Salva
+          </button>
+                    <button id="btnAbort" class="btn btn-warning form-buttons " (click)="abort() ">
+            <i class="fa fa-sign-out " aria-hidden="true "></i> Annulla
+          </button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

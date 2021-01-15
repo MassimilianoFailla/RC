@@ -1,4 +1,3 @@
-import { VehicleService } from './../../Service/Services-Entities/vehicle.service';
 import { EventEmitter, Input, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Actions } from 'src/app/Config/Actions';
@@ -9,6 +8,8 @@ import { Search } from 'src/app/Config/Search';
 import { TablesConfig } from 'src/app/Config/TablesConfig';
 import { listaVeicoli } from 'src/app/Mock/mock-vehicles';
 import { Router } from '@angular/router';
+import { VehicleDataService } from 'src/app/Services/Data/vehicle-data-service.service';
+import { VehicleService } from 'src/app/Services/Services-Entities/vehicle.service';
 
 @Component({
   selector: 'app-vehicle',
@@ -17,10 +18,11 @@ import { Router } from '@angular/router';
 })
 export class VehicleComponent implements OnInit {
 
-  constructor(private vehicleService: VehicleService, private router: Router) { }
-
+  constructor(private vehicleService: VehicleService, private router: Router,
+    private vehicleDataService: VehicleDataService) { }
+  
   @Input() tabVeh: TablesConfig;
-  @Input() datiVeicoli = listaVeicoli;
+  @Input() datiVeicoli: any[];
   @Input() headersVeicoli: Headers[]
   @Output() operation = new EventEmitter<number>();
   @Input() adBut: number;
@@ -87,17 +89,20 @@ export class VehicleComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.vehicleDataService.getVehicles().subscribe(data => {
+      this.tables.data = data;
+    });
   }
 
   edit(object: any){
     alert('Stai per modificare un veicolo...!');
-    this.router.navigate([`${'/edit'}`, {tipo: 2}]);
-    this.vehicleService.onUpdate(object);
+    this.router.navigate([`${'/edit/vehicles'}`, {tipo: 2}]);
+    this.vehicleDataService.updVehicle(object);
   }
 
   delete(object: any){
     alert('Sei sicuro di voler cancellare?');
-    this.vehicleService.onDelete(object);
+    this.vehicleDataService.delVehicleById(object);
   }
 
   opButton(op: string) {
