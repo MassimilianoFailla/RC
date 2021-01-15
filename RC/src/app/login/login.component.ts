@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthappService } from '../Service/authapp.service';
+import { AuthappService } from '../Services/authapp.service';
 
 @Component({
   selector: 'app-login',

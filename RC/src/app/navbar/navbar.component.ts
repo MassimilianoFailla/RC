@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ButtonsConfig } from '../Config/ButtonsConfig';
-import { AuthappService } from '../Service/authapp.service';
+import { AuthappService } from '../Services/authapp.service';
 
 @Component({
   selector: 'app-navbar',

@@ -1,9 +1,10 @@
+import { UserDataService } from './../Services/Data/user-data-service.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TablesConfig } from '../Config/TablesConfig';
 import { Users } from '../Entities/user/Users';
-import { UserService } from '../Service/Services-Entities/user.service';
+import { UserService } from '../Services/Services-Entities/user.service';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +30,8 @@ export class RegisterComponent implements OnInit {
     role: '',
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private usersService: UserService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private usersService: UserService,
+    private userDataService: UserDataService) { }
 
   ngOnInit(): void {
     // this.id = +this.route.snapshot.paramMap.get('id');
@@ -54,7 +56,7 @@ export class RegisterComponent implements OnInit {
 
     }
     if (this.id === 0) {
-      this.usersService.onAdd(users);
+      this.userDataService.insUser(users);
     }
   }
 }
