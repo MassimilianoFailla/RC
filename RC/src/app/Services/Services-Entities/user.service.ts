@@ -6,6 +6,7 @@ import { listaUtenti } from 'src/app/Mock/mock-users';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
 
   users: Users[] = listaUtenti;

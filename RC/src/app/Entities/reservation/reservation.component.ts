@@ -3,6 +3,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions } from 'src/app/Config/Actions';
 import { ButtonsConfig } from 'src/app/Config/ButtonsConfig';
+import { MyHeaders } from 'src/app/Config/MyHeaders';
 import { Orders } from 'src/app/Config/Orders';
 import { Paginations } from 'src/app/Config/Paginations';
 import { Search } from 'src/app/Config/Search';
@@ -18,35 +19,55 @@ import { ReservationService } from 'src/app/Services/Services-Entities/reservati
 })
 export class ReservationComponent implements OnInit {
 
-  constructor(private reservationService: ReservationService, private router: Router,
+  constructor(private reservationService: ReservationService, private router: Router, 
     private reservationDataService: ReservationDataService) { }
 
-
-  @Input() tabVeh: TablesConfig;
-  @Input() datiReservations = this.InsRes();
-  @Input() headersReservations: Headers[]
+  @Input() tabUrs: TablesConfig;
+  @Input() datiPrenotazione = this.InsRes();
+  @Input() headersRes: MyHeaders[];
   @Output() operation = new EventEmitter<number>();
+
   @Input() adBut: number;
+  @Input() Ed: number;
 
   apiMsg: ApiMsg;
   messaggio: string;
 
+  // operazioni button
+  operazioni: ButtonsConfig[] = [{
+    text: 'edit',
+    customCssClass: 'btn btn-secondary btn-sm',
+    icon: '',
+  },
+  {
+    text: 'delete',
+    customCssClass: 'btn btn-danger btn-sm',
+    icon: '',
+  }
+  ];
+
+  addButt: ButtonsConfig[] = [{
+    text: 'ADD',
+    customCssClass: 'btn btn-secondary btn-sm',
+    icon: '',
+  }];
+
   // configurazione bottone
-  buttonConfig1: ButtonsConfig = {
+  buttonConfig: ButtonsConfig = {
     text: 'clicca',
     icon: 'home',
     customCssClass: 'myStyle',
   };
 
-  // creo la key e la label per i veicoli
-  headerReser = [
+  // settaggio headers
+  headerUsr = [
     { key: 'id', label: 'Id' },
     { key: 'dataInizio', label: 'DataInizio' },
     { key: 'dataFine', label: 'DataFine' },
   ];
 
-  // settaggio datiConfig
-  datiRes = listaPrenotazioni;
+   // settaggio datiConfig
+   datiRes = listaPrenotazioni;
 
   // settaggio orderConfig
   orderConfig: Orders = {
@@ -54,9 +75,9 @@ export class ReservationComponent implements OnInit {
     orderType: 'asc',
   };
 
-  columnsRes: Search = {
+  columnsUrs: Search = {
     columns: ['id', 'dataInizio', 'dataFine'],
-  }
+  };
 
   // configPages
   pagesConfig: Paginations = {
@@ -67,22 +88,26 @@ export class ReservationComponent implements OnInit {
   // config action
   actionConfig: Actions[] = [Actions.NEW_ROW, Actions.EDIT, Actions.DELETE];
 
+  // configurazione tabella
   tables: TablesConfig = {
-    headers: this.headerReser,
+    headers: this.headerUsr,
+    button: this.buttonConfig,
     data: this.datiRes,
     order: this.orderConfig,
-    search: this.columnsRes,
+    search: this.columnsUrs,
     pagination: this.pagesConfig,
-    button: this.buttonConfig1,
     actions: this.actionConfig,
   };
 
   ngOnInit(): void {
+    // this.userDataService.getUser().subscribe(data => {
+    //   this.tables.data = data;
+    // });
   }
 
   edit(object: any) {
-    alert('Stai per modificare un utente...!');
-    this.router.navigate([`${'edit/users'}`, { tipo: 1 }]);
+    alert('Stai per modificare una prenotazione...!');
+    this.router.navigate([`${'edit/reservations'}`, {tipo: 3}]);
     this.reservationDataService.updReservation(object);
   }
 
@@ -101,7 +126,7 @@ export class ReservationComponent implements OnInit {
   }
 
   Elimina(id: number) {
-    console.log(`Eliminazione utente ${id}`);
+    console.log(`Eliminazione prenotazione ${id}`);
 
     this.reservationDataService.delReservationById(id).subscribe(
       response => {
@@ -109,16 +134,13 @@ export class ReservationComponent implements OnInit {
         this.apiMsg = response;
         this.messaggio = this.apiMsg.message;
         // this.refresh();
-
       }
     )
-
   }
 
-  InsRes() {
-    this.reservationDataService.getReservations().subscribe(data => this.tables.data = data);
+  InsRes(){
+     this.reservationDataService.getReservations().subscribe(data =>  this.tables.data = data);
   }
-
 }
 
 export class ApiMsg {
@@ -126,5 +148,5 @@ export class ApiMsg {
   constructor(
     public code: string,
     public message: string
-  ) { }
+  ) {}
 }

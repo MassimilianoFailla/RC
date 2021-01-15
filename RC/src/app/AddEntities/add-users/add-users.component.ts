@@ -11,12 +11,12 @@ import { UserService } from 'src/app/Services/Services-Entities/user.service';
   templateUrl: './add-users.component.html',
   styleUrls: ['./add-users.component.css']
 })
+
 export class AddUsersComponent implements OnInit {
 
   id: number;
   header: string;
   @Input() tables: TablesConfig;
-  campi: any[]; // per i lable dell'html
 
   // utenti
   usersList: Users = {

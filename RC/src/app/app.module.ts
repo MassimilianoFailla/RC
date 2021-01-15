@@ -1,4 +1,3 @@
-import { RegisterComponent } from './register/register.component';
 import { SortVehiclesPipe } from './Pipes/sort-vehicle.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -28,6 +27,7 @@ import { EditUsersComponent } from './EditEntities/edit-users/edit-users.compone
 import { EditVehiclesComponent } from './EditEntities/edit-vehicles/edit-vehicles.component';
 import { EditReservationsComponent } from './EditEntities/edit-reservations/edit-reservations.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
   // { path: '**', component: HomeComponent},
@@ -67,6 +67,7 @@ const appRoutes: Routes = [
     EditUsersComponent,
     EditVehiclesComponent,
     EditReservationsComponent,
+    RegisterComponent,
   ],
 
   imports: [
