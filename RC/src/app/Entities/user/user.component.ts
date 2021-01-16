@@ -24,13 +24,12 @@ export class UserComponent implements OnInit {
   @Input() datiUtent = this.InsUsr();
   @Input() headersUrs: Headers[];
   @Output() operation = new EventEmitter<number>();
-
   @Input() adBut: number;
   @Input() Ed: number;
 
   apiMsg: ApiMsg;
   messaggio: string;
-
+  user: Users;
   // operazioni button
   operazioni: ButtonsConfig[] = [{
     text: 'edit',
@@ -109,15 +108,15 @@ export class UserComponent implements OnInit {
     // });
   }
 
-  edit(object: any) {
+  edit(user: Users) {
     alert('Stai per modificare un utente...!');
-    this.router.navigate([`${'edit/users'}`, {tipo: 1}]);
-    this.userDataService.updUser(object);
+    this.router.navigate([`${'edit/users'}`, { tipo: 1 }]);
+    this.userDataService.updUser(user);
   }
 
-  delete(object: any) {
+  delete(user: Users) {
     alert('Sei sicuro di voler cancellare?');
-    this.userDataService.delUseryId(object);
+    this.userDataService.delUseryId(user.id);
   }
 
   opSuRiga(object: any) {
@@ -144,15 +143,17 @@ export class UserComponent implements OnInit {
 
   }
 
-  InsUsr(){
-     this.userDataService.getUser().subscribe(data =>  this.tables.data = data);
+  InsUsr() {
+    this.userDataService.getUser().subscribe(data => this.tables.data = data);
   }
+
 }
+
 
 export class ApiMsg {
 
   constructor(
     public code: string,
     public message: string
-  ) {}
+  ) { }
 }

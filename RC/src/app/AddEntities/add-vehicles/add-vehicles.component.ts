@@ -50,6 +50,7 @@ export class AddVehiclesComponent implements OnInit {
       modello: form.value.modello,
       targa: form.value.targa,
     }
+    
   if (this.id === 0) {
     this.vehicleDataService.insVehicle(vehicles);
   }

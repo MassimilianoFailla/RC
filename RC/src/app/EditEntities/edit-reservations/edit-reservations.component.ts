@@ -39,7 +39,7 @@ export class EditReservationsComponent implements OnInit {
   }
 
   abort() {
-    alert('stai tornando alla tabella degli utenti')
+    alert('stai tornando alla tabella delle prenotazioni')
     this.router.navigate(['/reservations']);
   }
 

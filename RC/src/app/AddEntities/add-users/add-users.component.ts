@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Users } from 'src/app/Entities/user/Users';
 import { UserDataService } from 'src/app/Services/Data/user-data-service.service';
 import { UserService } from 'src/app/Services/Services-Entities/user.service';
+import { ApiMsg } from 'src/app/Entities/user/user.component';
 
 @Component({
   selector: 'app-add-users',
@@ -17,7 +18,11 @@ export class AddUsersComponent implements OnInit {
   id: number;
   header: string;
   @Input() tables: TablesConfig;
+  Errore: string = '';
+  IsModifica: boolean = false;
+  Conferma: string = '';
 
+  apiMsg: ApiMsg;
   // utenti
   usersList: Users = {
     id: 0,
@@ -31,7 +36,7 @@ export class AddUsersComponent implements OnInit {
     role: '',
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private usersService: UserService, 
+  constructor(private router: Router, private route: ActivatedRoute, private usersService: UserService,
     private userDataService: UserDataService) { }
 
   ngOnInit(): void {
@@ -48,6 +53,35 @@ export class AddUsersComponent implements OnInit {
     this.router.navigate(['/users']);
   }
 
+  // salva(form: NgForm) {
+  //   let users: Users = {
+  //     id: form.value.id,
+  //     nome: form.value.nome,
+  //     cognome: form.value.cognome,
+  //     dataNascita: form.value.dataNascita,
+  //     codiceFiscale: form.value.codiceFiscale,
+  //     email: form.value.email,
+  //     username: form.value.username,
+  //     password: form.value.password,
+  //     role: form.value.role,
+
+  //   }
+  //   this.userDataService.insUser(users).subscribe(
+  //     response => {
+  //       console.log(response);
+  //       this.apiMsg = response;
+  //       this.Conferma = this.apiMsg.message;
+  //       console.log(this.Conferma);
+  //     },
+  //     error => {
+  //       this.Errore = error.error.messaggio;
+  //       console.log(this.Errore);
+
+  //     }
+  //   )
+  //   }
+
+
   onSubmit(form: NgForm) {
     let users: Users = {
       id: form.value.id,
@@ -61,9 +95,20 @@ export class AddUsersComponent implements OnInit {
       role: form.value.role,
 
     }
-    if (this.id === 0) {
-      this.userDataService.insUser(users);
-    }
-  }
+    this.userDataService.insUser(users).subscribe(
+      response => {
+        console.log(response);
+        this.apiMsg = response;
+        this.Conferma = this.apiMsg.message;
+        console.log(this.Conferma);
+      },
+      error => {
+        this.Errore = error.error.messaggio;
+        console.log(this.Errore);
+      }
+    )
+    alert("Nuovo utente salvato con successo!");
+   this.router.navigate(['/users']);
 
+  }
 }

@@ -48,6 +48,4 @@ export class UserService {
       oldUsers.role = usersList.role;
     }
 
-
-    
   }

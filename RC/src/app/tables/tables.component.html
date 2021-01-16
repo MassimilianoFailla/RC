@@ -11,7 +11,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor=" let row of tables.data | pagination: perPage: selectedPage ">
+        <tr *ngFor=" let row of tables.data  ">
+            <!-- | pagination: perPage: selectedPage -->
             <td *ngFor="let column of tables.headers ">
                 {{row[column.key]}}
             </td>
@@ -23,13 +24,13 @@
 </table>
 
 <br><br>
-<div>
+<!-- <div>
     Quantità Elementi Per Pagina: <select [(ngModel)]="perPage ">
         <option *ngFor="let itemPerPage of tables.pagination.itemPerPageOptions">
             {{itemPerPage}}
         </option>
     </select>
     <br><br> Pagina: <input [(ngModel)]="selectedPage " type="number " value="{{selectedPage}} ">
-</div>
+</div> -->
 
 <br><br><br><br><br>

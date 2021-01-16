@@ -151,6 +151,7 @@ export class TablesComponent implements OnInit {
         break;
     }
   }
+  
 
   opSuRiga(opriga: any, object: any, Ed: number) {
     this.tempOB = object;
