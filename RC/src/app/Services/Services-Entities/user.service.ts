@@ -35,17 +35,17 @@ export class UserService {
       this.users.splice(index, 1);
     }
 
-    onUpdate(usersList: Users){
-      // alert('sei su modifica');
-      let oldUsers = this.users.find(x=>x.id === usersList.id);
-      oldUsers.nome = usersList.nome;
-      oldUsers.cognome = usersList.cognome;
-      oldUsers.dataNascita = usersList.dataNascita;
-      oldUsers.codiceFiscale = usersList.codiceFiscale;
-      oldUsers.email = usersList.email;
-      oldUsers.username = usersList.username;
-      oldUsers.password = usersList.password;
-      oldUsers.role = usersList.role;
-    }
+    // onUpdate(usersList: Users){
+    //   // alert('sei su modifica');
+    //   let oldUsers = this.users.find(x=>x.id === usersList.id);
+    //   oldUsers.nome = usersList.nome;
+    //   oldUsers.cognome = usersList.cognome;
+    //   oldUsers.dataNascita = usersList.dataNascita;
+    //   oldUsers.codiceFiscale = usersList.codiceFiscale;
+    //   oldUsers.email = usersList.email;
+    //   oldUsers.username = usersList.username;
+    //   oldUsers.password = usersList.password;
+    //   oldUsers.role = usersList.role;
+    // }
 
   }

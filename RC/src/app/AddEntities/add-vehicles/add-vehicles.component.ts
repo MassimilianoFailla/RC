@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Vehicles } from 'src/app/Entities/vehicle/Vehicles';
 import { VehicleService } from 'src/app/Services/Services-Entities/vehicle.service';
+import { ApiMsg } from 'src/app/Entities/user/user.component';
 
 @Component({
   selector: 'app-add-vehicles',
@@ -14,7 +15,11 @@ export class AddVehiclesComponent implements OnInit {
 
   id: number;
   header: string;
-
+  Errore: string = '';
+  IsModifica: boolean = false;
+  Conferma: string = '';
+  apiMsg: ApiMsg;
+  
   // veicoli
   vehiclesList: Vehicles = {
     id: 0,
@@ -51,8 +56,20 @@ export class AddVehiclesComponent implements OnInit {
       targa: form.value.targa,
     }
     
-  if (this.id === 0) {
-    this.vehicleDataService.insVehicle(vehicles);
-  }
+    this.vehicleDataService.insVehicle(vehicles).subscribe(
+      response => {
+        console.log(response);
+        this.apiMsg = response;
+        this.Conferma = this.apiMsg.message;
+        console.log(this.Conferma);
+      },
+      error => {
+        this.Errore = error.error.messaggio;
+        console.log(this.Errore);
+      }
+    )
+    alert("Nuovo veicolo salvato con successo!");
+   this.router.navigate(['/vehicles']);
+
   }
 }

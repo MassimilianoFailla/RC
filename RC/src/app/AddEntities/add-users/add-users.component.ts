@@ -18,6 +18,7 @@ export class AddUsersComponent implements OnInit {
   id: number;
   header: string;
   @Input() tables: TablesConfig;
+  
   Errore: string = '';
   IsModifica: boolean = false;
   Conferma: string = '';
@@ -52,35 +53,6 @@ export class AddUsersComponent implements OnInit {
     alert('stai tornando alla tabella degli utenti')
     this.router.navigate(['/users']);
   }
-
-  // salva(form: NgForm) {
-  //   let users: Users = {
-  //     id: form.value.id,
-  //     nome: form.value.nome,
-  //     cognome: form.value.cognome,
-  //     dataNascita: form.value.dataNascita,
-  //     codiceFiscale: form.value.codiceFiscale,
-  //     email: form.value.email,
-  //     username: form.value.username,
-  //     password: form.value.password,
-  //     role: form.value.role,
-
-  //   }
-  //   this.userDataService.insUser(users).subscribe(
-  //     response => {
-  //       console.log(response);
-  //       this.apiMsg = response;
-  //       this.Conferma = this.apiMsg.message;
-  //       console.log(this.Conferma);
-  //     },
-  //     error => {
-  //       this.Errore = error.error.messaggio;
-  //       console.log(this.Errore);
-
-  //     }
-  //   )
-  //   }
-
 
   onSubmit(form: NgForm) {
     let users: Users = {

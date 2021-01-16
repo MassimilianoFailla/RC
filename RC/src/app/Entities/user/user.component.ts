@@ -6,7 +6,7 @@ import { Paginations } from 'src/app/Config/Paginations';
 import { Search } from 'src/app/Config/Search';
 import { TablesConfig } from 'src/app/Config/TablesConfig';
 import { listaUtenti } from 'src/app/Mock/mock-users';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Users } from './Users';
 import { UserService } from 'src/app/Services/Services-Entities/user.service';
 import { UserDataService } from 'src/app/Services/Data/user-data-service.service';
@@ -18,7 +18,7 @@ import { UserDataService } from 'src/app/Services/Data/user-data-service.service
 })
 export class UserComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router, private userDataService: UserDataService) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private userDataService: UserDataService) { }
 
   @Input() tabUrs: TablesConfig;
   @Input() datiUtent = this.InsUsr();
@@ -30,6 +30,8 @@ export class UserComponent implements OnInit {
   apiMsg: ApiMsg;
   messaggio: string;
   user: Users;
+
+  
   // operazioni button
   operazioni: ButtonsConfig[] = [{
     text: 'edit',
@@ -84,7 +86,7 @@ export class UserComponent implements OnInit {
 
   // configPages
   pagesConfig: Paginations = {
-    itemPerPage: 2,
+    itemPerPage: 5,
     itemPerPageOptions: [2, 3, 4, 5],
   };
 
@@ -108,47 +110,47 @@ export class UserComponent implements OnInit {
     // });
   }
 
-  edit(user: Users) {
+  refresh() {
+    this.router.navigate([`${'/users'}`]);
+  }
+
+  edit() {
     alert('Stai per modificare un utente...!');
     this.router.navigate([`${'edit/users'}`, { tipo: 1 }]);
-    this.userDataService.updUser(user);
   }
 
-  delete(user: Users) {
+  delete(id: any) {
     alert('Sei sicuro di voler cancellare?');
-    this.userDataService.delUseryId(user.id);
-  }
-
-  opSuRiga(object: any) {
-    if (object.text === 'edit') {
-      this.edit(object);
-    }
-    else if (object.text === 'delete') {
-      this.delete(object);
-    }
-  }
-
-  Elimina(id: number) {
-    console.log(`Eliminazione utente ${id}`);
-
-    this.userDataService.delUseryId(id).subscribe(
+    // this.userDataService.delUseryId(user.id);
+    id = this.route.snapshot.paramMap.get('id');
+    console.log(`Eliminazione utente ${9}`);
+    // user = this.userDataService.getUserById(user.id);
+    this.userDataService.delUseryId(9).subscribe(
       response => {
-
         this.apiMsg = response;
         this.messaggio = this.apiMsg.message;
-        // this.refresh();
-
       }
-    )
+      )
+      this.refresh();
+  }   
 
-  }
 
   InsUsr() {
     this.userDataService.getUser().subscribe(data => this.tables.data = data);
   }
 
-}
+  opSuRiga(object: any) {
+    if (object.text === 'edit') {
+      this.edit();
+    }
+    else if (object.text === 'delete') {
+      this.delete(object);
+      this.router.navigate([`${'/users'}`]);
+    }
+  }
 
+ 
+}
 
 export class ApiMsg {
 

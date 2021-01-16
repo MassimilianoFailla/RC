@@ -11,7 +11,7 @@ export class UserDataService {
 
   // servono per il collegamento
   server = "localhost";
-  port = "5051";
+  port = "4200";
   port2 = "4000";
 
   constructor(private httpClient:HttpClient) { }
@@ -19,6 +19,10 @@ export class UserDataService {
   getUser(){
   return this.httpClient.get<Users[]>(`http://${this.server}:${this.port2}/api/users/views`);
   // http://localhost:4000/api/users/views
+  }
+
+  getUtenti(){
+    return this.httpClient.get<Users>(`http://${this.server}:${this.port2}/api/users/views`);
   }
 
   getUserById(id: number){
@@ -30,7 +34,7 @@ export class UserDataService {
   }
 
   updUser(user: Users) {
-    return this.httpClient.put<ApiMsg>(`http://${this.server}:${this.port2}/api/users/elimina/`, user);
+    return this.httpClient.put<ApiMsg>(`http://${this.server}:${this.port2}/api/users/modifica/`, user);
   }
 
   insUser(user: Users) {

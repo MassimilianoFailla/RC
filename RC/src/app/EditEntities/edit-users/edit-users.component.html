@@ -4,90 +4,90 @@
         <div class="portlet-title">
             <div class="caption font-red-sunglo">
                 <i class="oi oi-pencil"></i>
-                <span class="caption-subject bold uppercase"><b>Dati Utente</b></span>
+                <span class="caption-subject bold uppercase"><b>DATI UTENTE</b></span>
             </div>
         </div>
         <br><br>
-        <!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm"> -->
 
-        <!--Inizio del form di inserimento dati-->
         <div class="portlet-body form">
             <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-                <!-- <form (ngSubmit)="artForm.valid && salva() " #artForm="ngForm "> -->
 
-                <div class="form-body ">
+                <div class="form-group" class="was-validated">
 
                     <div class="form-group ">
-                        <label for="id "><b>ID Utente:</b></label>
-                        <input name="id " type="text " [(ngModel)]="usersList.id " class="form-control " placeholder="ID utente" [disabled]="IsModifica" />
+                        <label for="id">ID Utente:</label>
+                        <input name="id" type="text " [(ngModel)]="usersList.id" class="form-control " value="{{usersList.id}}" [disabled]="IsModifica2" />
                         <span style="color:rgb(2, 0, 134) "></span>
                     </div>
 
-                    <div class="form-group ">
+                    <div class="form-group">
                         <label for="nome"><b>Nome Utente:</b></label>
-                        <input name="nome" type="text " [(ngModel)]="usersList.nome " class="form-control " placeholder="Nome utente " required minlength="5 " maxlength="30 " />
-                        <span style="color:rgb(2, 0, 134) ">
+                        <input name="nome" type="text" [(ngModel)]="usersList.nome" class="form-control" value="{{usersList.nome}}" required minlength="2" maxlength="30 " />
+                        <span style="color:rgb(145, 0, 0) ">
               Il nome deve essere compreso fra 5 e 30 caratteri
             </span>
                     </div>
 
                     <div class="form-group">
                         <label for="cognome"><b>Cognome Utente:</b></label>
-                        <input name="cognome" type="text " [(ngModel)]="usersList.cognome " class="form-control " placeholder="Cognome utente " required minlength="5 " maxlength="30 " />
-                        <span style="color:rgb(2, 0, 134) ">
-              Il cognome deve essere compreso fra 5 e 30 caratteri
+                        <input name="cognome" type="text" [(ngModel)]="usersList.cognome" class="form-control" value="{{usersList.cognome}}" required minlength="2" maxlength="30" />
+                        <span style="color:rgb(145, 0, 0) ">
+                            Il cognome deve essere compreso fra 5 e 30 caratteri
             </span>
                     </div>
 
-                    <div class="form-group ">
-                        <label for="dataNascita "><b>Anno Nascita Utente:</b></label>
-                        <input name="dataNascita " type="date " [(ngModel)]="usersList.dataNascita " class="form-control " placeholder="Anno Nascita utente " required minlength="5 " maxlength="30 " />
+                    <div class="form-group">
+                        <label for="dataNascita"><b>Anno Nascita Utente:</b></label>
+                        <input name="dataNascita" type="date" [(ngModel)]="usersList.dataNascita" class="form-control" value="{{usersList.dataNascita}}" required />
                     </div>
 
-                    <div class="form-group ">
-                        <label for="codiceFiscale "><b>CF Utente:</b></label>
-                        <input name="codiceFiscale " type="text " [(ngModel)]="usersList.codiceFiscale " class="form-control " placeholder="CF utente " required minlength="5 " maxlength="30 " />
-                        <span style="color:rgb(2, 0, 134) ">
-              Il CF deve essere compreso fra 5 e 30 caratteri
+                    <div class="form-group">
+                        <label for="codiceFiscale"><b>CF Utente:</b></label>
+                        <input name="codiceFiscale" type="text" [(ngModel)]="usersList.codiceFiscale " class="form-control" value="{{usersList.codiceFiscale}}" required minlength="16" maxlength="16" />
+                        <span style="color:rgb(145, 0, 0) ">
+                            Il CF deve essere di 16 caratteri
             </span>
                     </div>
 
-                    <div class="form-group ">
-                        <label for="email "><b>Email Utente:</b></label>
-                        <input name="email " type="email " [(ngModel)]="usersList.email " class="form-control " placeholder="Email utente " required minlength="5 " maxlength="30 " />
-                    </div>
-
-                    <div class="form-group ">
-                        <label for="username "><b>Username Utente:</b></label>
-                        <input name="username " type="text " [(ngModel)]="usersList.username " class="form-control " placeholder="Username utente " required minlength="5 " maxlength="30 " />
-                        <span style="color:rgb(2, 0, 134) ">
-              L'usersListname deve essere compreso fra 5 e 30 caratteri
+                    <div class="form-group">
+                        <label for="email"><b>Email Utente:</b></label>
+                        <input name="email" type="email" [(ngModel)]="usersList.email" class="form-control" value="{{usersList.email}}" required minlength="15" maxlength="30" />
+                        <span style="color:rgb(145, 0, 0) ">
+                            La email deve essere valida!
             </span>
                     </div>
 
-                    <div class="form-group ">
-                        <label for="password "><b>Password Utente:</b></label>
-                        <input name="password " type="password " [(ngModel)]="usersList.password " class="form-control " placeholder="Inserisci password " required minlength="5 " maxlength="30 " />
-                        <span style="color:rgb(2, 0, 134) ">
+                    <div class="form-group">
+                        <label for="username"><b>Username Utente:</b></label>
+                        <input name="username" type="text" [(ngModel)]="usersList.username" class="form-control" value="{{usersList.username}}" required minlength="3" maxlength="30 " />
+                        <span style="color:rgb(145, 0, 0) ">
+                            L' username deve essere compreso fra 5 e 30 caratteri
+            </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password"><b>Password Utente:</b></label>
+                        <input name="password" type="password " [(ngModel)]="usersList.password" class="form-control" value="{{usersList.password}}" required minlength="5" maxlength="30 " />
+                        <span style="color:rgb(145, 0, 0) ">
               La password deve essere compresa fra 5 e 30 caratteri
             </span>
                     </div>
 
-                    <div class="form-group ">
-                        <label for="role "><b>Role Utente:</b></label>
-                        <select name="um " class="form-control " [(ngModel)]="usersList.role ">
-              <option value="Super ">Super</option>
-              <option value="Customer ">User</option>
+                    <div class="form-group">
+                        <label for="role"><b>Role Utente:</b></label>
+                        <select name="role" class="form-control" [(ngModel)]="usersList.role" required>
+              <option value="Super">Super</option>
+              <option value="Customer">User</option>
             </select>
                     </div>
 
-                    <hr class="line-form ">
+                    <hr class="line-form">
 
-                    <button type="submit " id="btnAdd " class="btn btn-primary form-buttons " [disabled]="f.invalid ">
-            <i class="fa fa-floppy-o " aria-hidden="true "></i> Salva
+                    <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="f.invalid">
+            <i class="fa fa-floppy-o" aria-hidden="true" (click)="onSubmit(f)"></i> Salva
           </button>
-                    <button id="btnAbort" class="btn btn-warning form-buttons " (click)="abort() ">
-            <i class="fa fa-sign-out " aria-hidden="true "></i> Annulla
+                    <button id="btnAbort" class="btn btn-warning form-buttons" (click)="abort()">
+            <i class="fa fa-sign-out" aria-hidden="true "></i> Annulla
           </button>
 
                 </div>
