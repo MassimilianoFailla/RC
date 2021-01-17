@@ -21,9 +21,13 @@ export class ReservationDataService {
   insReservation(reservation: Reservations) {
     return this.httpClient.post<ApiMsg>(`http://${this.server}:${this.port2}/api/reservations/inserisci`, reservation);
   }
+
+  getReservationsById(id: number){
+    return this.httpClient.get<Reservations>(`http://${this.server}:${this.port2}/api/vehicles/vehicles/${id}`);
+  }
   
   updReservation(reservation: Reservations) {
-    return this.httpClient.put<ApiMsg>(`http://${this.server}:${this.port2}/api/reservations/elimina/`, reservation);
+    return this.httpClient.put<ApiMsg>(`http://${this.server}:${this.port2}/api/reservations/modifica/`, reservation);
   }
 
   delReservationById(id: number) {

@@ -13,7 +13,6 @@ export class VehicleDataService {
   port = "5051";
   port2 = "4000";
 
-
   constructor(private httpClient:HttpClient) { }
 
   getVehicles(){
@@ -25,7 +24,11 @@ export class VehicleDataService {
   }
   
   updVehicle(vehicle: Vehicles) {
-    return this.httpClient.put<ApiMsg>(`http://${this.server}:${this.port2}/api/vehicles/elimina/`, vehicle);
+    return this.httpClient.put<ApiMsg>(`http://${this.server}:${this.port2}/api/vehicles/modifica/`, vehicle);
+  }
+
+  getVehicleById(id: number){
+    return this.httpClient.get<Vehicles>(`http://${this.server}:${this.port2}/api/vehicles/vehicles/${id}`);
   }
 
   delVehicleById(id: number) {

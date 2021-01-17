@@ -11,24 +11,27 @@
         <!-- Inizio del form di inserimento dati-->
         <div class="portlet-body form">
             <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-                <!-- <form (ngSubmit)="artForm.valid && salva() " #artForm="ngForm "> -->
 
                 <div class="form-group" class="was-validated">
 
                     <!-- <div class="form-group ">
-                        <label for="id ">ID Utente:</label>
+                        <label for="id ">ID Prenotazione:</label>
                         <input name="id " type="text " [(ngModel)]="vehiclesList.id " class="form-control " placeholder="ID utente" />
                         <span style="color:rgb(2, 0, 134) "></span>
                     </div> -->
 
-                    <div class="form-group ">
-                        <label for="dataInizio"><b> Inizio Prenotazione: </b></label>
-                        <input name="dataInizio" type="date" [(ngModel)]="reservationsList.dataInizio " class="form-control" required />
+                    <div class="form-group">
+                        <label for="dataInizio"><b>Data Inizio Prenotazione:</b></label>
+                        <input name="dataInizio" type="date" [(ngModel)]="reservationsList.dataInizio" class="form-control" required/>
+                        <span style="color:rgb(145, 0, 0)">
+                        </span>
                     </div>
 
-                    <div class="form-group ">
-                        <label for="dataFine"><b> Fine Prenotazione: </b></label>
-                        <input name="dataFine" type="date" [(ngModel)]="reservationsList.dataFine " class="form-control" required />
+                    <div class="form-group">
+                        <label for="dataFine"><b>Data Fine Prenotazione:</b></label>
+                        <input name="dataFine" type="date" [(ngModel)]="reservationsList.dataFine" class="form-control" required/>
+                        <span style="color:rgb(145, 0, 0)">
+                        </span>
                     </div>
 
                     <!-- Servirà per la scelta del veicolo -->
@@ -40,12 +43,12 @@
             </select>
             </div> -->
 
-                    <hr class="line-form ">
-                    <button type="submit " id="btnAdd " class="btn btn-primary form-buttons " [disabled]="f.invalid ">
-            <i class="fa fa-floppy-o " aria-hidden="true "></i> Salva
+                    <hr class="line-form">
+                    <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="f.invalid ">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva
           </button>
-                    <button id="btnAbort " class="btn btn-warning form-buttons " (click)="abort() ">
-            <i class="fa fa-sign-out " aria-hidden="true "></i> Annulla
+                    <button id="btnAbort " class="btn btn-warning form-buttons" (click)="abort() ">
+            <i class="fa fa-sign-out" aria-hidden="true"></i> Annulla
           </button>
                 </div>
             </form>

@@ -27,6 +27,8 @@ export class UserComponent implements OnInit {
   @Input() adBut: number;
   @Input() Ed: number;
 
+  Conferma: string = '';
+  Errore: string = '';
   apiMsg: ApiMsg;
   messaggio: string;
   user: Users;
@@ -105,9 +107,7 @@ export class UserComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    // this.userDataService.getUser().subscribe(data => {
-    //   this.tables.data = data;
-    // });
+
   }
 
   refresh() {
@@ -119,21 +119,24 @@ export class UserComponent implements OnInit {
     this.router.navigate([`${'edit/users'}`, { tipo: 1 }]);
   }
 
-  delete(id: any) {
-    alert('Sei sicuro di voler cancellare?');
-    // this.userDataService.delUseryId(user.id);
-    id = this.route.snapshot.paramMap.get('id');
-    console.log(`Eliminazione utente ${9}`);
-    // user = this.userDataService.getUserById(user.id);
-    this.userDataService.delUseryId(9).subscribe(
-      response => {
-        this.apiMsg = response;
-        this.messaggio = this.apiMsg.message;
-      }
+  delete(id: number) {
+    alert("!!! Stai cancellando l'utente!!!");
+    this.Conferma = '';
+    this.Errore = '';
+      this.userDataService.delUseryId(id).subscribe(
+        response => {
+          console.log(response);
+          this.apiMsg = response;
+          this.Conferma = this.apiMsg.message;
+          console.log(this.Conferma);
+          this.router.navigate(['/users']);
+        },
+        error => {
+          this.Errore = error.error.messaggio;
+          console.log(this.Errore);
+        }
       )
-      this.refresh();
-  }   
-
+  }
 
   InsUsr() {
     this.userDataService.getUser().subscribe(data => this.tables.data = data);

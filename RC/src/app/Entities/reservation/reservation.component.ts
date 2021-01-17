@@ -30,6 +30,8 @@ export class ReservationComponent implements OnInit {
   @Input() adBut: number;
   @Input() Ed: number;
 
+  Conferma: string = '';
+  Errore: string = '';
   apiMsg: ApiMsg;
   messaggio: string;
 
@@ -69,6 +71,10 @@ export class ReservationComponent implements OnInit {
    // settaggio datiConfig
    datiRes = listaPrenotazioni;
 
+   InsRes() {
+    this.reservationDataService.getReservations().subscribe(data => this.tables.data = data);
+  }
+ 
   // settaggio orderConfig
   orderConfig: Orders = {
     defaultColumn: 'id',
@@ -100,9 +106,7 @@ export class ReservationComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    // this.userDataService.getUser().subscribe(data => {
-    //   this.tables.data = data;
-    // });
+   
   }
 
   edit(object: any) {
@@ -111,9 +115,23 @@ export class ReservationComponent implements OnInit {
     this.reservationDataService.updReservation(object);
   }
 
-  delete(object: any) {
-    alert('Sei sicuro di voler cancellare?');
-    this.reservationDataService.delReservationById(object);
+  delete(id: number) {
+    alert("!!! Stai cancellando una prenotazione!!!");
+    this.Conferma = '';
+    this.Errore = '';
+      this.reservationDataService.delReservationById(id).subscribe(
+        response => {
+          console.log(response);
+          this.apiMsg = response;
+          this.Conferma = this.apiMsg.message;
+          console.log(this.Conferma);
+          this.router.navigate(['/reservations']);
+        },
+        error => {
+          this.Errore = error.error.messaggio;
+          console.log(this.Errore);
+        }
+      )
   }
 
   opSuRiga(object: any) {
@@ -123,23 +141,6 @@ export class ReservationComponent implements OnInit {
     else if (object.text === 'delete') {
       this.delete(object);
     }
-  }
-
-  Elimina(id: number) {
-    console.log(`Eliminazione prenotazione ${id}`);
-
-    this.reservationDataService.delReservationById(id).subscribe(
-      response => {
-
-        this.apiMsg = response;
-        this.messaggio = this.apiMsg.message;
-        // this.refresh();
-      }
-    )
-  }
-
-  InsRes(){
-     this.reservationDataService.getReservations().subscribe(data =>  this.tables.data = data);
   }
 }
 

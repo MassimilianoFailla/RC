@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Vehicles } from 'src/app/Entities/vehicle/Vehicles';
 import { UserService } from 'src/app/Services/Services-Entities/user.service';
 import { VehicleService } from 'src/app/Services/Services-Entities/vehicle.service';
+import { ApiMsg } from 'src/app/Entities/user/user.component';
 
 @Component({
   selector: 'app-edit-vehicles',
@@ -13,55 +14,64 @@ import { VehicleService } from 'src/app/Services/Services-Entities/vehicle.servi
 })
 export class EditVehiclesComponent implements OnInit {
 
-  id: number;
+  id: number = 0;
   header: string;
-  tipo: number;
-  config: any;
-  message: string;
-  IsModifica = "";
+  IsModifica2: boolean = false;
+  IsModifica: string;
+  Conferma: string = '';
+  Errore: string = '';
+  apiMsg: ApiMsg;
 
-  // veicoli
-  vehiclesList: Vehicles = {
-    id: 0,
-    casaCostruttrice: '',
-    annoImmatricolazione: '',
-    modello: '',
-    targa: '',
-  }
+  vehiclesList: Vehicles;
 
-  constructor(private router: Router, private route: ActivatedRoute, private vehicleService: VehicleService,
-    private vehicleDataService: VehicleDataService ) { }
-
+  constructor(private router: Router, private route: ActivatedRoute,
+    private vehicleDataService: VehicleDataService) { }
 
   ngOnInit(): void {
-    this.id = +this.route.snapshot.paramMap.get('id');
-    this.header = this.id === 0 ? 'Adding page' : 'Editing page';
 
-    if (this.id != 0) {
-      this.vehiclesList = this.vehicleService.onGetVehicles(this.id);
+    this.id = this.route.snapshot.params['id'];
+
+    this.vehiclesList = new Vehicles(12, "", "", "", "",);
+
+    // ottengi i dati dell'utente
+    if (this.id != -1) {
+      this.IsModifica2 = true;
+
+      this.vehicleDataService.getVehicleById(this.id).subscribe(
+        response => {
+          this.vehiclesList = response;
+          console.log(this.vehiclesList);
+        },
+        error => {
+          console.log(error.error.messaggio);
+        }
+      )
+    } else {
+      this.IsModifica2 = false;
     }
-
   }
 
   abort() {
-    alert('stai tornando alla tabella degli utenti')
-    this.router.navigate(['/vehicles']);
+    this.router.navigate(['/vehicles',]);
   }
 
-  onSubmit(form: NgForm) {
+  salva() {
 
-    let vehicles: Vehicles = {
-      id: form.value.id,
-      annoImmatricolazione: form.value.annoImmatricolazione,
-      casaCostruttrice: form.value.casaCostruttrice,
-      modello: form.value.modello,
-      targa: form.value.targa,
-    }
-    this.vehicleDataService.updVehicle(this.vehiclesList);
-    
-    if (this.id === 0) {
-      this.vehicleDataService.insVehicle(vehicles);
-    }
+    this.Conferma = '';
+    this.Errore = '';
+      // aggiornamento !!!
+      this.vehicleDataService.updVehicle(this.vehiclesList).subscribe(
+        response => {
+          console.log(response);
+          this.apiMsg = response;
+          this.Conferma = this.apiMsg.message;
+          console.log(this.Conferma);
+          this.router.navigate(['/vehicles']);
+        },
+        error => {
+          this.Errore = error.error.messaggio;
+          console.log(this.Errore);
+        }
+      )
   }
-
 }

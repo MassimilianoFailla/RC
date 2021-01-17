@@ -1,58 +1,60 @@
-<h2> Editing Reservations Page</h2>
-
+<h2> Editing Vehicle Page</h2>
 <section class="container">
     <div class="portlet light bordered">
         <div class="portlet-title">
             <div class="caption font-red-sunglo">
                 <i class="oi oi-pencil"></i>
-                <span class="caption-subject bold uppercase"><b>Dati Prenotazione</b></span>
+                <span class="caption-subject bold uppercase"><b>DATI VEICOLO</b></span>
             </div>
         </div>
         <br><br>
-        <!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm"> -->
 
-        <!--Inizio del form di inserimento dati-->
         <div class="portlet-body form">
-            <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-                <!-- <form (ngSubmit)="artForm.valid && salva() " #artForm="ngForm "> -->
+            <!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm"> -->
+            <form (ngSubmit)="artForm.valid && salva()" #artForm="ngForm">
+                <div class="form-group" class="was-validated">
 
-                <div class="form-body">
-
-                    <div class="form-group ">
-                        <label for="id "><b>ID Prenotazione:</b></label>
-                        <input name="id " type="text" [(ngModel)]="reservationsList.id " class="form-control input-sm" placeholder="ID Prenotazione" [disabled]="IsModifica" />
-                        <span style="color:rgb(129, 0, 0)"></span>
+                    <div class="form-group col-md-2">
+                        <label for="id">ID Prenotazione:</label>
+                        <input name="id" type="text" [(ngModel)]="reservationsList.id" class="form-control" placeholder="ID Prenotazione" #id="ngModel" />
+                        <span style="color:rgb(7, 0, 112)" *ngIf="id.dirty && id.invalid">
+                            <!-- [disabled]="IsModifica2" -->
+                        </span>
                     </div>
 
-                    <div class="col-xs-3">
-                        <label for="dataInizio "><b>Data Inizio Prenotazione:</b></label>
-                        <input name="dataInizio" type="date" [(ngModel)]="reservationsList.dataInizio " class="form-control input-sm" />
+                    <div class="form-group col-md-4 ">
+                        <label for="dataInizio">Data Inizio Prenotazione:</label>
+                        <input name="dataInizio" [(ngModel)]="reservationsList.dataInizio" type="date" class="form-control" required #dataInizio="ngModel" />
+                        <span style="color:red " *ngIf="dataInizio.dirty && dataInizio.invalid ">
+                        </span>
                     </div>
 
-                    <div class="form-group">
-                        <label for="dataFine"><b>Data Fine Prenotazione:</b></label>
-                        <input name="dataFine" type="date" [(ngModel)]="reservationsList.dataFine " class="form-control input-sm" />
+                    <div class="form-group col-md-4 ">
+                        <label for="dataFine">Data Inizio Prenotazione:</label>
+                        <input name="dataFine" [(ngModel)]="reservationsList.dataFine" type="date" class="form-control" required #dataFine="ngModel" />
+                        <span style="color:red " *ngIf="dataFine.dirty && dataFine.invalid ">
+                        </span>
                     </div>
+
+                    <!-- servirà per la tipologia del veicolo successivamente -->
 
                     <!-- <div class="form-group ">
-                        <label for="role "><b>Role Utente:</b></label>
-                        <select name="um " class="form-control " [(ngModel)]="usersList.role ">
-              <option value="Super ">Super</option>
-              <option value="Customer ">User</option>
-            </select>
+                        <label for="tipologia">Tipologia Veicolo:</label>
+                        <select name="tipologia" class="form-control " [(ngModel)]="vehiclesList.tipologia">
+                                    <option value="Super">Super</option>
+                                    <option value="User ">User</option>
+                                </select>
                     </div> -->
-
-                    <hr class="line-form ">
-
-                    <button type="submit " id="btnAdd " class="btn btn-primary form-buttons " [disabled]="f.invalid ">
-            <i class="fa fa-floppy-o " aria-hidden="true "></i> Salva
-          </button>
-                    <button id="btnAbort" class="btn btn-warning form-buttons " (click)="abort() ">
-            <i class="fa fa-sign-out " aria-hidden="true "></i> Annulla
-          </button>
-
                 </div>
+                <button type="submit" id="btnAdd " class="btn btn-primary form-buttons" [disabled]="artForm.invalid">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva
+                </button>
+
+                <button id="btnAbort " class="btn btn-warning form-buttons " (click)="abort() ">
+                    <i class="fa fa-sign-out " aria-hidden="true "></i> Annulla
+                </button>
             </form>
         </div>
     </div>
 </section>
+<br><br><br><br>

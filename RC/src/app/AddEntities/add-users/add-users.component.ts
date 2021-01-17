@@ -41,12 +41,7 @@ export class AddUsersComponent implements OnInit {
     private userDataService: UserDataService) { }
 
   ngOnInit(): void {
-    this.id = +this.route.snapshot.paramMap.get('id');
-    this.header = this.id === 0 ? 'Adding User' : 'Editing User';
-
-    if (this.id != 0) {
-      this.usersList = this.usersService.onGetUsers(this.id);
-    }
+    
   }
 
   abort() {

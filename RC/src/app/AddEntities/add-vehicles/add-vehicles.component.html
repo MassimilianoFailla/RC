@@ -15,17 +15,22 @@
 
                 <div class="form-group" class="was-validated">
 
-                    <!-- <div class="form-group ">
-                        <label for="id ">ID Utente:</label>
-                        <input name="id " type="text " [(ngModel)]="vehiclesList.id " class="form-control " placeholder="ID utente" />
+                    <!-- <div class="form-group">
+                        <label for="id">ID Veicolo:</label>
+                        <input name="id" type="text" [(ngModel)]="vehiclesList.id" class="form-control" placeholder="ID utente" />
                         <span style="color:rgb(2, 0, 134) "></span>
                     </div> -->
 
-                    <div class="form-group ">
+                    <div class="form-group">
                         <label for="casaCostruttrice"><b>Casa Costruttrice Veicolo:</b></label>
                         <input name="casaCostruttrice" type="text" [(ngModel)]="vehiclesList.casaCostruttrice" class="form-control" placeholder="Casa costruttrice veicolo " required minlength="5 " maxlength="30 " />
                         <span style="color:rgb(145, 0, 0)">
                         </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="modello"><b>Modello Veicolo:</b></label>
+                        <input name="modello" type="text" [(ngModel)]="vehiclesList.modello" class="form-control" placeholder="Modello veicolo" required minlength="5" maxlength="30" />
                     </div>
 
                     <div class="form-group">
@@ -36,13 +41,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="modello"><b>Modello Veicolo:</b></label>
-                        <input name="modello " type="text" [(ngModel)]="vehiclesList.modello " class="form-control " placeholder="Modello veicolo" required minlength="5" maxlength="30" />
-                    </div>
-
-                    <div class="form-group">
                         <label for="targa"><b>Targa Veicolo:</b></label>
-                        <input name="targa " type="text" [(ngModel)]="vehiclesList.targa " class="form-control " placeholder="Targa veicolo" required minlength="5" maxlength="30" />
+                        <input name="targa" type="text" [(ngModel)]="vehiclesList.targa" class="form-control" placeholder="Targa veicolo" required minlength="5" maxlength="30" />
                         <span style="color:rgb(145, 0, 0)">
                         </span>
                     </div>
@@ -58,8 +58,8 @@
 
                     <hr class="line-form">
 
-                    <button type="submit " id="btnAdd " class="btn btn-primary form-buttons" [disabled]="f.invalid ">
-            <i class="fa fa-floppy-o " aria-hidden="true" (click)="onSubmit(f)"></i> Salva
+                    <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="f.invalid ">
+            <i class="fa fa-floppy-o" aria-hidden="true" (click)="onSubmit(f)"></i> Salva
           </button>
                     <button id="btnAbort" class="btn btn-warning form-buttons" (click)="abort()">
             <i class="fa fa-sign-out" aria-hidden="true "></i> Annulla

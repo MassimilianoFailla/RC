@@ -10,88 +10,95 @@
         <br><br>
 
         <div class="portlet-body form">
-            <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-
+            <!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm"> -->
+            <form (ngSubmit)="artForm.valid && salva()" #artForm="ngForm">
                 <div class="form-group" class="was-validated">
 
-                    <div class="form-group ">
+                    <div class="form-group col-md-2">
                         <label for="id">ID Utente:</label>
-                        <input name="id" type="text " [(ngModel)]="usersList.id" class="form-control " value="{{usersList.id}}" [disabled]="IsModifica2" />
-                        <span style="color:rgb(2, 0, 134) "></span>
+                        <input name="id" type="text" [(ngModel)]="usersList.id" class="form-control" placeholder="ID Utente" #id="ngModel" />
+                        <span style="color:rgb(7, 0, 112)" *ngIf="id.dirty && id.invalid">
+                            <!-- [disabled]="IsModifica2" -->
+                            </span>
                     </div>
 
-                    <div class="form-group">
-                        <label for="nome"><b>Nome Utente:</b></label>
-                        <input name="nome" type="text" [(ngModel)]="usersList.nome" class="form-control" value="{{usersList.nome}}" required minlength="2" maxlength="30 " />
-                        <span style="color:rgb(145, 0, 0) ">
-              Il nome deve essere compreso fra 5 e 30 caratteri
-            </span>
+                    <div class="form-group col-md-4">
+                        <label for="nome">Nome Utente:</label>
+                        <input name="nome" type="text" [(ngModel)]="usersList.nome" class="form-control" placeholder="Nome Utente" required minlength="5" maxlength="30" #nome="ngModel" required />
+                        <span style="color:rgb(7, 0, 112)" *ngIf="nome.dirty && nome.invalid">
+                                Il codice articolo deve essere compreso fra 5 e 30 caratteri
+                            </span>
                     </div>
 
-                    <div class="form-group">
-                        <label for="cognome"><b>Cognome Utente:</b></label>
-                        <input name="cognome" type="text" [(ngModel)]="usersList.cognome" class="form-control" value="{{usersList.cognome}}" required minlength="2" maxlength="30" />
-                        <span style="color:rgb(145, 0, 0) ">
-                            Il cognome deve essere compreso fra 5 e 30 caratteri
-            </span>
+                    <div class="form-group col-md-4">
+                        <label for="cognome">Cognome Utente: </label>
+                        <input name="cognome" [(ngModel)]="usersList.cognome" type="text" class="form-control" required maxlength="2" #cognome="ngModel" />
+                        <span style="color:red" *ngIf="cognome.dirty && cognome.invalid">
+                                Il pezzi per cartone devono essere presenti ed avere un valore massimo di 99
+                            </span>
                     </div>
 
-                    <div class="form-group">
-                        <label for="dataNascita"><b>Anno Nascita Utente:</b></label>
-                        <input name="dataNascita" type="date" [(ngModel)]="usersList.dataNascita" class="form-control" value="{{usersList.dataNascita}}" required />
+                    <div class="form-group col-md-4">
+                        <label for="dataNascita">Data Nascita Utente:</label>
+                        <input name="dataNascita" [(ngModel)]="usersList.dataNascita" type="date" class="form-control" required #dataNascita="ngModel" />
+                        <span style="color:red" *ngIf="dataNascita.dirty && dataNascita.invalid">
+                                Il Peso Netto deve avere un valore compreso tra 0.01 e 100
+                            </span>
                     </div>
 
-                    <div class="form-group">
-                        <label for="codiceFiscale"><b>CF Utente:</b></label>
-                        <input name="codiceFiscale" type="text" [(ngModel)]="usersList.codiceFiscale " class="form-control" value="{{usersList.codiceFiscale}}" required minlength="16" maxlength="16" />
-                        <span style="color:rgb(145, 0, 0) ">
-                            Il CF deve essere di 16 caratteri
-            </span>
+                    <div class="form-group col-md-4">
+                        <label for="codiceFiscale">CF Utente: </label>
+                        <input name="codiceFiscale" [(ngModel)]="usersList.codiceFiscale" type="text" class="form-control" required maxlength="2" #codiceFiscale="ngModel" />
+                        <span style="color:red" *ngIf="codiceFiscale.dirty && codiceFiscale.invalid">
+                                Il pezzi per cartone devono essere presenti ed avere un valore massimo di 99
+                            </span>
                     </div>
 
-                    <div class="form-group">
-                        <label for="email"><b>Email Utente:</b></label>
-                        <input name="email" type="email" [(ngModel)]="usersList.email" class="form-control" value="{{usersList.email}}" required minlength="15" maxlength="30" />
-                        <span style="color:rgb(145, 0, 0) ">
-                            La email deve essere valida!
-            </span>
+                    <div class="form-group col-md-2">
+                        <label for="email">Email Utente: </label>
+                        <input name="email" [(ngModel)]="usersList.email" type="email" class="form-control" placeholder="Email Utente" required minlength="6" maxlength="80" #email="ngModel" />
+                        <span style="color:red " *ngIf="email.dirty && email.invalid ">
+                                Il campo Descrizione deve avere un numero di caratteri compreso tra 6 e 80
+                            </span>
                     </div>
 
-                    <div class="form-group">
-                        <label for="username"><b>Username Utente:</b></label>
-                        <input name="username" type="text" [(ngModel)]="usersList.username" class="form-control" value="{{usersList.username}}" required minlength="3" maxlength="30 " />
-                        <span style="color:rgb(145, 0, 0) ">
-                            L' username deve essere compreso fra 5 e 30 caratteri
-            </span>
+                    <div class="form-row ">
+
+                        <div class="form-group col-md-2">
+                            <label for="username">Username Utente:</label>
+                            <input name="username" [(ngModel)]="usersList.username" type="text" class="form-control" required maxlength="2" #username="ngModel" />
+                            <span style="color:red " *ngIf="username.dirty && username.invalid ">
+                                    Il pezzi per cartone devono essere presenti ed avere un valore massimo di 99
+                                </span>
+                        </div>
+
+                        <div class="form-group col-md-4 ">
+                            <label for="password">Password Utente:</label>
+                            <input name="password" [(ngModel)]="usersList.password" type="password" class="form-control" required maxlength="2" #password="ngModel" required />
+                            <span style="color:red" *ngIf="password.dirty && username.invalid ">
+                                    Il pezzi per cartone devono essere presenti ed avere un valore massimo di 99
+                                </span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="role">Role Utente:</label>
+                            <select name="role" class="form-control" [(ngModel)]="usersList.role">
+                                    <option value="Super">Super</option>
+                                    <option value="User">User</option>
+                                </select>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="password"><b>Password Utente:</b></label>
-                        <input name="password" type="password " [(ngModel)]="usersList.password" class="form-control" value="{{usersList.password}}" required minlength="5" maxlength="30 " />
-                        <span style="color:rgb(145, 0, 0) ">
-              La password deve essere compresa fra 5 e 30 caratteri
-            </span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="role"><b>Role Utente:</b></label>
-                        <select name="role" class="form-control" [(ngModel)]="usersList.role" required>
-              <option value="Super">Super</option>
-              <option value="Customer">User</option>
-            </select>
-                    </div>
-
-                    <hr class="line-form">
-
-                    <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="f.invalid">
-            <i class="fa fa-floppy-o" aria-hidden="true" (click)="onSubmit(f)"></i> Salva
-          </button>
-                    <button id="btnAbort" class="btn btn-warning form-buttons" (click)="abort()">
-            <i class="fa fa-sign-out" aria-hidden="true "></i> Annulla
-          </button>
-
                 </div>
+
+                <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="artForm.invalid">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva
+                </button>
+
+                <button id="btnAbort" class="btn btn-warning form-buttons" (click)="abort()">
+                        <i class="fa fa-sign-out" aria-hidden="true "></i> Annulla
+                    </button>
             </form>
         </div>
     </div>
 </section>
+<br><br><br>

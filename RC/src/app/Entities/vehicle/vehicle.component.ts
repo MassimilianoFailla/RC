@@ -10,6 +10,7 @@ import { listaVeicoli } from 'src/app/Mock/mock-vehicles';
 import { Router } from '@angular/router';
 import { VehicleDataService } from 'src/app/Services/Data/vehicle-data-service.service';
 import { VehicleService } from 'src/app/Services/Services-Entities/vehicle.service';
+import { ApiMsg } from '../user/user.component';
 
 @Component({
   selector: 'app-vehicle',
@@ -22,10 +23,15 @@ export class VehicleComponent implements OnInit {
     private vehicleDataService: VehicleDataService) { }
   
   @Input() tabVeh: TablesConfig;
-  @Input() datiVeicoli: any[];
+  @Input() datiVeicoli = this.InsVeh();
   @Input() headersVeicoli: Headers[]
   @Output() operation = new EventEmitter<number>();
   @Input() adBut: number;
+
+  Conferma: string = '';
+  Errore: string = '';
+  apiMsg: ApiMsg;
+  messaggio: string;
 
   operazioni: ButtonsConfig[] = [{
     text: 'edit',
@@ -58,6 +64,10 @@ export class VehicleComponent implements OnInit {
   // settaggio datiConfig
   datiVeh = listaVeicoli;
 
+  InsVeh() {
+    this.vehicleDataService.getVehicles().subscribe(data => this.tables.data = data);
+  }
+
   // settaggio orderConfig
   orderConfig: Orders = {
     defaultColumn: 'id',
@@ -70,13 +80,12 @@ export class VehicleComponent implements OnInit {
 
   // configPages
   pagesConfig: Paginations = {
-    itemPerPage: 2,
+    itemPerPage: 4,
     itemPerPageOptions: [2, 3, 4, 5],
   };
 
   // config action
   actionConfig: Actions[] = [Actions.NEW_ROW, Actions.EDIT, Actions.DELETE];
-
 
   tables: TablesConfig = {
     headers: this.headerVehi,
@@ -97,12 +106,25 @@ export class VehicleComponent implements OnInit {
   edit(object: any){
     alert('Stai per modificare un veicolo...!');
     this.router.navigate([`${'/edit/vehicles'}`, {tipo: 2}]);
-    this.vehicleDataService.updVehicle(object);
   }
 
-  delete(object: any){
-    alert('Sei sicuro di voler cancellare?');
-    this.vehicleDataService.delVehicleById(object);
+  delete(id: number){
+    alert("!!! Stai cancellando il veicolo !!!");
+    this.Conferma = '';
+    this.Errore = '';
+      this.vehicleDataService.delVehicleById(id).subscribe(
+        response => {
+          console.log(response);
+          this.apiMsg = response;
+          this.Conferma = this.apiMsg.message;
+          console.log(this.Conferma);
+          this.router.navigate(['/vehicles']);
+        },
+        error => {
+          this.Errore = error.error.messaggio;
+          console.log(this.Errore);
+        }
+      )
   }
 
   opButton(op: string) {
@@ -113,7 +135,6 @@ export class VehicleComponent implements OnInit {
   }
 
   opSuRiga(object: any) {
-
   if(object.text === 'edit'){
     this.edit(object);
   }
