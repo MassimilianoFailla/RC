@@ -154,8 +154,6 @@ export class UserComponent implements OnInit {
       this.router.navigate([`${'/users'}`]);
     }
   }
-
- 
 }
 
 export class ApiMsg {

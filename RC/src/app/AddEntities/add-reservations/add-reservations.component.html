@@ -33,19 +33,20 @@
                     <!-- Servirà per la scelta del veicolo -->
                     <div class="form-group">
                         <label for="targa"><b>Targa Veicolo:</b></label>
-                        <select name="targa" class="form-control" [(ngModel)]="reservationsList.targa"> required>
+                        <select name="targa" class="form-control" [(ngModel)]="reservationsList.veicolo.targa"> required>
+                            <option value="" disabled selected></option>
                             <option value="" disabled selected>Selezionare la targa dell'auto</option>
-                            <option *ngFor="let veicolo of veicolo">{{veicolo.targa}}</option>
+                            <option *ngFor="let veicolo of reservationsList.veicolo">{{veicolo.targa}}</option>
                         </select>
                     </div>
 
 
-                    <hr class="line-form ">
-                    <button type="submit " id="btnAdd " class="btn btn-primary form-buttons " [disabled]="f.invalid ">
-                        <i class="fa fa-floppy-o " aria-hidden="true "></i> Salva
+                    <hr class="line-form">
+                    <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="f.invalid">
+                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva
                     </button>
-                    <button id="btnAbort " class="btn btn-warning form-buttons " (click)="abort() ">
-                        <i class="fa fa-sign-out " aria-hidden="true "></i> Annulla
+                    <button id="btnAbort" class="btn btn-warning form-buttons" (click)="abort()">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> Annulla
                     </button>
                 </div>
             </form>

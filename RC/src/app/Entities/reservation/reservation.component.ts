@@ -83,7 +83,6 @@ export class ReservationComponent implements OnInit {
     this.reservationDataService.getReservations().subscribe(data => this.tables.data = data);
   }
 
- 
   // settaggio orderConfig
   orderConfig: Orders = {
     defaultColumn: 'id',

@@ -23,15 +23,15 @@ export class EditReservationsComponent implements OnInit {
   apiMsg: ApiMsg;
 
   // entità di user e veicolo
-  users: Users;
-  vehicles: Vehicles;
+  utente: Users;
+  veicolo: Vehicles;
 
   reservationsList: Reservations = {
     id: 0,
     dataInizio: new Date(),
     dataFine: new Date(),
-    idUser: 0,
-    targa: '',
+    utente: new Users(),
+    veicolo: new Vehicles(),
     approvazione: false,
   };
 
@@ -41,7 +41,6 @@ export class EditReservationsComponent implements OnInit {
   ngOnInit(): void {
 
     this.id = this.route.snapshot.params['id'];
-
     this.reservationsList = new Reservations();
 
     // ottengi i dati della prenotazione
@@ -64,8 +63,7 @@ export class EditReservationsComponent implements OnInit {
     // ottengo i dati dell'utente
     this.resDataService.getUsers().subscribe(
       response => {
-
-        this.users = response;
+        this.reservationsList.utente = response;
         console.log(response);
       },
       error => {
@@ -76,7 +74,7 @@ export class EditReservationsComponent implements OnInit {
     // ottengo i dati dei veicoli
     this.resDataService.getVehicles().subscribe(
       response => {
-        this.vehicles = response;
+        this.reservationsList.veicolo = response;
         console.log(response);
       },
       error => {
@@ -86,7 +84,7 @@ export class EditReservationsComponent implements OnInit {
   }
 
   abort() {
-    this.router.navigate(['/vehicles',]);
+    this.router.navigate(['/reservations',]);
   }
 
   salva() {

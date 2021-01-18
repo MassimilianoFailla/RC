@@ -18,7 +18,7 @@ export class ReservationDataService {
 
   getReservations(){
   return this.httpClient.get<Reservations[]>(`http://localhost:4000/api/reservations/views`);
-  }
+}
 
   // mi richiamo gli utenti
   getUsers(){

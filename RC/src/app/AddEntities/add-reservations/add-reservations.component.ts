@@ -24,18 +24,16 @@ export class AddReservationsComponent implements OnInit {
   Conferma: string = '';
 
   apiMsg: ApiMsg;
-
-
-    utente: Users;
-    veicolo: Vehicles;
+  utente: Users;
+  veicolo: Vehicles;
 
   // utenti
   reservationsList: Reservations = {
     id: 0,
     dataInizio: new Date(),
     dataFine: new Date(),
-    targa: '',
-    idUser: 0,
+    utente: new Users(),
+    veicolo: new Vehicles(),
     approvazione: false,
   };
 
@@ -47,7 +45,7 @@ export class AddReservationsComponent implements OnInit {
     // ottengo i dati dell'utente
     this.resDataService.getUsers().subscribe(
       response => {
-        this.utente = response;
+        this.reservationsList.utente = response;
         console.log(response);
       },
       error => {
@@ -58,7 +56,7 @@ export class AddReservationsComponent implements OnInit {
     // ottengo i dati dei veicoli
     this.resDataService.getVehicles().subscribe(
       response => {
-        this.veicolo = response;
+        this.reservationsList.veicolo = response;
         console.log(response);
       },
       error => {
@@ -77,8 +75,8 @@ export class AddReservationsComponent implements OnInit {
       id: form.value.id,
       dataInizio: form.value.dataInizio,
       dataFine: form.value.dataFine,
-      targa: form.value.targaVehicle,
-      idUser: form.value.id,
+      utente: form.value.reservationsList.utente,
+      veicolo: form.value.reservationsList.veicolo,
       approvazione: form.value.approvazione,
     }
     this.resDataService.insReservation(reservationsList).subscribe(
