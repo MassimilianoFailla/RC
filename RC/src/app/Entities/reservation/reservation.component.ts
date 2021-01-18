@@ -1,3 +1,4 @@
+import { Users } from 'src/app/Entities/user/Users';
 import { Input, Output } from '@angular/core';
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,6 +12,7 @@ import { TablesConfig } from 'src/app/Config/TablesConfig';
 import { listaPrenotazioni } from 'src/app/Mock/mock-reservations';
 import { ReservationDataService } from 'src/app/Services/Data/reservation-data-service.service';
 import { ReservationService } from 'src/app/Services/Services-Entities/reservation.service';
+import { Reservations } from './Reservations';
 
 @Component({
   selector: 'app-reservation',
@@ -18,7 +20,7 @@ import { ReservationService } from 'src/app/Services/Services-Entities/reservati
   styleUrls: ['./reservation.component.css']
 })
 export class ReservationComponent implements OnInit {
-
+  reservations: Reservations;
   constructor(private reservationService: ReservationService, private router: Router, 
     private reservationDataService: ReservationDataService) { }
 
@@ -66,8 +68,10 @@ export class ReservationComponent implements OnInit {
     { key: 'id', label: 'Id' },
     { key: 'dataInizio', label: 'DataInizio' },
     { key: 'dataFine', label: 'DataFine' },
-    { key: 'iUtented', label: 'IdUtente' },
-    { key: 'targa', label: 'Targa Veicolo' },
+    { key: 'iUtente', label: 'IdUtente' },
+    { key: 'targa', label: 'Targa' },
+    { key: 'approvazione', label: 'Approvazione' },
+
   ];
 
    // settaggio dati mockati
@@ -78,6 +82,7 @@ export class ReservationComponent implements OnInit {
    InsRes() {
     this.reservationDataService.getReservations().subscribe(data => this.tables.data = data);
   }
+
  
   // settaggio orderConfig
   orderConfig: Orders = {
@@ -86,7 +91,7 @@ export class ReservationComponent implements OnInit {
   };
 
   columnsUrs: Search = {
-    columns: ['id', 'dataInizio', 'dataFine', 'idUtente', 'targa'],
+    columns: ['id', 'dataInizio', 'dataFine', 'idUser', 'targa'],
   };
 
   // configPages
@@ -113,17 +118,17 @@ export class ReservationComponent implements OnInit {
    
   }
 
-  edit(object: any) {
+  edit(reservations: Reservations) {
     alert('Stai per modificare una prenotazione...!');
-    this.router.navigate([`${'edit/reservations'}`, {tipo: 3}]);
-    this.reservationDataService.updReservation(object);
+    this.router.navigate([`${'edit/reservations'}`, {reservations}]);
+    this.reservationDataService.updReservation(reservations);
   }
 
-  delete(id: number) {
+  delete(reservations: Reservations) {
     alert("!!! Stai cancellando una prenotazione!!!");
     this.Conferma = '';
     this.Errore = '';
-      this.reservationDataService.delReservationById(id).subscribe(
+      this.reservationDataService.delReservationById(reservations.id).subscribe(
         response => {
           console.log(response);
           this.apiMsg = response;
@@ -140,10 +145,10 @@ export class ReservationComponent implements OnInit {
 
   opSuRiga(object: any) {
     if (object.text === 'edit') {
-      this.edit(object);
+      this.edit(this.reservations);
     }
     else if (object.text === 'delete') {
-      this.delete(object);
+      this.delete(this.reservations);
     }
   }
 }

@@ -24,12 +24,13 @@ export class AddUsersComponent implements OnInit {
   Conferma: string = '';
 
   apiMsg: ApiMsg;
+
   // utenti
   usersList: Users = {
     id: 0,
     nome: '',
     cognome: '',
-    dataNascita: '',
+    dataNascita: new Date(),
     codiceFiscale: '',
     email: '',
     username: '',
@@ -50,7 +51,7 @@ export class AddUsersComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    let users: Users = {
+    let usersList: Users = {
       id: form.value.id,
       nome: form.value.nome,
       cognome: form.value.cognome,
@@ -62,7 +63,7 @@ export class AddUsersComponent implements OnInit {
       role: form.value.role,
 
     }
-    this.userDataService.insUser(users).subscribe(
+    this.userDataService.insUser(usersList).subscribe(
       response => {
         console.log(response);
         this.apiMsg = response;

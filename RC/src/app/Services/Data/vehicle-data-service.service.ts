@@ -16,7 +16,7 @@ export class VehicleDataService {
   constructor(private httpClient:HttpClient) { }
 
   getVehicles(){
-  return this.httpClient.get<Vehicles[]>(`http://localhost:4000/api/vehicles/views`);
+  return this.httpClient.get<Vehicles>(`http://localhost:4000/api/vehicles/views`);
   }
 
   insVehicle(vehicle: Vehicles) {

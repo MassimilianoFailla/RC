@@ -51,14 +51,16 @@
                     </div>
 
                     <!-- servirà per la tipologia del veicolo successivamente -->
-
-                    <!-- <div class="form-group ">
-                        <label for="tipologia">Tipologia Veicolo:</label>
-                        <select name="tipologia" class="form-control " [(ngModel)]="vehiclesList.tipologia">
-                                    <option value="Super">Super</option>
-                                    <option value="User ">User</option>
-                                </select>
-                    </div> -->
+                    <div class="form-group">
+                        <label for="tipologia">Tipologia Veicolo</label>
+                        <select name="tipologia" class="form-control" [(ngModel)]="vehiclesList.tipologia" #tipolgia="ngModel" required>
+                            <option>Selezionare la tipologia di auto</option>
+                            <option value="Citycar">Citycar</option>
+                            <option value="Berlina">Berlina</option>
+                            <option value="Monovolume">Monovolume</option>
+                            <option value="Coupé">Coupé</option>
+                        </select>
+                    </div>
                 </div>
 
                 <button type="submit" id="btnAdd " class="btn btn-primary form-buttons" [disabled]="artForm.invalid">

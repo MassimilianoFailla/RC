@@ -22,7 +22,14 @@ export class EditVehiclesComponent implements OnInit {
   Errore: string = '';
   apiMsg: ApiMsg;
 
-  vehiclesList: Vehicles;
+  vehiclesList: Vehicles = {
+    id: 0,
+    casaCostruttrice: '',
+    modello: '',
+    annoImmatricolazione: new Date(),
+    targa: '',
+    tipologia: '',
+  };
 
   constructor(private router: Router, private route: ActivatedRoute,
     private vehicleDataService: VehicleDataService) { }
@@ -31,7 +38,7 @@ export class EditVehiclesComponent implements OnInit {
 
     this.id = this.route.snapshot.params['id'];
 
-    this.vehiclesList = new Vehicles(12, "", "", "", "",);
+    this.vehiclesList = new Vehicles();
 
     // ottengi i dati dell'utente
     if (this.id != -1) {

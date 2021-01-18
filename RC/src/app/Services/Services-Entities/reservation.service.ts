@@ -40,6 +40,6 @@ export class ReservationService {
       let oldUsers = this.reservations.find(x=>x.id === reservationsList.id);
       oldUsers.dataInizio = reservationsList.dataInizio;
       oldUsers.dataFine = reservationsList.dataFine;
-      
     }
+
   }

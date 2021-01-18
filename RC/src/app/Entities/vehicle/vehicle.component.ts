@@ -59,6 +59,8 @@ export class VehicleComponent implements OnInit {
     { key: 'modello', label: 'Modello' },
     { key: 'annoImmatricolazione', label: 'AnnoImmatricolazione' },
     { key: 'targa', label: 'Targa' },
+    { key: 'tipologia', label: 'Tipologia' },
+  
   ];
 
   // settaggio dati mockati 
@@ -75,7 +77,7 @@ export class VehicleComponent implements OnInit {
   };
 
   columnsVeh: Search = {
-    columns: ['id', 'casaCostruttrice', 'modello', 'annoImmatricolazione', 'targa'],
+    columns: ['id', 'casaCostruttrice', 'modello', 'annoImmatricolazione', 'targa', 'tipologia'],
   }
 
   // configPages

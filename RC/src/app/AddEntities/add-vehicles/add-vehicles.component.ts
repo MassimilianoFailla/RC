@@ -24,9 +24,10 @@ export class AddVehiclesComponent implements OnInit {
   vehiclesList: Vehicles = {
     id: 0,
     casaCostruttrice: '',
-    annoImmatricolazione: '',
+    annoImmatricolazione: new Date(),
     modello: '',
     targa: '',
+    tipologia: '',
   }
 
   constructor(private router: Router, private route: ActivatedRoute, private vehicleService: VehicleService,
@@ -54,6 +55,7 @@ export class AddVehiclesComponent implements OnInit {
       casaCostruttrice: form.value.casaCostruttrice,
       modello: form.value.modello,
       targa: form.value.targa,
+      tipologia: form.value.tipologia,
     }
     
     this.vehicleDataService.insVehicle(vehicles).subscribe(

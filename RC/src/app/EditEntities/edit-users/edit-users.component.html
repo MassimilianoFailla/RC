@@ -24,41 +24,40 @@
 
                     <div class="form-group col-md-4">
                         <label for="nome">Nome Utente:</label>
-                        <input name="nome" type="text" [(ngModel)]="usersList.nome" class="form-control" placeholder="Nome Utente" required minlength="5" maxlength="30" #nome="ngModel" required />
+                        <input name="nome" type="text" [(ngModel)]="usersList.nome" class="form-control" placeholder="Nome Utente" required minlength="3" maxlength="30" #nome="ngModel" required />
                         <span style="color:rgb(7, 0, 112)" *ngIf="nome.dirty && nome.invalid">
-                                Il codice articolo deve essere compreso fra 5 e 30 caratteri
+                                Il nome dell'utente deve essere compreso fra 3 e 30 caratteri
                             </span>
                     </div>
 
                     <div class="form-group col-md-4">
                         <label for="cognome">Cognome Utente: </label>
-                        <input name="cognome" [(ngModel)]="usersList.cognome" type="text" class="form-control" required maxlength="2" #cognome="ngModel" />
+                        <input name="cognome" [(ngModel)]="usersList.cognome" type="text" class="form-control" required maxlength="5" #cognome="ngModel" required />
                         <span style="color:red" *ngIf="cognome.dirty && cognome.invalid">
-                                Il pezzi per cartone devono essere presenti ed avere un valore massimo di 99
+                                Il cognome dell'utente deve essere di almeno 5 caratteri
                             </span>
                     </div>
 
                     <div class="form-group col-md-4">
                         <label for="dataNascita">Data Nascita Utente:</label>
-                        <input name="dataNascita" [(ngModel)]="usersList.dataNascita" type="date" class="form-control" required #dataNascita="ngModel" />
+                        <input name="dataNascita" [(ngModel)]="usersList.dataNascita" type="date" class="form-control" required #dataNascita="ngModel" required />
                         <span style="color:red" *ngIf="dataNascita.dirty && dataNascita.invalid">
-                                Il Peso Netto deve avere un valore compreso tra 0.01 e 100
                             </span>
                     </div>
 
                     <div class="form-group col-md-4">
                         <label for="codiceFiscale">CF Utente: </label>
-                        <input name="codiceFiscale" [(ngModel)]="usersList.codiceFiscale" type="text" class="form-control" required maxlength="2" #codiceFiscale="ngModel" />
+                        <input name="codiceFiscale" [(ngModel)]="usersList.codiceFiscale" type="text" class="form-control" required maxlength="16" #codiceFiscale="ngModel" required />
                         <span style="color:red" *ngIf="codiceFiscale.dirty && codiceFiscale.invalid">
-                                Il pezzi per cartone devono essere presenti ed avere un valore massimo di 99
+                                Il CF dell'utente deve essere di 16 caratteri!
                             </span>
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="email">Email Utente: </label>
-                        <input name="email" [(ngModel)]="usersList.email" type="email" class="form-control" placeholder="Email Utente" required minlength="6" maxlength="80" #email="ngModel" />
+                        <input name="email" [(ngModel)]="usersList.email" type="email" class="form-control" placeholder="Email Utente" required minlength="6" maxlength="20" #email="ngModel" required/>
                         <span style="color:red " *ngIf="email.dirty && email.invalid ">
-                                Il campo Descrizione deve avere un numero di caratteri compreso tra 6 e 80
+                               La Email deve essere valida!
                             </span>
                     </div>
 
@@ -66,17 +65,17 @@
 
                         <div class="form-group col-md-2">
                             <label for="username">Username Utente:</label>
-                            <input name="username" [(ngModel)]="usersList.username" type="text" class="form-control" required maxlength="2" #username="ngModel" />
+                            <input name="username" [(ngModel)]="usersList.username" type="text" class="form-control" required minlength="5" maxlength="20" #username="ngModel" required/>
                             <span style="color:red " *ngIf="username.dirty && username.invalid ">
-                                    Il pezzi per cartone devono essere presenti ed avere un valore massimo di 99
+                                   L'username deve essere di almeno 5 caratteri
                                 </span>
                         </div>
 
                         <div class="form-group col-md-4 ">
                             <label for="password">Password Utente:</label>
-                            <input name="password" [(ngModel)]="usersList.password" type="password" class="form-control" required maxlength="2" #password="ngModel" required />
+                            <input name="password" [(ngModel)]="usersList.password" type="password" class="form-control" required minlength="6" maxlength="20" #password="ngModel" required />
                             <span style="color:red" *ngIf="password.dirty && username.invalid ">
-                                    Il pezzi per cartone devono essere presenti ed avere un valore massimo di 99
+                                   La password deve avere almeno 6 caratteri!
                                 </span>
                         </div>
 

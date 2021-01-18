@@ -54,7 +54,7 @@
 
                     <div class="form-group">
                         <label for="email"><b>Email Utente:</b></label>
-                        <input name="email" type="email" [(ngModel)]="usersList.email" class="form-control" placeholder="Email utente" required minlength="15" maxlength="30" />
+                        <input name="email" type="email" [(ngModel)]="usersList.email" class="form-control" placeholder="Email utente" required minlength="30" maxlength="40" />
                         <span style="color:rgb(145, 0, 0) ">
                             La email deve essere valida!
             </span>
@@ -76,12 +76,14 @@
             </span>
                     </div>
 
+                    <!-- Servirà per la tipologia di utente -->
                     <div class="form-group">
-                        <label for="role"><b>Role Utente:</b></label>
+                        <label for="role"><b>Tipologia Utente:</b></label>
                         <select name="role" class="form-control" [(ngModel)]="usersList.role" required>
-              <option value="Super">Super</option>
-              <option value="Customer">User</option>
-            </select>
+                            <option value="" disabled selected>Selezionare la tipologia di utente</option>
+                            <option value="Super">Super</option>
+                            <option value="User">User</option>
+                        </select>
                     </div>
 
                     <hr class="line-form">

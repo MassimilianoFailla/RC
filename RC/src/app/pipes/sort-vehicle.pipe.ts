@@ -18,9 +18,9 @@ export class SortVehiclesPipe implements PipeTransform {
     else if (colonna === 'modello') {
       dati.sort((e1, e2) => e1.modello.localeCompare(e2.modello));
     }
-    else if (colonna === 'annoImmatricolazione') {
-      dati.sort((e1, e2) => e1.annoImmatricolazione.localeCompare(e2.annoImmatricolazione));
-    }
+    // else if (colonna === 'annoImmatricolazione') {
+    //   dati.sort((e1, e2) => e1.annoImmatricolazione.localeCompare(e2.annoImmatricolazione));
+    // }
     else if (colonna === 'targa') {
       dati.sort((e1, e2) => e1.targa.localeCompare(e2.targa));
     }

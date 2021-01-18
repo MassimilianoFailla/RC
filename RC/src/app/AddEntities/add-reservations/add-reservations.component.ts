@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TablesConfig } from 'src/app/Config/TablesConfig';
 import { Reservations } from 'src/app/Entities/reservation/Reservations';
 import { ApiMsg } from 'src/app/Entities/user/user.component';
+import { Users } from 'src/app/Entities/user/Users';
+import { Vehicles } from 'src/app/Entities/vehicle/Vehicles';
 import { ReservationDataService } from 'src/app/Services/Data/reservation-data-service.service';
 import { ReservationService } from 'src/app/Services/Services-Entities/reservation.service';
 @Component({
@@ -14,44 +17,71 @@ export class AddReservationsComponent implements OnInit {
 
   id: number;
   header: string;
+  @Input() tables: TablesConfig;
+
   Errore: string = '';
   IsModifica: boolean = false;
   Conferma: string = '';
+
   apiMsg: ApiMsg;
-  
-  // reservation
+
+
+    utente: Users;
+    veicolo: Vehicles;
+
+  // utenti
   reservationsList: Reservations = {
     id: 0,
-    dataInizio: '',
-    dataFine: ''
-  }
+    dataInizio: new Date(),
+    dataFine: new Date(),
+    targa: '',
+    idUser: 0,
+    approvazione: false,
+  };
 
   constructor(private router: Router, private route: ActivatedRoute, private reservationService: ReservationService,
-    private reservationDataService: ReservationDataService) { }
+    private resDataService: ReservationDataService) { }
 
-    ngOnInit(): void {
-      this.id = +this.route.snapshot.paramMap.get('id');
-      this.header = this.id === 0 ? 'Adding page' : 'Editing page';
-  
-      if (this.id != 0) {
-        this.reservationsList = this.reservationService.onGetReservations(this.id);
+  ngOnInit(): void {
+
+    // ottengo i dati dell'utente
+    this.resDataService.getUsers().subscribe(
+      response => {
+        this.utente = response;
+        console.log(response);
+      },
+      error => {
+        console.log(error);
       }
-    }
+    )
+
+    // ottengo i dati dei veicoli
+    this.resDataService.getVehicles().subscribe(
+      response => {
+        this.veicolo = response;
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
 
   abort() {
     alert('stai tornando alla tabella delle prenotazioni')
-    this.router.navigate(['/reservations']);
+    this.router.navigate(['/users']);
   }
 
-
   onSubmit(form: NgForm) {
-
     let reservationsList: Reservations = {
       id: form.value.id,
       dataInizio: form.value.dataInizio,
       dataFine: form.value.dataFine,
+      targa: form.value.targaVehicle,
+      idUser: form.value.id,
+      approvazione: form.value.approvazione,
     }
-    this.reservationDataService.insReservation(reservationsList).subscribe(
+    this.resDataService.insReservation(reservationsList).subscribe(
       response => {
         console.log(response);
         this.apiMsg = response;
@@ -63,8 +93,7 @@ export class AddReservationsComponent implements OnInit {
         console.log(this.Errore);
       }
     )
-    alert("Nuova Prenotazione salvata con successo!");
-   this.router.navigate(['/reservations']);
-
+    alert("Nuova prenotazione salvata con successo!");
+    this.router.navigate(['/reservations']);
   }
 }

@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Reservations } from 'src/app/Entities/reservation/Reservations';
 import { ReservationService } from 'src/app/Services/Services-Entities/reservation.service';
 import { ApiMsg } from 'src/app/Entities/user/user.component';
+import { Users } from 'src/app/Entities/user/Users';
+import { Vehicles } from 'src/app/Entities/vehicle/Vehicles';
 @Component({
   selector: 'app-edit-reservations',
   templateUrl: './edit-reservations.component.html',
@@ -20,7 +22,18 @@ export class EditReservationsComponent implements OnInit {
   Errore: string = '';
   apiMsg: ApiMsg;
 
-  reservationsList: Reservations;
+  // entità di user e veicolo
+  users: Users;
+  vehicles: Vehicles;
+
+  reservationsList: Reservations = {
+    id: 0,
+    dataInizio: new Date(),
+    dataFine: new Date(),
+    idUser: 0,
+    targa: '',
+    approvazione: false,
+  };
 
   constructor(private router: Router, private route: ActivatedRoute,
     private resDataService: ReservationDataService) { }
@@ -29,9 +42,9 @@ export class EditReservationsComponent implements OnInit {
 
     this.id = this.route.snapshot.params['id'];
 
-    this.reservationsList = new Reservations(12, "", "");
+    this.reservationsList = new Reservations();
 
-    // ottengi i dati dell'utente
+    // ottengi i dati della prenotazione
     if (this.id != -1) {
       this.IsModifica2 = true;
 
@@ -47,6 +60,29 @@ export class EditReservationsComponent implements OnInit {
     } else {
       this.IsModifica2 = false;
     }
+
+    // ottengo i dati dell'utente
+    this.resDataService.getUsers().subscribe(
+      response => {
+
+        this.users = response;
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+
+    // ottengo i dati dei veicoli
+    this.resDataService.getVehicles().subscribe(
+      response => {
+        this.vehicles = response;
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   abort() {

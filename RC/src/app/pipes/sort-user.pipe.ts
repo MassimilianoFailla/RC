@@ -18,9 +18,9 @@ export class SortUsersPipe implements PipeTransform {
     else if (colonna === 'cognome') {
       dati.sort((e1, e2) => e1.cognome.localeCompare(e2.cognome));
     }
-    else if (colonna === 'dataNascita') {
-      dati.sort((e1, e2) => e1.dataNascita.localeCompare(e2.dataNascita));
-    }
+    // else if (colonna === 'dataNascita') {
+    //   dati.sort((e1, e2) => e1.getTime() === (e2.getTime()));
+    // }
     else if (colonna === 'codiceFiscale') {
       dati.sort((e1, e2) => e1.codiceFiscale.localeCompare(e2.codiceFiscale));
     }

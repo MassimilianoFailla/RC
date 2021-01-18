@@ -21,7 +21,18 @@ export class EditUsersComponent implements OnInit {
   Conferma: string = '';
   Errore: string = '';
   apiMsg: ApiMsg;
-  usersList: Users;
+
+usersList: Users = {
+    id: 0,
+    nome: '',
+    cognome: '',
+    dataNascita: new Date(),
+    codiceFiscale: '',
+    email: '',
+    username: '',
+    password: '',
+    role: '',
+  };
 
   constructor(private router: Router, private route: ActivatedRoute, private usersService: UserService,
     private userDataService: UserDataService) { }
@@ -30,7 +41,7 @@ export class EditUsersComponent implements OnInit {
 
     this.id = this.route.snapshot.params['id'];
 
-    this.usersList = new Users(12, "", "", "", "", "", "", "", "");
+    this.usersList = new Users();
 
     // ottengi i dati dell'utente
     if (this.id != -1) {
