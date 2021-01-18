@@ -34,7 +34,7 @@ export class TablesComponent implements OnInit {
   // unica configurazione tabella
   @Input() tables: TablesConfig;
 
-  // input dati entità
+  // input dati entità mockati
   @Input() datiUsr = listaUtenti;
   @Input() datiVeh = listaVeicoli;
   @Input() datiRes = listaPrenotazioni;

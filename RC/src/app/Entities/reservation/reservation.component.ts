@@ -66,10 +66,15 @@ export class ReservationComponent implements OnInit {
     { key: 'id', label: 'Id' },
     { key: 'dataInizio', label: 'DataInizio' },
     { key: 'dataFine', label: 'DataFine' },
+    { key: 'iUtented', label: 'IdUtente' },
+    { key: 'targa', label: 'Targa Veicolo' },
+    
   ];
 
-   // settaggio datiConfig
-   datiRes = listaPrenotazioni;
+   // settaggio dati mockati
+  //  datiRes = listaPrenotazioni;
+
+    datiRes = this.InsRes();
 
    InsRes() {
     this.reservationDataService.getReservations().subscribe(data => this.tables.data = data);
@@ -82,12 +87,12 @@ export class ReservationComponent implements OnInit {
   };
 
   columnsUrs: Search = {
-    columns: ['id', 'dataInizio', 'dataFine'],
+    columns: ['id', 'dataInizio', 'dataFine', 'idUtente', 'targa'],
   };
 
   // configPages
   pagesConfig: Paginations = {
-    itemPerPage: 2,
+    itemPerPage: 4,
     itemPerPageOptions: [2, 3, 4, 5],
   };
 

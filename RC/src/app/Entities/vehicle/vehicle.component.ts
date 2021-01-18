@@ -61,12 +61,12 @@ export class VehicleComponent implements OnInit {
     { key: 'targa', label: 'Targa' },
   ];
 
-  // settaggio datiConfig
-  datiVeh = listaVeicoli;
+  // settaggio dati mockati 
+  // datiVeh = listaVeicoli;
 
-  InsVeh() {
-    this.vehicleDataService.getVehicles().subscribe(data => this.tables.data = data);
-  }
+  // settaggio dati DB
+  datiVeh = this.InsVeh();
+
 
   // settaggio orderConfig
   orderConfig: Orders = {
@@ -98,9 +98,11 @@ export class VehicleComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.vehicleDataService.getVehicles().subscribe(data => {
-      this.tables.data = data;
-    });
+   
+  }
+
+  InsVeh() {
+    this.vehicleDataService.getVehicles().subscribe(data => this.tables.data = data);
   }
 
   edit(object: any){

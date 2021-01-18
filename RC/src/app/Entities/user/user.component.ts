@@ -21,7 +21,7 @@ export class UserComponent implements OnInit {
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private userDataService: UserDataService) { }
 
   @Input() tabUrs: TablesConfig;
-  @Input() datiUtent = this.InsUsr();
+  @Input() datiUtent = this.InsUsr();   // dati dal db mysql
   @Input() headersUrs: Headers[];
   @Output() operation = new EventEmitter<number>();
   @Input() adBut: number;
@@ -73,8 +73,11 @@ export class UserComponent implements OnInit {
     { key: 'role', label: 'role' },
   ];
 
-  // settaggio datiConfig
-  datiUsr = listaUtenti;
+  // settaggio dati mockati 
+  // datiUsr = listaUtenti;
+
+  // settaggio dati dal dbmysql
+  datiUsr = this.InsUsr();
 
   // settaggio orderConfig
   orderConfig: Orders = {
@@ -88,7 +91,7 @@ export class UserComponent implements OnInit {
 
   // configPages
   pagesConfig: Paginations = {
-    itemPerPage: 5,
+    itemPerPage: 4,
     itemPerPageOptions: [2, 3, 4, 5],
   };
 
