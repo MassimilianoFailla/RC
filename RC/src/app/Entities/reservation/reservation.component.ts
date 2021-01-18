@@ -68,7 +68,6 @@ export class ReservationComponent implements OnInit {
     { key: 'dataFine', label: 'DataFine' },
     { key: 'iUtented', label: 'IdUtente' },
     { key: 'targa', label: 'Targa Veicolo' },
-    
   ];
 
    // settaggio dati mockati
