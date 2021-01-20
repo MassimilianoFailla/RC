@@ -15,12 +15,14 @@ import { Reservations } from './Reservations';
 import { Vehicles } from '../vehicle/Vehicles';
 import { Users } from '../user/Users';
 import * as _ from 'lodash-es';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 declare var $: any;
 
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
-  styleUrls: ['./reservation.component.css']
+  styleUrls: ['./reservation.component.css'],
+  providers: [NgbModalConfig, NgbModal],
 })
 export class ReservationComponent implements OnInit {
 
@@ -173,7 +175,12 @@ export class ReservationComponent implements OnInit {
 //     public message: string
 //   ) { }
 
-constructor(private route: ActivatedRoute, private router: Router, private resDataService: ReservationDataService) { }
+constructor(private route: ActivatedRoute, private router: Router, private resDataService: ReservationDataService,
+  config: NgbModalConfig, private modalService: NgbModal) 
+  
+{  config.backdrop = 'static';
+config.keyboard = false;
+}
 
   @Input() tabUrs: TablesConfig;
   @Input() datiRes = this.InsRes();   // dati dal db mysql
@@ -186,6 +193,9 @@ constructor(private route: ActivatedRoute, private router: Router, private resDa
   Errore: string = '';
   apiMsg: ApiMsg;
   messaggio: string;
+
+  reservation2: any;
+
   reservation: Reservations = {
     id: 0, 
     dataInizio: new Date(),
@@ -307,8 +317,8 @@ constructor(private route: ActivatedRoute, private router: Router, private resDa
       )
   }
 
-  info(){
-    alert("non ho ancora inmplementato questo button");
+  info() {
+  alert("Non ho ancora implementato questo metodo");
   }
 
   InsRes() {
@@ -326,6 +336,7 @@ constructor(private route: ActivatedRoute, private router: Router, private resDa
     if(object.text === 'info'){
       this.info();
     }
+    
   }
 }
 

@@ -15,6 +15,7 @@ import { Vehicles } from '../Entities/vehicle/Vehicles';
 import { Reservations } from '../Entities/reservation/Reservations';
 import { UserService } from '../Services/Services-Entities/user.service';
 import { ReservationDataService } from '../Services/Data/reservation-data-service.service';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 declare var $: any;
 
 @Component({
@@ -25,10 +26,19 @@ declare var $: any;
 export class TablesComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserService,
-    private rerDataService: ReservationDataService) { }
+    private rerDataService: ReservationDataService, config: NgbModalConfig, private modalService: NgbModal,
+    ) 
+    { // customize default values of modals used by this component tree
+      config.backdrop = 'static';
+      config.keyboard = false;
+    }
+    open(content) {
+      this.modalService.open(content);
+    }
 
   @Input() adBut: number;
   @Input() Ed: number;
+  closeResult = ''; // modal
 
   // unica configurazione tabella
   @Input() tables: TablesConfig;
@@ -162,4 +172,6 @@ export class TablesComponent implements OnInit {
       this.opRiga.emit({ text: opriga.text, obj: object });
     }
   }
+
+
 }

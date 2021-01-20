@@ -28,7 +28,10 @@ import { EditVehiclesComponent } from './EditEntities/edit-vehicles/edit-vehicle
 import { EditReservationsComponent } from './EditEntities/edit-reservations/edit-reservations.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule, NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbConfig} from '@ng-bootstrap/ng-bootstrap';
+import {NgbAlertConfig} from '@ng-bootstrap/ng-bootstrap';
+import { NgbdModalBasic } from './modal-basic/modal-basic.component';
 
 const appRoutes: Routes = [
   // { path: '**', component: HomeComponent},
@@ -69,12 +72,15 @@ const appRoutes: Routes = [
     EditVehiclesComponent,
     EditReservationsComponent,
     RegisterComponent,
+    NgbdModalBasic,
   ],
 
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    NgbPaginationModule, 
+    NgbAlertModule,
     MatSliderModule,
     MatIconModule,
     FormsModule,
