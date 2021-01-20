@@ -9,7 +9,6 @@ import { Orders } from 'src/app/Config/Orders';
 import { Paginations } from 'src/app/Config/Paginations';
 import { Search } from 'src/app/Config/Search';
 import { TablesConfig } from 'src/app/Config/TablesConfig';
-import { listaPrenotazioni } from 'src/app/Mock/mock-reservations';
 import { ReservationDataService } from 'src/app/Services/Data/reservation-data-service.service';
 import { ReservationService } from 'src/app/Services/Services-Entities/reservation.service';
 import { Reservations } from './Reservations';

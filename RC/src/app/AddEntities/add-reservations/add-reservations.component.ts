@@ -14,7 +14,6 @@ import { ReservationService } from 'src/app/Services/Services-Entities/reservati
   styleUrls: ['./add-reservations.component.css']
 })
 export class AddReservationsComponent implements OnInit {
-
   id: number;
   header: string;
   @Input() tables: TablesConfig;
@@ -75,8 +74,8 @@ export class AddReservationsComponent implements OnInit {
       id: form.value.id,
       dataInizio: form.value.dataInizio,
       dataFine: form.value.dataFine,
-      utente: form.value.reservationsList.utente,
-      veicolo: form.value.reservationsList.veicolo,
+      utente: form.value.utente,
+      veicolo: form.value.veicolo,
       approvazione: form.value.approvazione,
     }
     this.resDataService.insReservation(reservationsList).subscribe(

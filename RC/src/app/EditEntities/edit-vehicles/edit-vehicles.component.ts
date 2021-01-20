@@ -73,6 +73,7 @@ export class EditVehiclesComponent implements OnInit {
           this.apiMsg = response;
           this.Conferma = this.apiMsg.message;
           console.log(this.Conferma);
+          alert("modifica veicolo eseguita con successo!");
           this.router.navigate(['/vehicles']);
         },
         error => {

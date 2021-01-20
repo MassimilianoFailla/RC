@@ -76,11 +76,12 @@ usersList: Users = {
           this.apiMsg = response;
           this.Conferma = this.apiMsg.message;
           console.log(this.Conferma);
+          alert("modifica utente eseguita con successo!");
           this.router.navigate(['/users']);
         },
         error => {
-          this.Errore = error.error.messaggio;
-          console.log(this.Errore);
+          // this.Errore = error.error.messaggio;
+          // console.log(this.Errore);
         }
       )
   }

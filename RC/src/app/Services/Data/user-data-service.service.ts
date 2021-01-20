@@ -22,7 +22,7 @@ export class UserDataService {
   }
 
   getUtenti(){
-    return this.httpClient.get<Users>(`http://${this.server}:${this.port2}/api/users/views`);
+    return this.httpClient.get<Users[]>(`http://${this.server}:${this.port2}/api/users/views`);
   }
 
   getUserById(id: number){
@@ -34,7 +34,7 @@ export class UserDataService {
   }
 
   updUser(user: Users) {
-    return this.httpClient.put<ApiMsg>(`http://${this.server}:${this.port2}/api/users/modifica/`, user);
+    return this.httpClient.put<ApiMsg>(`http://${this.server}:${this.port2}/api/users/modifica/${user.id}`, user);
   }
 
   insUser(user: Users) {

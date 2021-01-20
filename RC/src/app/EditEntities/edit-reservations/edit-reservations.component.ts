@@ -98,6 +98,7 @@ export class EditReservationsComponent implements OnInit {
           this.apiMsg = response;
           this.Conferma = this.apiMsg.message;
           console.log(this.Conferma);
+          alert("modifica prenotazione eseguita con successo!");
           this.router.navigate(['/reservations']);
         },
         error => {
