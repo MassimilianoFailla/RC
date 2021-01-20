@@ -17,7 +17,7 @@ import { UserDataService } from 'src/app/Services/Data/user-data-service.service
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-
+ 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private userDataService: UserDataService) { }
 
   @Input() tabUrs: TablesConfig;
@@ -32,8 +32,6 @@ export class UserComponent implements OnInit {
   apiMsg: ApiMsg;
   messaggio: string;
   user: Users;
-
-  
   // operazioni button
   operazioni: ButtonsConfig[] = [{
     text: 'edit',
@@ -122,16 +120,17 @@ export class UserComponent implements OnInit {
     this.router.navigate([`${'edit/users'}`, { tipo: 1 }]);
   }
 
-  delete(id: number) {
+  delete(user: Users) {
     alert("!!! Stai cancellando l'utente!!!");
     this.Conferma = '';
     this.Errore = '';
-      this.userDataService.delUseryId(id).subscribe(
+      this.userDataService.delUser(user).subscribe(
         response => {
           console.log(response);
           this.apiMsg = response;
           this.Conferma = this.apiMsg.message;
           console.log(this.Conferma);
+          alert("Utente eliminato con successo!");
           this.router.navigate(['/users']);
         },
         error => {

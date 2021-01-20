@@ -29,8 +29,8 @@ export class UserDataService {
     return this.httpClient.get<Users>(`http://${this.server}:${this.port2}/api/users/users/${id}`);
   }
 
-  delUseryId(id: number) {
-    return this.httpClient.delete<ApiMsg>(`http://${this.server}:${this.port2}/api/users/elimina/${id}`);
+  delUser(user: Users) {
+    return this.httpClient.delete<ApiMsg>(`http://${this.server}:${this.port2}/api/users/elimina/${user.id}`);
   }
 
   updUser(user: Users) {

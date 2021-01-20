@@ -14,6 +14,7 @@ import { ButtonsConfig } from '../Config/ButtonsConfig';
 import { Vehicles } from '../Entities/vehicle/Vehicles';
 import { Reservations } from '../Entities/reservation/Reservations';
 import { UserService } from '../Services/Services-Entities/user.service';
+import { ReservationDataService } from '../Services/Data/reservation-data-service.service';
 declare var $: any;
 
 @Component({
@@ -23,11 +24,9 @@ declare var $: any;
 })
 export class TablesComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService,
+    private rerDataService: ReservationDataService) { }
 
-  @Input() users: Users[];
-  @Input() vehicles: Vehicles[];
-  @Input() reservations: Reservations[];
   @Input() adBut: number;
   @Input() Ed: number;
 
@@ -37,11 +36,12 @@ export class TablesComponent implements OnInit {
   // input dati entità mockati
   @Input() datiUsr = listaUtenti;
   @Input() datiVeh = listaVeicoli;
-  @Input() datiRes = listaPrenotazioni;
+  // @Input() datiRes = listaPrenotazioni;
+  @Input() datiRes: any;
 
   // headers entità
-  @Input() headersUrs: Headers[];
-  @Input() headersVeh: Headers[];
+  @Input() headersUrs: MyHeaders[];
+  @Input() headersVeh: MyHeaders[];
   @Input() headersRes: MyHeaders[];
 
   @Input() searchConfig: Search;   // ricerca custom
@@ -54,8 +54,8 @@ export class TablesComponent implements OnInit {
   @Output() opRiga = new EventEmitter<any>();
   @Output() azioni: Actions[];
 
-  @Output() provaBut = new EventEmitter<string>();
 
+  @Output() provaBut = new EventEmitter<string>();
   @Input() add = new EventEmitter<any>();
 
   @Input() addButt: ButtonsConfig = {
@@ -151,7 +151,7 @@ export class TablesComponent implements OnInit {
         break;
     }
   }
-  
+
 
   opSuRiga(opriga: any, object: any, Ed: number) {
     this.tempOB = object;

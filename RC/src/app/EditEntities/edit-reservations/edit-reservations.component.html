@@ -18,7 +18,6 @@
                         <label for="id">ID Prenotazione:</label>
                         <input name="id" type="text" [(ngModel)]="reservationsList.id" class="form-control" placeholder="ID Prenotazione" #id="ngModel" />
                         <span style="color:rgb(7, 0, 112)" *ngIf="id.dirty && id.invalid">
-                            <!-- [disabled]="IsModifica2" -->
                         </span>
                     </div>
 
@@ -36,15 +35,6 @@
                         </span>
                     </div>
 
-                    <!-- servirà per la tipologia del veicolo successivamente -->
-
-                    <!-- <div class="form-group ">
-                        <label for="tipologia">Tipologia Veicolo:</label>
-                        <select name="tipologia" class="form-control " [(ngModel)]="vehiclesList.tipologia">
-                                    <option value="Super">Super</option>
-                                    <option value="User ">User</option>
-                                </select>
-                    </div> -->
                 </div>
                 <button type="submit" id="btnAdd " class="btn btn-primary form-buttons" [disabled]="artForm.invalid">
                     <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva

@@ -30,7 +30,7 @@ export class ReservationDataService {
     return this.httpClient.get<Vehicles>(`http://localhost:4000/api/vehicles/views`);
     }
 
-  insReservation(reservation: Reservations) {
+    InsReservation(reservation: Reservations) {
     return this.httpClient.post<ApiMsg>(`http://${this.server}:${this.port2}/api/reservations/inserisci`, reservation);
   }
 

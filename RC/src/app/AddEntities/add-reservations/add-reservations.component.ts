@@ -14,6 +14,7 @@ import { ReservationService } from 'src/app/Services/Services-Entities/reservati
   styleUrls: ['./add-reservations.component.css']
 })
 export class AddReservationsComponent implements OnInit {
+
   id: number;
   header: string;
   @Input() tables: TablesConfig;
@@ -23,8 +24,9 @@ export class AddReservationsComponent implements OnInit {
   Conferma: string = '';
 
   apiMsg: ApiMsg;
-  utente: Users;
-  veicolo: Vehicles;
+
+  user: Users;  // per l'ottenimento dei dati
+  vehicle: Vehicles;   // per l'ottenimento dei dati
 
   // utenti
   reservationsList: Reservations = {
@@ -44,7 +46,8 @@ export class AddReservationsComponent implements OnInit {
     // ottengo i dati dell'utente
     this.resDataService.getUsers().subscribe(
       response => {
-        this.reservationsList.utente = response;
+        this.user = response;
+        console.log(this.user);
         console.log(response);
       },
       error => {
@@ -55,7 +58,8 @@ export class AddReservationsComponent implements OnInit {
     // ottengo i dati dei veicoli
     this.resDataService.getVehicles().subscribe(
       response => {
-        this.reservationsList.veicolo = response;
+        this.vehicle = response;
+        console.log("lista veicoli" +this.vehicle.targa);
         console.log(response);
       },
       error => {
@@ -66,7 +70,7 @@ export class AddReservationsComponent implements OnInit {
 
   abort() {
     alert('stai tornando alla tabella delle prenotazioni')
-    this.router.navigate(['/users']);
+    this.router.navigate(['/reservations']);
   }
 
   onSubmit(form: NgForm) {
@@ -78,7 +82,8 @@ export class AddReservationsComponent implements OnInit {
       veicolo: form.value.veicolo,
       approvazione: form.value.approvazione,
     }
-    this.resDataService.insReservation(reservationsList).subscribe(
+
+    this.resDataService.InsReservation(reservationsList).subscribe(
       response => {
         console.log(response);
         this.apiMsg = response;
@@ -93,4 +98,6 @@ export class AddReservationsComponent implements OnInit {
     alert("Nuova prenotazione salvata con successo!");
     this.router.navigate(['/reservations']);
   }
+
+
 }

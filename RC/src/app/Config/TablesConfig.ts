@@ -11,7 +11,7 @@ export class TablesConfig{
   headers: MyHeaders[];
 
   // dati tabelle
-  data;
+  data: any;
 
   // ordine
   order: Orders;

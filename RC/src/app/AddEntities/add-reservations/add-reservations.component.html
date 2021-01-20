@@ -8,16 +8,15 @@
             </div>
         </div>
         <br><br>
-        <!-- Inizio del form di inserimento dati-->
         <div class="portlet-body form">
             <form (ngSubmit)="onSubmit(f)" #f="ngForm">
                 <div class="form-group" class="was-validated">
 
-                    <div class="form-group ">
-                        <label for="id"><b>ID Utente:</b></label>
-                        <input name="id" type="text" [(ngModel)]="reservationsList.utente.id " class="form-control " placeholder="ID utente" />
+                    <!-- <div class="form-group ">
+                        <label for="reservationsList.utente.id"><b>ID Utente:</b></label>
+                        <input name="id" type="text" [(ngModel)]="reservationsList.utente.id" class="form-control" placeholder="ID utente" />
                         <span style="color:rgb(2, 0, 134) "></span>
-                    </div>
+                    </div> -->
 
                     <div class="form-group">
                         <label for="dataInizio"><b>Data Inizio Prenotazione:</b></label>
@@ -29,16 +28,13 @@
                         <input name="dataFine" type="date" [(ngModel)]="reservationsList.dataFine" class="form-control" required />
                     </div>
 
-                    <!-- <option *ngFor="let veicolo of reservationsList">{{veicolo.targa}}</option> -->
 
-                    <!-- Servirà per la scelta del veicolo -->
-                    <!-- Servirà per la tipologia di utente -->
                     <div class="form-group">
                         <label for="targa"><b>Targa Veicolo:</b></label>
-                        <select name="targa" class="form-control" [(ngModel)]="reservationsList.veicolo.targa"> required>
+                        <select name="targa" class="form-control" [(ngModel)]="reservationsList.veicolo.targa" required>
                             <option value="" disabled selected></option>
                             <option value="" disabled selected>Selezionare la targa dell'auto</option>
-                            <option *ngFor="let veicolo of reservationsList.veicolo">{{veicolo.targa}}</option>
+                            <option *ngFor="let veicolo of vehicle">{{veicolo.targa}}</option>
                         </select>
                     </div>
 
