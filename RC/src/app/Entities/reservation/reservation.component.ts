@@ -197,7 +197,13 @@ constructor(private route: ActivatedRoute, private router: Router, private resDa
 
 
   // operazioni button
-  operazioni: ButtonsConfig[] = [{
+  operazioni: ButtonsConfig[] = [
+    {
+      text: 'info',
+      customCssClass: 'btn btn-info btn-sm',
+      icon: '',
+    },
+    {
     text: 'edit',
     customCssClass: 'btn btn-secondary btn-sm',
     icon: '',
@@ -207,6 +213,7 @@ constructor(private route: ActivatedRoute, private router: Router, private resDa
     customCssClass: 'btn btn-danger btn-sm',
     icon: '',
   }
+  
   ];
 
   addButt: ButtonsConfig[] = [{
@@ -227,10 +234,10 @@ constructor(private route: ActivatedRoute, private router: Router, private resDa
     { key: 'id', label: 'ID Prenotazione' },
     { key: 'dataInizio', label: 'Data Inizio Prenotazione' },
     { key: 'dataFine', label: 'Data Fine Prenotazione' },
-    { key: 'utente', label: 'ID Utente Prenotazione' },
-    { key: 'utente' , label: 'Cognome Utente Prenotazione' },
-    { key: 'veicolo', label: 'Modello Veicolo Prenotato' },
-    { key: 'veicolo', label: 'Targa Veicolo Prenotato' },
+    // { key: 'utente', label: 'ID Utente Prenotazione' },
+    // { key: 'utente' , label: 'Cognome Utente Prenotazione' },
+    // { key: 'veicolo', label: 'Modello Veicolo Prenotato' },
+    // { key: 'veicolo', label: 'Targa Veicolo Prenotato' },
     { key: 'approvazione', label: 'Approvazione' },
   ];
 
@@ -300,6 +307,10 @@ constructor(private route: ActivatedRoute, private router: Router, private resDa
       )
   }
 
+  info(){
+    alert("non ho ancora inmplementato questo button");
+  }
+
   InsRes() {
     this.resDataService.getReservations().subscribe(data => this.tables.data = data);
   }
@@ -308,9 +319,12 @@ constructor(private route: ActivatedRoute, private router: Router, private resDa
     if (object.text === 'edit') {
       this.edit();
     }
-    else if (object.text === 'delete') {
+    if (object.text === 'delete') {
       this.delete(object);
       this.router.navigate([`${'/reservations'}`]);
+    }
+    if(object.text === 'info'){
+      this.info();
     }
   }
 }

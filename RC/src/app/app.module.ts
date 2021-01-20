@@ -28,6 +28,7 @@ import { EditVehiclesComponent } from './EditEntities/edit-vehicles/edit-vehicle
 import { EditReservationsComponent } from './EditEntities/edit-reservations/edit-reservations.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes = [
   // { path: '**', component: HomeComponent},
@@ -81,6 +82,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes, {enableTracing: true}
       ),
+    NgbModule,
   ],
   
   providers: [],
