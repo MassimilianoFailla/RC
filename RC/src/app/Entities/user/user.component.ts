@@ -24,38 +24,21 @@ export class UserComponent implements OnInit {
   @Input() datiUtent = this.InsUsr();   // dati dal db mysql
   @Input() headersUrs: Headers[];
   @Output() operation = new EventEmitter<number>();
+
   @Input() adBut: number;
-  @Input() Ed: number;
+  @Input() upBut: number;
+  @Input() delBut: number;
 
   Conferma: string = '';
   Errore: string = '';
   apiMsg: ApiMsg;
   messaggio: string;
-  user: Users;
-  // operazioni button
-  operazioni: ButtonsConfig[] = [{
-    text: 'edit',
-    customCssClass: 'btn btn-secondary btn-sm',
-    icon: '',
-  },
-  {
-    text: 'delete',
-    customCssClass: 'btn btn-danger btn-sm',
-    icon: '',
-  }
-  ];
-
-  addButt: ButtonsConfig[] = [{
-    text: 'ADD',
-    customCssClass: 'btn btn-secondary btn-sm',
-    icon: '',
-  }];
 
   // configurazione bottone
   buttonConfig: ButtonsConfig = {
-    text: 'clicca',
-    icon: 'home',
-    customCssClass: 'myStyle',
+    text: '',
+    icon: '',
+    customCssClass: '',
   };
 
   // settaggio headers
@@ -89,12 +72,9 @@ export class UserComponent implements OnInit {
 
   // configPages
   pagesConfig: Paginations = {
-    itemPerPage: 4,
-    itemPerPageOptions: [2, 3, 4, 5],
+    itemPerPage: 7,
+    itemPerPageOptions: [3, 6, 9, 12],
   };
-
-  // config action
-  actionConfig: Actions[] = [Actions.NEW_ROW, Actions.EDIT, Actions.DELETE];
 
   // configurazione tabella
   tables: TablesConfig = {
@@ -104,7 +84,6 @@ export class UserComponent implements OnInit {
     order: this.orderConfig,
     search: this.columnsUrs,
     pagination: this.pagesConfig,
-    actions: this.actionConfig,
   };
 
   ngOnInit(): void {
@@ -115,44 +94,21 @@ export class UserComponent implements OnInit {
     this.router.navigate([`${'/users'}`]);
   }
 
-  edit() {
-    alert('Stai per modificare un utente...!');
-    this.router.navigate([`${'edit/users'}`, { tipo: 1 }]);
-  }
-
-  delete(user: Users) {
-    alert("!!! Stai cancellando l'utente!!!");
-    this.Conferma = '';
-    this.Errore = '';
-      this.userDataService.delUser(user).subscribe(
-        response => {
-          console.log(response);
-          this.apiMsg = response;
-          this.Conferma = this.apiMsg.message;
-          console.log(this.Conferma);
-          alert("Utente eliminato con successo!");
-          this.router.navigate(['/users']);
-        },
-        error => {
-          this.Errore = error.error.messaggio;
-          console.log(this.Errore);
-        }
-      )
+  delete(id: number) {
+    console.log(`Eliminazione utente ${4}`);
+    this.userDataService.delUser(0).subscribe(
+      response => {
+        this.apiMsg = response;
+        this.messaggio = this.apiMsg.message;
+        this.router.navigate([`${'/users'}`]);
+      }
+    )
   }
 
   InsUsr() {
     this.userDataService.getUser().subscribe(data => this.tables.data = data);
   }
 
-  opSuRiga(object: any) {
-    if (object.text === 'edit') {
-      this.edit();
-    }
-    else if (object.text === 'delete') {
-      this.delete(object);
-      this.router.navigate([`${'/users'}`]);
-    }
-  }
 }
 
 export class ApiMsg {

@@ -6,8 +6,10 @@ export class Reservations {
     id: number;
     dataInizio: Date;
     dataFine: Date;
-    utente: Users;
-    veicolo: Vehicles;
+    idUtente: number;
+    cognomeUtente: string;
+    modelloVeicolo: string;
+    targaVeicolo: string;
     approvazione: boolean;
 
     // constructor(id: number, dataInizio: Date, dataFine: Date, utente: Users, veicolo: Vehicles, approvazione: boolean) {

@@ -28,13 +28,12 @@
                         <input name="dataFine" type="date" [(ngModel)]="reservationsList.dataFine" class="form-control" required />
                     </div>
 
-
                     <div class="form-group">
                         <label for="targa"><b>Targa Veicolo:</b></label>
-                        <select name="targa" class="form-control" [(ngModel)]="reservationsList.veicolo.targa" required>
+                        <select name="targa" class="form-control" [(ngModel)]="reservationsList.modelloVeicolo" required>
                             <option value="" disabled selected></option>
-                            <option value="" disabled selected>Selezionare la targa dell'auto</option>
-                            <option *ngFor="let veicolo of vehicle">{{veicolo.targa}}</option>
+                            <option value="" disabled selected>Selezionare il modello dell'auto</option>
+                            <option *ngFor="let veicolo of vehicle">{{veicolo.modello}}</option>
                         </select>
                     </div>
 

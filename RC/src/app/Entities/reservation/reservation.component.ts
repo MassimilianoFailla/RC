@@ -200,31 +200,12 @@ config.keyboard = false;
     id: 0, 
     dataInizio: new Date(),
     dataFine: new Date(),
-    utente: new Users(),
-    veicolo: new Vehicles(),
+    idUtente: 0,
+    cognomeUtente: '',
+    modelloVeicolo: '',
+    targaVeicolo: '',
     approvazione: false,
   };
-
-
-  // operazioni button
-  operazioni: ButtonsConfig[] = [
-    {
-      text: 'info',
-      customCssClass: 'btn btn-info btn-sm',
-      icon: '',
-    },
-    {
-    text: 'edit',
-    customCssClass: 'btn btn-secondary btn-sm',
-    icon: '',
-  },
-  {
-    text: 'delete',
-    customCssClass: 'btn btn-danger btn-sm',
-    icon: '',
-  }
-  
-  ];
 
   addButt: ButtonsConfig[] = [{
     text: 'ADD',
@@ -244,10 +225,10 @@ config.keyboard = false;
     { key: 'id', label: 'ID Prenotazione' },
     { key: 'dataInizio', label: 'Data Inizio Prenotazione' },
     { key: 'dataFine', label: 'Data Fine Prenotazione' },
-    // { key: 'utente', label: 'ID Utente Prenotazione' },
-    // { key: 'utente' , label: 'Cognome Utente Prenotazione' },
-    // { key: 'veicolo', label: 'Modello Veicolo Prenotato' },
-    // { key: 'veicolo', label: 'Targa Veicolo Prenotato' },
+    { key: 'idUtente', label: 'ID Utente Prenotazione' },
+    { key: 'cognomeUtente' , label: 'Cognome Utente Prenotazione' },
+    { key: 'modelloVeicolo', label: 'Modello Veicolo Prenotato' },
+    { key: 'targaVeicolo', label: 'Targa Veicolo Prenotato' },
     { key: 'approvazione', label: 'Approvazione' },
   ];
 
@@ -261,7 +242,8 @@ config.keyboard = false;
   };
 
   columnsUrs: Search = {
-    columns: ['id', 'nome', 'cognome', 'dataNascita', 'codiceFiscale', 'email', 'username', 'password', 'role'],
+    columns: ['id', 'dataInizio', 'dataFine', 'idUtente', 'cognomeUtente',
+     'modelloVeicolo', 'targaVeicolo', 'approvazione'],
   };
 
   // configPages
@@ -270,8 +252,6 @@ config.keyboard = false;
     itemPerPageOptions: [2, 3, 4, 5],
   };
 
-  // config action
-  actionConfig: Actions[] = [Actions.NEW_ROW, Actions.EDIT, Actions.DELETE];
 
   // configurazione tabella
   tables: TablesConfig = {
@@ -281,7 +261,6 @@ config.keyboard = false;
     order: this.orderConfig,
     search: this.columnsUrs,
     pagination: this.pagesConfig,
-    actions: this.actionConfig,
   };
 
   ngOnInit(): void {
@@ -290,11 +269,6 @@ config.keyboard = false;
 
   refresh() {
     this.router.navigate([`${'/reservations'}`]);
-  }
-
-  edit() {
-    alert('Stai per modificare una prenotazione...!');
-    this.router.navigate([`${'edit/reservations'}`, { tipo: 3 }]);
   }
 
   delete(id: Number) {
@@ -317,27 +291,10 @@ config.keyboard = false;
       )
   }
 
-  info() {
-  alert("Non ho ancora implementato questo metodo");
-  }
-
   InsRes() {
     this.resDataService.getReservations().subscribe(data => this.tables.data = data);
   }
 
-  opSuRiga(object: any) {
-    if (object.text === 'edit') {
-      this.edit();
-    }
-    if (object.text === 'delete') {
-      this.delete(object);
-      this.router.navigate([`${'/reservations'}`]);
-    }
-    if(object.text === 'info'){
-      this.info();
-    }
-    
-  }
 }
 
 export class ApiMsg {

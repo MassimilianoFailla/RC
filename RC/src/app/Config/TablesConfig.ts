@@ -25,7 +25,4 @@ export class TablesConfig{
   // button
   button: ButtonsConfig;
 
-  // azioni tabella
-  actions: Actions[];
-
 }

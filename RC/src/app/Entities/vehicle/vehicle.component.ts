@@ -21,13 +21,14 @@ export class VehicleComponent implements OnInit {
 
   constructor(private vehicleService: VehicleService, private router: Router,
     private vehicleDataService: VehicleDataService) { }
-  
+
   @Input() tabVeh: TablesConfig;
   @Input() datiVeicoli = this.InsVeh();
   @Input() headersVeicoli: Headers[]
   @Output() operation = new EventEmitter<number>();
   @Input() adBut: number;
-
+  @Input() upBut: number;
+  @Input() delBut: number;
   Conferma: string = '';
   Errore: string = '';
   apiMsg: ApiMsg;
@@ -60,7 +61,7 @@ export class VehicleComponent implements OnInit {
     { key: 'annoImmatricolazione', label: 'AnnoImmatricolazione' },
     { key: 'targa', label: 'Targa' },
     { key: 'tipologia', label: 'Tipologia' },
-  
+
   ];
 
   // settaggio dati mockati 
@@ -82,12 +83,9 @@ export class VehicleComponent implements OnInit {
 
   // configPages
   pagesConfig: Paginations = {
-    itemPerPage: 4,
-    itemPerPageOptions: [2, 3, 4, 5],
+    itemPerPage: 6,
+    itemPerPageOptions: [3, 6, 9, 12],
   };
-
-  // config action
-  actionConfig: Actions[] = [Actions.NEW_ROW, Actions.EDIT, Actions.DELETE];
 
   tables: TablesConfig = {
     headers: this.headerVehi,
@@ -96,54 +94,33 @@ export class VehicleComponent implements OnInit {
     search: this.columnsVeh,
     pagination: this.pagesConfig,
     button: this.buttonConfig1,
-    actions: this.actionConfig,
   };
 
   ngOnInit(): void {
-   
+
   }
 
   InsVeh() {
     this.vehicleDataService.getVehicles().subscribe(data => this.tables.data = data);
   }
 
-  edit(object: any){
-    alert('Stai per modificare un veicolo...!');
-    this.router.navigate([`${'/edit/vehicles'}`, {tipo: 2}]);
-  }
 
-  delete(id: number){
+  delete(id: number) {
     alert("!!! Stai cancellando il veicolo !!!");
     this.Conferma = '';
     this.Errore = '';
-      this.vehicleDataService.delVehicleById(id).subscribe(
-        response => {
-          console.log(response);
-          this.apiMsg = response;
-          this.Conferma = this.apiMsg.message;
-          console.log(this.Conferma);
-          this.router.navigate(['/vehicles']);
-        },
-        error => {
-          this.Errore = error.error.messaggio;
-          console.log(this.Errore);
-        }
-      )
+    this.vehicleDataService.delVehicleById(id).subscribe(
+      response => {
+        console.log(response);
+        this.apiMsg = response;
+        this.Conferma = this.apiMsg.message;
+        console.log(this.Conferma);
+        this.router.navigate(['/vehicles']);
+      },
+      error => {
+        this.Errore = error.error.messaggio;
+        console.log(this.Errore);
+      }
+    )
   }
-
-  opButton(op: string) {
-    switch (op) {
-      case 'Edit':
-        this.router.navigateByUrl('edit');
-    }
-  }
-
-  opSuRiga(object: any) {
-  if(object.text === 'edit'){
-    this.edit(object);
-  }
-  else if(object.text === 'delete'){
-    this.delete(object);
-  }
-}
 }

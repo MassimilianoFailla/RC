@@ -16,6 +16,8 @@ import { Reservations } from '../Entities/reservation/Reservations';
 import { UserService } from '../Services/Services-Entities/user.service';
 import { ReservationDataService } from '../Services/Data/reservation-data-service.service';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { UserDataService } from '../Services/Data/user-data-service.service';
+import { VehicleDataService } from '../Services/Data/vehicle-data-service.service';
 declare var $: any;
 
 @Component({
@@ -26,28 +28,27 @@ declare var $: any;
 export class TablesComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserService,
-    private rerDataService: ReservationDataService, config: NgbModalConfig, private modalService: NgbModal,
-    ) 
-    { // customize default values of modals used by this component tree
-      config.backdrop = 'static';
-      config.keyboard = false;
-    }
-    open(content) {
-      this.modalService.open(content);
-    }
+    private rerDataService: ReservationDataService, private usrDataService: UserDataService,
+    private vehiDataService: VehicleDataService){}
 
-  @Input() adBut: number;
-  @Input() Ed: number;
+  @Input() adBut: number; // operazione di aggiunta
+  @Input() upBut: number;   // operazione di modifica
+  @Input() delBut: number;  // operazione di eliminazione
+
   closeResult = ''; // modal
+
+  Conferma: string = '';
+  Errore: string = '';
+  apiMsg: ApiMsg;
+  messaggio: string;
 
   // unica configurazione tabella
   @Input() tables: TablesConfig;
 
   // input dati entità mockati
-  @Input() datiUsr = listaUtenti;
-  @Input() datiVeh = listaVeicoli;
+  // @Input() datiUsr = listaUtenti;
+  // @Input() datiVeh = listaVeicoli;
   // @Input() datiRes = listaPrenotazioni;
-  @Input() datiRes: any;
 
   // headers entità
   @Input() headersUrs: MyHeaders[];
@@ -57,16 +58,9 @@ export class TablesComponent implements OnInit {
   @Input() searchConfig: Search;   // ricerca custom
   @Input() paginationConfig: Paginations;  // per la paginazione
 
-  @Output() operation = new EventEmitter<string>();
-  @Output() like = new EventEmitter<number>();
-
-  @Input() gestRighe: ButtonsConfig[];
-  @Output() opRiga = new EventEmitter<any>();
-  @Output() azioni: Actions[];
-
-
   @Output() provaBut = new EventEmitter<string>();
-  @Input() add = new EventEmitter<any>();
+  @Input() updEl = new EventEmitter<any>();
+  @Input() delEl = new EventEmitter<any>();
 
   @Input() addButt: ButtonsConfig = {
     text: 'new data',
@@ -74,9 +68,22 @@ export class TablesComponent implements OnInit {
     icon: 'oi oi-plus'
   };
 
+  @Input() delButt: ButtonsConfig = {
+    text: 'delete',
+    customCssClass: 'btn btn-danger btn-sm',
+    icon: ''
+  }
+
+  @Input() updButt: ButtonsConfig = {
+    text: 'edit',
+    customCssClass: 'btn btn-secondary btn-sm',
+    icon: '',
+  }
+
   // per le operazioni
   idUsr: number;
   idVeh: number;
+  idRes: number;
 
   headerUs: string;
   headerVe: string;
@@ -100,8 +107,10 @@ export class TablesComponent implements OnInit {
   order: string;
   orderConfig: string;
 
-  tempOP: string;
-  tempOB: any;
+  // componenti
+  user: Users;
+  vehicle: Vehicles;
+  reservations: Reservations;
 
   // @Output() tipo: number;
 
@@ -142,7 +151,6 @@ export class TablesComponent implements OnInit {
   }
 
   addEl(adBut: number) {
-
     switch (this.adBut) {
       case 1:
         alert('Add Users!');
@@ -162,16 +170,108 @@ export class TablesComponent implements OnInit {
     }
   }
 
-
-  opSuRiga(opriga: any, object: any, Ed: number) {
-    this.tempOB = object;
-    this.tempOP = opriga.text;
-    if (opriga.ref) {
-      $(opriga.ref).modal('show');
-    } else {
-      this.opRiga.emit({ text: opriga.text, obj: object });
+  updEle(upBut: number){
+    switch (this.upBut) {
+      case 1:
+        alert('Edit Users!');
+        this.router.navigate([`${'edit/users'}`, { tipo: 1 }]);
+        break;
+      case 2:
+        alert('Edit Vehicles!');
+        this.router.navigate([`${'edit/vehicles'}`, { tipo: 2 }]);
+        break;
+      case 3:
+        alert('Edit Reservation!');
+        this.router.navigate([`${'edit/reservations'}`, { tipo: 3 }]);
+        break;
+      case 0:
+        alert('!!! ERROR !!!')
+        break;
     }
   }
 
+  deleteUsr(id: number) {
+    alert("!!! Stai cancellando l'utente !!!");
+    this.Conferma = '';
+    this.Errore = '';
+    this.usrDataService.delUser(id).subscribe(
+      response => {
+        console.log(response);
+        this.apiMsg = response;
+        this.Conferma = this.apiMsg.message;
+        console.log(this.Conferma);
+        this.router.navigate(['/users']);
+      },
+      error => {
+        this.Errore = error.error.messaggio;
+        console.log(this.Errore);
+      }
+    )
+  }
+  
+  deleteVeh(id: number){
+    alert("!!! Stai cancellando il veicolo !!!");
+    this.Conferma = '';
+    this.Errore = '';
+    this.vehiDataService.delVehicleById(id).subscribe(
+      response => {
+        console.log(response);
+        this.apiMsg = response;
+        this.Conferma = this.apiMsg.message;
+        console.log(this.Conferma);
+        this.router.navigate(['/vehicles']);
+      },
+      error => {
+        this.Errore = error.error.messaggio;
+        console.log(this.Errore);
+      }
+    )
+  }
 
+  deleteRes(id: number){
+    alert("!!! Stai cancellando la prenotazione !!!");
+    this.Conferma = '';
+    this.Errore = '';
+    this.rerDataService.delReservationById(id).subscribe(
+      response => {
+        console.log(response);
+        this.apiMsg = response;
+        this.Conferma = this.apiMsg.message;
+        console.log(this.Conferma);
+        this.router.navigate(['/reservations']);
+      },
+      error => {
+        this.Errore = error.error.messaggio;
+        console.log(this.Errore);
+      }
+    )
+  }
+
+  delEle(delBut: number, id: number){
+    switch (this.delBut) {
+      case 1:
+        alert('Delete Users!');
+       this.deleteUsr(id);
+        break;
+      case 2:
+        alert('Delete Vehicles!');
+        this.deleteVeh(id);
+        break;
+      case 3:
+        alert('Delete Reservation!');
+        this.deleteRes(id);
+        break;
+      case 0:
+        alert('!!! ERROR !!!')
+        break;
+    }
+  }
+}
+
+export class ApiMsg {
+
+  constructor(
+    public code: string,
+    public message: string
+  ) { }
 }

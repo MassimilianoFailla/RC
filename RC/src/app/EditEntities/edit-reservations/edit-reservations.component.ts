@@ -27,11 +27,13 @@ export class EditReservationsComponent implements OnInit {
   veicolo: Vehicles;
 
   reservationsList: Reservations = {
-    id: 0,
+    id: 0, 
     dataInizio: new Date(),
     dataFine: new Date(),
-    utente: new Users(),
-    veicolo: new Vehicles(),
+    idUtente: 0,
+    cognomeUtente: '',
+    modelloVeicolo: '',
+    targaVeicolo: '',
     approvazione: false,
   };
 
@@ -63,7 +65,8 @@ export class EditReservationsComponent implements OnInit {
     // ottengo i dati dell'utente
     this.resDataService.getUsers().subscribe(
       response => {
-        this.reservationsList.utente = response;
+        this.reservationsList.idUtente = response.id;
+        this.reservationsList.cognomeUtente = response.cognome;
         console.log(response);
       },
       error => {
@@ -74,7 +77,8 @@ export class EditReservationsComponent implements OnInit {
     // ottengo i dati dei veicoli
     this.resDataService.getVehicles().subscribe(
       response => {
-        this.reservationsList.veicolo = response;
+        // this.reservationsList.modelloVeicolo = response.modello;
+        this.veicolo = response;
         console.log(response);
       },
       error => {
