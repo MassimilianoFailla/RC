@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Users } from 'src/app/Entities/user/Users';
 import { UserDataService } from 'src/app/Services/Data/user-data-service.service';
-import { UserService } from 'src/app/Services/Services-Entities/user.service';
 import { TablesConfig } from '../Config/TablesConfig';
 
 @Component({
@@ -13,7 +12,6 @@ import { TablesConfig } from '../Config/TablesConfig';
 })
 export class RegisterComponent implements OnInit {
 
-  
   id: number;
   header: string;
   @Input() tables: TablesConfig;
@@ -31,16 +29,10 @@ export class RegisterComponent implements OnInit {
     role: '',
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private usersService: UserService, 
-    private userDataService: UserDataService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private userDataService: UserDataService) { }
 
   ngOnInit(): void {
-    this.id = +this.route.snapshot.paramMap.get('id');
-    this.header = this.id === 0 ? 'Adding User' : 'Editing User';
-
-    if (this.id != 0) {
-      this.usersList = this.usersService.onGetUsers(this.id);
-    }
+    
   }
 
   abort() {

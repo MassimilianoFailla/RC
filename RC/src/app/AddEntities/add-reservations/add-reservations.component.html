@@ -30,10 +30,10 @@
 
                     <div class="form-group">
                         <label for="targa"><b>Targa Veicolo:</b></label>
-                        <select name="targa" class="form-control" [(ngModel)]="reservationsList.modelloVeicolo" required>
+                        <select name="targa" class="form-control" [(ngModel)]="reservationsList.targaVeicolo" required>
                             <option value="" disabled selected></option>
                             <option value="" disabled selected>Selezionare il modello dell'auto</option>
-                            <option *ngFor="let veicolo of vehicle">{{veicolo.modello}}</option>
+                            <option *ngFor="let veicolo of vehicle">{{veicolo.targa}}</option>
                         </select>
                     </div>
 

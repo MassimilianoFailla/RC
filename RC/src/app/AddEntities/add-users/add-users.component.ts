@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Users } from 'src/app/Entities/user/Users';
 import { UserDataService } from 'src/app/Services/Data/user-data-service.service';
-import { UserService } from 'src/app/Services/Services-Entities/user.service';
 import { ApiMsg } from 'src/app/Entities/user/user.component';
 
 @Component({
@@ -38,8 +37,7 @@ export class AddUsersComponent implements OnInit {
     role: '',
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private usersService: UserService,
-    private userDataService: UserDataService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private userDataService: UserDataService) { }
 
   ngOnInit(): void {
     

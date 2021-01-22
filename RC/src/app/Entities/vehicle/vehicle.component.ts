@@ -112,7 +112,6 @@ export class VehicleComponent implements OnInit {
         }
       )
   }
-
   opButton(op: string) {
     switch (op) {
       case 'Edit':
@@ -125,7 +124,9 @@ export class VehicleComponent implements OnInit {
     this.edit(object);
   }
   else if(object.text === 'delete'){
-    this.delete(object);
+    this.vehicleDataService.delVehicleById(object.obj.id).subscribe();
+    alert("Veicolo eliminato con successo");
+    this.router.navigate(['/vehicles']);
   }
 }
 }

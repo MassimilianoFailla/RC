@@ -29,8 +29,6 @@ import { EditReservationsComponent } from './EditEntities/edit-reservations/edit
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { NgbAlertModule, NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import {NgbConfig} from '@ng-bootstrap/ng-bootstrap';
-import {NgbAlertConfig} from '@ng-bootstrap/ng-bootstrap';
 import { NgbdModalBasic } from './modal-basic/modal-basic.component';
 
 const appRoutes: Routes = [

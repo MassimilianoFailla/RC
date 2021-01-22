@@ -1,11 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TablesConfig } from 'src/app/Config/TablesConfig';
 import { ApiMsg } from 'src/app/Entities/user/user.component';
 import { Users } from 'src/app/Entities/user/Users';
 import { UserDataService } from 'src/app/Services/Data/user-data-service.service';
-import { UserService } from 'src/app/Services/Services-Entities/user.service';
 
 @Component({
   selector: 'app-edit-users',
@@ -14,8 +11,7 @@ import { UserService } from 'src/app/Services/Services-Entities/user.service';
 })
 export class EditUsersComponent implements OnInit {
 
-  id: number = 0;
-  header: string;
+  id: any;
   isModifica2: boolean = false;
   IsModifica: string;
   conferma: string = '';
@@ -38,7 +34,7 @@ usersList: Users = {
 
   ngOnInit(): void {
 
-    this.id = this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.paramMap.get('id');
 
     this.usersList = new Users();
 

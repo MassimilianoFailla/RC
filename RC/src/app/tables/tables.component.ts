@@ -1,23 +1,8 @@
-import { listaUtenti } from 'src/app/Mock/mock-users';
-import { Actions } from './../Config/Actions';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Paginations } from '../Config/Paginations';
-import { Search } from '../Config/Search';
 import { TablesConfig } from '../Config/TablesConfig';
 import * as _ from 'lodash-es';
-import { MyHeaders } from '../Config/MyHeaders';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Users } from '../Entities/user/Users';
-import { listaVeicoli } from '../Mock/mock-vehicles';
-import { listaPrenotazioni } from '../Mock/mock-reservations';
 import { ButtonsConfig } from '../Config/ButtonsConfig';
-import { Vehicles } from '../Entities/vehicle/Vehicles';
-import { Reservations } from '../Entities/reservation/Reservations';
-import { UserService } from '../Services/Services-Entities/user.service';
-import { ReservationDataService } from '../Services/Data/reservation-data-service.service';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
-import { UserDataService } from '../Services/Data/user-data-service.service';
-import { VehicleDataService } from '../Services/Data/vehicle-data-service.service';
+import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -32,13 +17,11 @@ export class TablesComponent implements OnInit {
   // unica configurazione tabella
   @Input() tables: TablesConfig;
 
-  @Input() searchConfig: Search;   // ricerca custom
-  @Input() paginationConfig: Paginations;  // per la paginazione
   @Input() gestRighe: ButtonsConfig[];    // operazione riga per la tabella
 
   @Output() operation = new EventEmitter<string>(); // event emitter button
   @Output() opRiga = new EventEmitter<any>();     // event emitter per riga
-  @Output() opAddButt = new EventEmitter<any>();  // prossima implementazione button add- eventEmitter
+  // @Output() opAddButt = new EventEmitter<any>();  // prossima implementazione button add- eventEmitter
 
   @Input() addButton: number;   // numerazione per l'add butt
   @Input() editButton: number;     // numerazione edit butt
@@ -90,6 +73,7 @@ export class TablesComponent implements OnInit {
     // paginazione
     this.perPage = this.tables.pagination.itemPerPage;
     this.selectedPage = 0;
+    
   }
 
   // sorting

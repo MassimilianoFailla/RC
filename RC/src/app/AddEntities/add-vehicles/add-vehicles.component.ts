@@ -1,9 +1,8 @@
 import { VehicleDataService } from './../../Services/Data/vehicle-data-service.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Vehicles } from 'src/app/Entities/vehicle/Vehicles';
-import { VehicleService } from 'src/app/Services/Services-Entities/vehicle.service';
 import { ApiMsg } from 'src/app/Entities/user/user.component';
 
 @Component({

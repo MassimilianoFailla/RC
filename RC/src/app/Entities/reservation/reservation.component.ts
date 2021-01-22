@@ -9,7 +9,6 @@ import { Paginations } from 'src/app/Config/Paginations';
 import { Search } from 'src/app/Config/Search';
 import { TablesConfig } from 'src/app/Config/TablesConfig';
 import { ReservationDataService } from 'src/app/Services/Data/reservation-data-service.service';
-import { ReservationService } from 'src/app/Services/Services-Entities/reservation.service';
 import * as _ from 'lodash-es';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 declare var $: any;
@@ -129,7 +128,9 @@ export class ReservationComponent implements OnInit {
       this.edit(object);
     }
     else if (object.text === 'delete') {
-      this.delete(object);
+      this.reservationDataService.delReservationById(object.obj.id).subscribe();
+      alert("Prenotazione eliminato con successo");
+      this.router.navigate(['/reservations']);
     }
   }
 }

@@ -122,8 +122,9 @@ export class UserComponent implements OnInit {
       this.edit();
     }
     else if (object.text === 'delete') {
-      this.delete(object);
-      this.router.navigate([`${'/users'}`]);
+      this.userDataService.delUser(object.obj.id).subscribe();
+      alert("Utente eliminato con successo");
+      this.router.navigate(['/users']);
     }
   }
 

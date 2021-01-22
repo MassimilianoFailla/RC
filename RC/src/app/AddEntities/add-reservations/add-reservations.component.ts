@@ -7,7 +7,6 @@ import { ApiMsg } from 'src/app/Entities/user/user.component';
 import { Users } from 'src/app/Entities/user/Users';
 import { Vehicles } from 'src/app/Entities/vehicle/Vehicles';
 import { ReservationDataService } from 'src/app/Services/Data/reservation-data-service.service';
-import { ReservationService } from 'src/app/Services/Services-Entities/reservation.service';
 @Component({
   selector: 'app-add-reservations',
   templateUrl: './add-reservations.component.html',
@@ -16,8 +15,6 @@ import { ReservationService } from 'src/app/Services/Services-Entities/reservati
 export class AddReservationsComponent implements OnInit {
 
   id: number;
-  header: string;
-  @Input() tables: TablesConfig;
 
   errore: string = '';
   isModifica: boolean = false;
@@ -40,8 +37,7 @@ export class AddReservationsComponent implements OnInit {
     approvazione: false,
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private reservationService: ReservationService,
-    private resDataService: ReservationDataService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private resDataService: ReservationDataService) { }
 
   ngOnInit(): void {
 

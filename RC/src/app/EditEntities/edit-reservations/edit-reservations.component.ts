@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Reservations } from 'src/app/Entities/reservation/Reservations';
-import { ReservationService } from 'src/app/Services/Services-Entities/reservation.service';
 import { ApiMsg } from 'src/app/Entities/user/user.component';
 import { Users } from 'src/app/Entities/user/Users';
 import { Vehicles } from 'src/app/Entities/vehicle/Vehicles';
@@ -14,8 +13,7 @@ import { Vehicles } from 'src/app/Entities/vehicle/Vehicles';
 })
 export class EditReservationsComponent implements OnInit {
 
-  id: number = 0;
-  header: string;
+  id: any;
   isModifica2: boolean = false;
   isModifica: string;
   conferma: string = '';
