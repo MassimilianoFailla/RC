@@ -23,6 +23,6 @@ export class TablesConfig{
   pagination: Paginations;
 
   // button
-  button: ButtonsConfig;
+  // button: ButtonsConfig;
 
 }

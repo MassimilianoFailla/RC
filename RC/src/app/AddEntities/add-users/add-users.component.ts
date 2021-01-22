@@ -19,9 +19,9 @@ export class AddUsersComponent implements OnInit {
   header: string;
   @Input() tables: TablesConfig;
   
-  Errore: string = '';
-  IsModifica: boolean = false;
-  Conferma: string = '';
+  errore: string = '';
+  isModifica: boolean = false;
+  conferma: string = '';
 
   apiMsg: ApiMsg;
 
@@ -67,12 +67,12 @@ export class AddUsersComponent implements OnInit {
       response => {
         console.log(response);
         this.apiMsg = response;
-        this.Conferma = this.apiMsg.message;
-        console.log(this.Conferma);
+        this.conferma = this.apiMsg.message;
+        console.log(this.conferma);
       },
       error => {
-        this.Errore = error.error.messaggio;
-        console.log(this.Errore);
+        this.errore = error.error.messaggio;
+        console.log(this.errore);
       }
     )
     alert("Nuovo utente salvato con successo!");

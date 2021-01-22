@@ -27,66 +27,28 @@ declare var $: any;
 })
 export class TablesComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService,
-    private rerDataService: ReservationDataService, private usrDataService: UserDataService,
-    private vehiDataService: VehicleDataService){}
-
-  @Input() adBut: number; // operazione di aggiunta
-  @Input() upBut: number;   // operazione di modifica
-  @Input() delBut: number;  // operazione di eliminazione
-
-  closeResult = ''; // modal
-
-  Conferma: string = '';
-  Errore: string = '';
-  apiMsg: ApiMsg;
-  messaggio: string;
+  constructor(private router: Router) { }
 
   // unica configurazione tabella
   @Input() tables: TablesConfig;
 
-  // input dati entità mockati
-  // @Input() datiUsr = listaUtenti;
-  // @Input() datiVeh = listaVeicoli;
-  // @Input() datiRes = listaPrenotazioni;
-
-  // headers entità
-  @Input() headersUrs: MyHeaders[];
-  @Input() headersVeh: MyHeaders[];
-  @Input() headersRes: MyHeaders[];
-
   @Input() searchConfig: Search;   // ricerca custom
   @Input() paginationConfig: Paginations;  // per la paginazione
+  @Input() gestRighe: ButtonsConfig[];    // operazione riga per la tabella
 
-  @Output() provaBut = new EventEmitter<string>();
-  @Input() updEl = new EventEmitter<any>();
-  @Input() delEl = new EventEmitter<any>();
+  @Output() operation = new EventEmitter<string>(); // event emitter button
+  @Output() opRiga = new EventEmitter<any>();     // event emitter per riga
+  @Output() opAddButt = new EventEmitter<any>();  // prossima implementazione button add- eventEmitter
 
+  @Input() addButton: number;   // numerazione per l'add butt
+  @Input() editButton: number;     // numerazione edit butt
+
+  // configurazione button
   @Input() addButt: ButtonsConfig = {
-    text: 'new data',
+    text: 'New Data',
     customCssClass: 'btn btn-secondary btn-sm',
-    icon: 'oi oi-plus'
-  };
-
-  @Input() delButt: ButtonsConfig = {
-    text: 'delete',
-    customCssClass: 'btn btn-danger btn-sm',
     icon: ''
-  }
-
-  @Input() updButt: ButtonsConfig = {
-    text: 'edit',
-    customCssClass: 'btn btn-secondary btn-sm',
-    icon: '',
-  }
-
-  // per le operazioni
-  idUsr: number;
-  idVeh: number;
-  idRes: number;
-
-  headerUs: string;
-  headerVe: string;
+  };
 
   // per l'ordinamento
   reverse: boolean;
@@ -107,15 +69,8 @@ export class TablesComponent implements OnInit {
   order: string;
   orderConfig: string;
 
-  // componenti
-  user: Users;
-  vehicle: Vehicles;
-  reservations: Reservations;
-
-  // @Output() tipo: number;
-
-  @Output() tipo: number;
-  //  new EventEmitter<number>();
+  tempOP: string;
+  tempOB: any;
 
   ngOnInit(): void {
 
@@ -150,8 +105,10 @@ export class TablesComponent implements OnInit {
     }
   }
 
-  addEl(adBut: number) {
-    switch (this.adBut) {
+  // per i vari casi di add element, in base al tipo di dato
+  addEl(addButton: number) {
+
+    switch (this.addButton) {
       case 1:
         alert('Add Users!');
         this.router.navigate([`${'add/user'}`, { tipo: 1 }]);
@@ -169,109 +126,15 @@ export class TablesComponent implements OnInit {
         break;
     }
   }
-
-  updEle(upBut: number){
-    switch (this.upBut) {
-      case 1:
-        alert('Edit Users!');
-        this.router.navigate([`${'edit/users'}`, { tipo: 1 }]);
-        break;
-      case 2:
-        alert('Edit Vehicles!');
-        this.router.navigate([`${'edit/vehicles'}`, { tipo: 2 }]);
-        break;
-      case 3:
-        alert('Edit Reservation!');
-        this.router.navigate([`${'edit/reservations'}`, { tipo: 3 }]);
-        break;
-      case 0:
-        alert('!!! ERROR !!!')
-        break;
-    }
-  }
-
-  deleteUsr(id: number) {
-    alert("!!! Stai cancellando l'utente !!!");
-    this.Conferma = '';
-    this.Errore = '';
-    this.usrDataService.delUser(id).subscribe(
-      response => {
-        console.log(response);
-        this.apiMsg = response;
-        this.Conferma = this.apiMsg.message;
-        console.log(this.Conferma);
-        this.router.navigate(['/users']);
-      },
-      error => {
-        this.Errore = error.error.messaggio;
-        console.log(this.Errore);
-      }
-    )
-  }
   
-  deleteVeh(id: number){
-    alert("!!! Stai cancellando il veicolo !!!");
-    this.Conferma = '';
-    this.Errore = '';
-    this.vehiDataService.delVehicleById(id).subscribe(
-      response => {
-        console.log(response);
-        this.apiMsg = response;
-        this.Conferma = this.apiMsg.message;
-        console.log(this.Conferma);
-        this.router.navigate(['/vehicles']);
-      },
-      error => {
-        this.Errore = error.error.messaggio;
-        console.log(this.Errore);
-      }
-    )
-  }
-
-  deleteRes(id: number){
-    alert("!!! Stai cancellando la prenotazione !!!");
-    this.Conferma = '';
-    this.Errore = '';
-    this.rerDataService.delReservationById(id).subscribe(
-      response => {
-        console.log(response);
-        this.apiMsg = response;
-        this.Conferma = this.apiMsg.message;
-        console.log(this.Conferma);
-        this.router.navigate(['/reservations']);
-      },
-      error => {
-        this.Errore = error.error.messaggio;
-        console.log(this.Errore);
-      }
-    )
-  }
-
-  delEle(delBut: number, id: number){
-    switch (this.delBut) {
-      case 1:
-        alert('Delete Users!');
-       this.deleteUsr(id);
-        break;
-      case 2:
-        alert('Delete Vehicles!');
-        this.deleteVeh(id);
-        break;
-      case 3:
-        alert('Delete Reservation!');
-        this.deleteRes(id);
-        break;
-      case 0:
-        alert('!!! ERROR !!!')
-        break;
+  // gestione operazione per riga
+  opSuRiga(opriga: any, object: any, editButton: number) {
+    this.tempOB = object;
+    this.tempOP = opriga.text;
+    if (opriga.ref) {
+      $(opriga.ref).modal('show');
+    } else {
+      this.opRiga.emit({ text: opriga.text, obj: object });
     }
   }
-}
-
-export class ApiMsg {
-
-  constructor(
-    public code: string,
-    public message: string
-  ) { }
 }

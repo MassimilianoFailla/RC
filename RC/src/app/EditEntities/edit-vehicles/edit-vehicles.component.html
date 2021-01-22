@@ -10,7 +10,6 @@
         <br><br>
 
         <div class="portlet-body form">
-            <!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm"> -->
             <form (ngSubmit)="artForm.valid && salva()" #artForm="ngForm">
                 <div class="form-group" class="was-validated">
 
@@ -18,7 +17,6 @@
                         <label for="id">ID Veicolo:</label>
                         <input name="id" type="text" [(ngModel)]="vehiclesList.id" class="form-control" placeholder="ID Veicolo" #id="ngModel" />
                         <span style="color:rgb(7, 0, 112)" *ngIf="id.dirty && id.invalid">
-                            <!-- [disabled]="IsModifica2" -->
                         </span>
                     </div>
 
@@ -63,12 +61,12 @@
                     </div>
                 </div>
 
-                <button type="submit" id="btnAdd " class="btn btn-primary form-buttons" [disabled]="artForm.invalid">
+                <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="artForm.invalid">
                     <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva
                 </button>
 
-                <button id="btnAbort " class="btn btn-warning form-buttons " (click)="abort() ">
-                    <i class="fa fa-sign-out " aria-hidden="true "></i> Annulla
+                <button id="btnAbort" class="btn btn-warning form-buttons " (click)="abort()">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i> Annulla
                 </button>
             </form>
         </div>

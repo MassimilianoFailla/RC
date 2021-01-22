@@ -16,10 +16,10 @@ export class EditUsersComponent implements OnInit {
 
   id: number = 0;
   header: string;
-  IsModifica2: boolean = false;
+  isModifica2: boolean = false;
   IsModifica: string;
-  Conferma: string = '';
-  Errore: string = '';
+  conferma: string = '';
+  errore: string = '';
   apiMsg: ApiMsg;
 
 usersList: Users = {
@@ -34,8 +34,7 @@ usersList: Users = {
     role: '',
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private usersService: UserService,
-    private userDataService: UserDataService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private userDataService: UserDataService) { }
 
   ngOnInit(): void {
 
@@ -45,7 +44,7 @@ usersList: Users = {
 
     // ottengi i dati dell'utente
     if (this.id != -1) {
-      this.IsModifica2 = true;
+      this.isModifica2 = true;
 
       this.userDataService.getUserById(this.id).subscribe(
         response => {
@@ -57,7 +56,7 @@ usersList: Users = {
         }
       )
     } else {
-      this.IsModifica2 = false;
+      this.isModifica2 = false;
     }
   }
 
@@ -67,21 +66,21 @@ usersList: Users = {
 
   salva() {
 
-    this.Conferma = '';
-    this.Errore = '';
+    this.conferma = '';
+    this.errore = '';
       // aggiornamento !!!
       this.userDataService.updUser(this.usersList).subscribe(
         response => {
           console.log(response);
           this.apiMsg = response;
-          this.Conferma = this.apiMsg.message;
-          console.log(this.Conferma);
+          this.conferma = this.apiMsg.message;
+          console.log(this.conferma);
           alert("modifica utente eseguita con successo!");
           this.router.navigate(['/users']);
         },
         error => {
-          // this.Errore = error.error.messaggio;
-          // console.log(this.Errore);
+          this.errore = error.error.messaggio;
+          console.log(this.errore);
         }
       )
   }

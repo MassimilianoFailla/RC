@@ -19,16 +19,16 @@ export class AddReservationsComponent implements OnInit {
   header: string;
   @Input() tables: TablesConfig;
 
-  Errore: string = '';
-  IsModifica: boolean = false;
-  Conferma: string = '';
+  errore: string = '';
+  isModifica: boolean = false;
+  conferma: string = '';
 
   apiMsg: ApiMsg;
 
   user: Users;  // per l'ottenimento dei dati
   vehicle: Vehicles;   // per l'ottenimento dei dati
 
-  // utenti
+  // reservations
   reservationsList: Reservations = {
     id: 0, 
     dataInizio: new Date(),
@@ -90,17 +90,16 @@ export class AddReservationsComponent implements OnInit {
       response => {
         console.log(response);
         this.apiMsg = response;
-        this.Conferma = this.apiMsg.message;
-        console.log(this.Conferma);
+        this.conferma = this.apiMsg.message;
+        console.log(this.conferma);
       },
       error => {
-        this.Errore = error.error.messaggio;
-        console.log(this.Errore);
+        this.errore = error.error.messaggio;
+        console.log(this.errore);
       }
     )
     alert("Nuova prenotazione salvata con successo!");
     this.router.navigate(['/reservations']);
   }
-
 
 }

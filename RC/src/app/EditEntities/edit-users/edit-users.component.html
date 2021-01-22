@@ -10,7 +10,6 @@
         <br><br>
 
         <div class="portlet-body form">
-            <!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm"> -->
             <form (ngSubmit)="artForm.valid && salva()" #artForm="ngForm">
                 <div class="form-group" class="was-validated">
 
@@ -18,7 +17,6 @@
                         <label for="id">ID Utente:</label>
                         <input name="id" type="text" [(ngModel)]="usersList.id" class="form-control" placeholder="ID Utente" #id="ngModel" />
                         <span style="color:rgb(7, 0, 112)" *ngIf="id.dirty && id.invalid">
-                            <!-- [disabled]="IsModifica2" -->
                             </span>
                     </div>
 

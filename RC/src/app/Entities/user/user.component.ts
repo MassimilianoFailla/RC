@@ -1,14 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Actions } from 'src/app/Config/Actions';
 import { ButtonsConfig } from 'src/app/Config/ButtonsConfig';
 import { Orders } from 'src/app/Config/Orders';
 import { Paginations } from 'src/app/Config/Paginations';
 import { Search } from 'src/app/Config/Search';
 import { TablesConfig } from 'src/app/Config/TablesConfig';
-import { listaUtenti } from 'src/app/Mock/mock-users';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Users } from './Users';
-import { UserService } from 'src/app/Services/Services-Entities/user.service';
+import { Router } from '@angular/router';
 import { UserDataService } from 'src/app/Services/Data/user-data-service.service';
 
 @Component({
@@ -18,28 +14,28 @@ import { UserDataService } from 'src/app/Services/Data/user-data-service.service
 })
 export class UserComponent implements OnInit {
  
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private userDataService: UserDataService) { }
+  constructor(private router: Router, private userDataService: UserDataService) { }
 
-  @Input() tabUrs: TablesConfig;
-  @Input() datiUtent = this.InsUsr();   // dati dal db mysql
-  @Input() headersUrs: Headers[];
   @Output() operation = new EventEmitter<number>();
-
   @Input() adBut: number;
-  @Input() upBut: number;
-  @Input() delBut: number;
 
-  Conferma: string = '';
-  Errore: string = '';
+  conferma: string = '';
+  errore: string = '';
   apiMsg: ApiMsg;
   messaggio: string;
-
-  // configurazione bottone
-  buttonConfig: ButtonsConfig = {
-    text: '',
+  
+  // operazioni button
+  operazioni: ButtonsConfig[] = [{
+    text: 'edit',
+    customCssClass: 'btn btn-secondary btn-sm',
     icon: '',
-    customCssClass: '',
-  };
+  },
+  {
+    text: 'delete',
+    customCssClass: 'btn btn-danger btn-sm',
+    icon: '',
+  }
+  ];
 
   // settaggio headers
   headerUsr = [
@@ -57,9 +53,6 @@ export class UserComponent implements OnInit {
   // settaggio dati mockati 
   // datiUsr = listaUtenti;
 
-  // settaggio dati dal dbmysql
-  datiUsr = this.InsUsr();
-
   // settaggio orderConfig
   orderConfig: Orders = {
     defaultColumn: 'id',
@@ -72,41 +65,66 @@ export class UserComponent implements OnInit {
 
   // configPages
   pagesConfig: Paginations = {
-    itemPerPage: 7,
-    itemPerPageOptions: [3, 6, 9, 12],
+    itemPerPage: 4,
+    itemPerPageOptions: [2, 3, 4, 5],
   };
 
   // configurazione tabella
   tables: TablesConfig = {
+
     headers: this.headerUsr,
-    button: this.buttonConfig,
-    data: this.datiUsr,
+    data: '',
     order: this.orderConfig,
     search: this.columnsUrs,
     pagination: this.pagesConfig,
+
   };
 
   ngOnInit(): void {
 
+    // get utenti dal dbmysql alla tabella
+    this.userDataService.getUser().subscribe(data => this.tables.data = data);
+
   }
 
-  refresh() {
-    this.router.navigate([`${'/users'}`]);
+  //  prossima implementazione button add eventEmitter
+  // addNewData(){
+  //   alert('Stai per aggiungere un nuovo Utente!');
+  //   this.router.navigate([`${'add/user'}`, { tipo: 1 }]);
+  // }
+
+  edit() {
+    alert('Stai per modificare un utente...!');
+    this.router.navigate([`${'edit/users'}`, { tipo: 1 }]);
   }
 
   delete(id: number) {
-    console.log(`Eliminazione utente ${4}`);
-    this.userDataService.delUser(0).subscribe(
-      response => {
-        this.apiMsg = response;
-        this.messaggio = this.apiMsg.message;
-        this.router.navigate([`${'/users'}`]);
-      }
-    )
+    alert("!!! Stai cancellando l'utente!!!");
+    this.conferma = '';
+    this.errore = '';
+      this.userDataService.delUser(id).subscribe(
+        response => {
+          console.log(response);
+          this.apiMsg = response;
+          this.conferma = this.apiMsg.message;
+          console.log(this.conferma);
+          this.router.navigate(['/users']);
+        },
+        error => {
+          this.errore = error.error.messaggio;
+          console.log(this.errore);
+        }
+      )
   }
 
-  InsUsr() {
-    this.userDataService.getUser().subscribe(data => this.tables.data = data);
+  opSuRiga(object: any) {
+    if (object.text === 'edit') {
+      this.edit();
+    }
+    else if (object.text === 'delete') {
+      this.delete(object);
+      this.router.navigate([`${'/users'}`]);
+    }
   }
 
 }
@@ -117,4 +135,5 @@ export class ApiMsg {
     public code: string,
     public message: string
   ) { }
+  
 }

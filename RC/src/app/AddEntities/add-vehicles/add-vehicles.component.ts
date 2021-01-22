@@ -13,11 +13,9 @@ import { ApiMsg } from 'src/app/Entities/user/user.component';
 })
 export class AddVehiclesComponent implements OnInit {
 
-  id: number;
-  header: string;
-  Errore: string = '';
-  IsModifica: boolean = false;
-  Conferma: string = '';
+  errore: string = '';
+  isModifica: boolean = false;
+  conferma: string = '';
   apiMsg: ApiMsg;
   
   // veicoli
@@ -30,16 +28,10 @@ export class AddVehiclesComponent implements OnInit {
     tipologia: '',
   }
 
-  constructor(private router: Router, private route: ActivatedRoute, private vehicleService: VehicleService,
-    private vehicleDataService: VehicleDataService) { }
+  constructor(private router: Router, private vehicleDataService: VehicleDataService) { }
 
   ngOnInit(): void {
-    this.id = +this.route.snapshot.paramMap.get('id');
-    this.header = this.id === 0 ? 'Adding page' : 'Editing page';
-
-    if (this.id != 0) {
-      this.vehiclesList = this.vehicleService.onGetVehicles(this.id);
-    }
+  
   }
 
   abort() {
@@ -62,12 +54,12 @@ export class AddVehiclesComponent implements OnInit {
       response => {
         console.log(response);
         this.apiMsg = response;
-        this.Conferma = this.apiMsg.message;
-        console.log(this.Conferma);
+        this.conferma = this.apiMsg.message;
+        console.log(this.conferma);
       },
       error => {
-        this.Errore = error.error.messaggio;
-        console.log(this.Errore);
+        this.errore = error.error.messaggio;
+        console.log(this.errore);
       }
     )
     alert("Nuovo veicolo salvato con successo!");

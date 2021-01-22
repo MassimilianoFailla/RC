@@ -1,23 +1,22 @@
-<table class=" table table-striped table-dark table-sm ">
-    <thead class="thead-dark ">
+<table class="table table-striped table-dark table-sm">
+    <thead class="thead-dark">
         <tr>
             <th *ngFor="let column of tables.headers">
                 <mat-icon class='material-icons' (click)="sort(column.key)"> {{icon}} </mat-icon>
                 {{column.label}}
             </th>
             <td>
-                <app-button [button]="addButt" (click)="addEl(adBut)"></app-button>
+                <app-button [button]="addButt" (click)="addEl(addButton)"></app-button>
             </td>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let row of tables.data | pagination: perPage: selectedPage">
-            <td *ngFor="let column of tables.headers">
+        <tr *ngFor=" let row of tables.data | pagination: perPage: selectedPage">
+            <td *ngFor="let column of tables.headers ">
                 {{row[column.key]}}
             </td>
-            <td>
-                <app-button [button]="updButt" (click)="updEle(upBut)"></app-button> |
-                <app-button [button]="delButt" (click)="delEle(delBut)"></app-button>
+            <td *ngFor="let operazioniSuRiga of gestRighe">
+                <app-button [button]="operazioniSuRiga" (click)="opSuRiga(operazioniSuRiga,row, editButton)"></app-button>
             </td>
         </tr>
     </tbody>
@@ -32,4 +31,5 @@
     </select>
     <br><br> Pagina: <input [(ngModel)]="selectedPage" type="number" value="{{selectedPage}}">
 </div>
+
 <br><br><br><br><br>
