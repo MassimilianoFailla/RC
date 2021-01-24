@@ -16,11 +16,7 @@ import { VehicleDataService } from 'src/app/Services/Data/vehicle-data-service.s
 export class VehicleComponent implements OnInit {
 
   constructor(private router: Router, private vehicleDataService: VehicleDataService) { }
-  
-  @Output() operation = new EventEmitter<number>();
-  @Input() adBut: number;
-  @Output() addNew = new EventEmitter<number>();  // prossima implementazione
-  
+
   conferma: string = '';
   errore: string = '';
   apiMsg: ApiMsg;
@@ -89,46 +85,24 @@ export class VehicleComponent implements OnInit {
   //   this.router.navigate([`${'add/vehicle'}`, { tipo: 2 }]);
   // }
 
-  edit(object: any){
+  edit(object: any) {
     alert('Stai per modificare un veicolo...!');
-    this.router.navigate([`${'edit/vehicles'}`, {tipo: 2}]);
-  }
+      this.router.navigate([`edit/vehicles/${object.obj.id}`, {tipo: 2}]);
 
-  delete(id: number){
-    alert("!!! Stai cancellando il veicolo !!!");
-    this.conferma = '';
-    this.errore = '';
-      this.vehicleDataService.delVehicleById(id).subscribe(
-        response => {
-          console.log(response);
-          this.apiMsg = response;
-          this.conferma = this.apiMsg.message;
-          console.log(this.conferma);
-          this.router.navigate(['/vehicles']);
-        },
-        error => {
-          this.errore = error.error.messaggio;
-          console.log(this.errore);
-        }
-      )
-  }
-  opButton(op: string) {
-    switch (op) {
-      case 'Edit':
-        this.router.navigateByUrl('edit');
-    }
   }
 
   opSuRiga(object: any) {
-  if(object.text === 'edit'){
-    this.edit(object);
+    if (object.text === 'edit') {
+      this.edit(object);
+    }
+    else if (object.text === 'delete') {
+      if (confirm("Sei sicuro di voler eliminare??")) {
+        this.vehicleDataService.delVehicleById(object.obj.id).subscribe();
+        alert("Veicolo eliminato con successo");
+      }
+      this.router.navigate(['/vehicles']);
+    }
   }
-  else if(object.text === 'delete'){
-    this.vehicleDataService.delVehicleById(object.obj.id).subscribe();
-    alert("Veicolo eliminato con successo");
-    this.router.navigate(['/vehicles']);
-  }
-}
 }
 
 export class ApiMsg {
@@ -137,5 +111,5 @@ export class ApiMsg {
     public code: string,
     public message: string
   ) { }
-  
+
 }

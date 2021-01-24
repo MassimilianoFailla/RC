@@ -14,60 +14,58 @@
                 <div class="form-group" class="was-validated">
 
                     <div class="form-group col-md-2">
-                        <label for="id">ID Veicolo:</label>
-                        <input name="id" type="text" [(ngModel)]="vehiclesList.id" class="form-control" placeholder="ID Veicolo" #id="ngModel" />
+                        <label for="id"><b>ID Veicolo: </b></label>
+                        <input name="id" type="text" [(ngModel)]="vehiclesList.id" class="form-control" placeholder="ID Veicolo" #id="ngModel" readonly />
                         <span style="color:rgb(7, 0, 112)" *ngIf="id.dirty && id.invalid">
                         </span>
                     </div>
 
-                    <div class="form-group col-md-4">
-                        <label for="casaCostruttice">Casa Costruttrice Veicolo:</label>
-                        <input name="casaCostruttice" type="text" [(ngModel)]="vehiclesList.casaCostruttrice " class="form-control" placeholder="Casa Costruttrice Veicolo" required minlength="5" maxlength="30" #casaCostruttrice="ngModel" required />
-                        <span style="color:rgb(7, 0, 112) " *ngIf="casaCostruttrice.dirty && casaCostruttrice.invalid ">
-                        </span>
-                    </div>
-
-                    <div class="form-group col-md-4 ">
-                        <label for="modello">Modello Veicolo: </label>
-                        <input name="modello" [(ngModel)]="vehiclesList.modello" type="text " class="form-control" required maxlength="2" #modello="ngModel" />
-                        <span style="color:red " *ngIf="modello.dirty && modello.invalid ">
-                        </span>
-                    </div>
-
-                    <div class="form-group col-md-4 ">
-                        <label for="annoImmatricolazione">Anno Immatricolazione Veicolo:</label>
-                        <input name="annoImmatricolazione" [(ngModel)]="vehiclesList.annoImmatricolazione" type="date" class="form-control" required #annoImmatricolazione="ngModel" />
-                        <span style="color:red " *ngIf="annoImmatricolazione.dirty && annoImmatricolazione.invalid ">
-                        </span>
-                    </div>
-
-                    <div class="form-group col-md-4 ">
-                        <label for="targa">Targa Veicolo: </label>
-                        <input name="targa" [(ngModel)]="vehiclesList.targa" type="text" class="form-control" required maxlength="6" #targa="ngModel" />
-                        <span style="color:red " *ngIf="targa.dirty && targa.invalid ">
-                        </span>
-                    </div>
-
-                    <!-- servirà per la tipologia del veicolo successivamente -->
                     <div class="form-group">
-                        <label for="tipologia">Tipologia Veicolo</label>
-                        <select name="tipologia" class="form-control" [(ngModel)]="vehiclesList.tipologia" #tipolgia="ngModel" required>
-                            <option>Selezionare la tipologia di auto</option>
-                            <option value="Citycar">Citycar</option>
+                        <label for="casaCostruttrice"><b>Casa Costruttrice Veicolo:</b></label>
+                        <input name="casaCostruttrice" type="text" [(ngModel)]="vehiclesList.casaCostruttrice" class="form-control" placeholder="Casa costruttrice veicolo" minlength=3 maxlength="30" required />
+                        <span style="color:rgb(145, 0, 0)">
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="modello"><b>Modello Veicolo:</b></label>
+                        <input name="modello" type="text" [(ngModel)]="vehiclesList.modello" class="form-control" placeholder="Modello veicolo" minlength="3" maxlength="30" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="annoImmatricolazione"><b>Anno Immatricolazione Veicolo:</b></label>
+                        <input name="annoImmatricolazione" type="date" [(ngModel)]="vehiclesList.annoImmatricolazione" class="form-control" placeholder="Anno Immatricolazione veicolo" required />
+                        <span style="color:rgb(145, 0, 0)">
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="targa"><b>Targa Veicolo:</b></label>
+                        <input name="targa" type="text" [(ngModel)]="vehiclesList.targa" class="form-control" placeholder="Targa veicolo" minlength="5" maxlength="30" required />
+                        <span style="color:rgb(145, 0, 0)">
+                        </span>
+                    </div>
+
+                    <!-- Servirà per la tipologia di veicolo -->
+                    <div class="form-group">
+                        <label for="tipologia"><b>Tipologia Veicolo:</b></label>
+                        <select name="tipologia" class="form-control" [(ngModel)]="vehiclesList.tipologia" required>
+                            <option value="" disabled selected>Selezionare la tipologia del veicolo</option>
                             <option value="Berlina">Berlina</option>
                             <option value="Monovolume">Monovolume</option>
+                            <option value="Citycar">Citycar</option>
                             <option value="Coupé">Coupé</option>
                         </select>
                     </div>
+
+                    <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="artForm.invalid">
+                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva
+                    </button>
+
+                    <button id="btnAbort" class="btn btn-warning form-buttons" (click)="abort()">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> Annulla
+                    </button>
                 </div>
-
-                <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="artForm.invalid">
-                    <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva
-                </button>
-
-                <button id="btnAbort" class="btn btn-warning form-buttons " (click)="abort()">
-                    <i class="fa fa-sign-out" aria-hidden="true"></i> Annulla
-                </button>
             </form>
         </div>
     </div>

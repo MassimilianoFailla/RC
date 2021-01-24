@@ -37,7 +37,7 @@ export class AddUsersComponent implements OnInit {
     role: '',
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private userDataService: UserDataService) { }
+  constructor(private router: Router, private userDataService: UserDataService) { }
 
   ngOnInit(): void {
     

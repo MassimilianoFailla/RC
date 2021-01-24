@@ -28,7 +28,7 @@ export class VehicleDataService {
   }
 
   getVehicleById(id: number){
-    return this.httpClient.get<Vehicles>(`http://${this.server}:${this.port2}/api/vehicles/vehicles/${id}`);
+    return this.httpClient.get<Vehicles>(`http://${this.server}:${this.port2}/api/vehicles/vehicle-id/${id}`);
   }
 
   delVehicleById(id: number) {

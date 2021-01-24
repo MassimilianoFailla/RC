@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,7 +7,6 @@ import { NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
 export class AppComponent {
   title = 'RC';
   
-  constructor(ngbAlertConfig: NgbAlertConfig) {
-    ngbAlertConfig.animation = true;
+  constructor() {
   }
 }

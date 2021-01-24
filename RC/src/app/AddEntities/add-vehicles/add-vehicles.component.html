@@ -12,12 +12,11 @@
         <!-- Inizio del form di inserimento dati-->
         <div class="portlet-body form">
             <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-
                 <div class="form-group" class="was-validated">
 
                     <div class="form-group">
                         <label for="casaCostruttrice"><b>Casa Costruttrice Veicolo:</b></label>
-                        <input name="casaCostruttrice" type="text" [(ngModel)]="vehiclesList.casaCostruttrice" class="form-control" placeholder="Casa costruttrice veicolo" minlength=3 maxlength="30" required/>
+                        <input name="casaCostruttrice" type="text" [(ngModel)]="vehiclesList.casaCostruttrice" class="form-control" placeholder="Casa costruttrice veicolo" minlength=3 maxlength="30" required />
                         <span style="color:rgb(145, 0, 0)">
                         </span>
                     </div>

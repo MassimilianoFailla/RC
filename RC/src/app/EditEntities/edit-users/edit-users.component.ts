@@ -11,7 +11,7 @@ import { UserDataService } from 'src/app/Services/Data/user-data-service.service
 })
 export class EditUsersComponent implements OnInit {
 
-  id: any;
+  id: number;
   isModifica2: boolean = false;
   IsModifica: string;
   conferma: string = '';
@@ -34,14 +34,15 @@ usersList: Users = {
 
   ngOnInit(): void {
 
-    this.id = this.route.snapshot.paramMap.get('id');
+    
+    this.id = this.route.snapshot.params['id'];
+    console.log("valore di id -> "+this.id); 
 
-    this.usersList = new Users();
+    this.usersList = new Users(this.id, '', '', new Date(), '', '', '', '', '');
 
     // ottengi i dati dell'utente
     if (this.id != -1) {
       this.isModifica2 = true;
-
       this.userDataService.getUserById(this.id).subscribe(
         response => {
           this.usersList = response;
@@ -55,6 +56,7 @@ usersList: Users = {
       this.isModifica2 = false;
     }
   }
+
 
   abort() {
     this.router.navigate(['/users',]);

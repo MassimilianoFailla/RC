@@ -14,86 +14,83 @@
                 <div class="form-group" class="was-validated">
 
                     <div class="form-group col-md-2">
-                        <label for="id">ID Utente:</label>
-                        <input name="id" type="text" [(ngModel)]="usersList.id" class="form-control" placeholder="ID Utente" #id="ngModel" />
+                        <label for="id"><b>ID Utente: </b></label>
+                        <input name="id" type="text" [(ngModel)]="usersList.id" class="form-control" placeholder="ID Utente" #id="ngModel" readonly />
                         <span style="color:rgb(7, 0, 112)" *ngIf="id.dirty && id.invalid">
-                            </span>
+                        </span>
                     </div>
 
-                    <div class="form-group col-md-4">
-                        <label for="nome">Nome Utente:</label>
-                        <input name="nome" type="text" [(ngModel)]="usersList.nome" class="form-control" placeholder="Nome Utente" required minlength="3" maxlength="30" #nome="ngModel" required />
-                        <span style="color:rgb(7, 0, 112)" *ngIf="nome.dirty && nome.invalid">
-                                Il nome dell'utente deve essere compreso fra 3 e 30 caratteri
-                            </span>
+                    <div class="form-group">
+                        <label for="nome"><b>Nome Utente:</b></label>
+                        <input name="nome" type="text" [(ngModel)]="usersList.nome" class="form-control" placeholder="Nome utente" required minlength="2" maxlength="30 " />
+                        <span style="color:rgb(145, 0, 0) ">
+                            Il nome deve essere compreso fra 5 e 30 caratteri
+                        </span>
                     </div>
 
-                    <div class="form-group col-md-4">
-                        <label for="cognome">Cognome Utente: </label>
-                        <input name="cognome" [(ngModel)]="usersList.cognome" type="text" class="form-control" required maxlength="5" #cognome="ngModel" required />
-                        <span style="color:red" *ngIf="cognome.dirty && cognome.invalid">
-                                Il cognome dell'utente deve essere di almeno 5 caratteri
-                            </span>
+                    <div class="form-group">
+                        <label for="cognome"><b>Cognome Utente:</b></label>
+                        <input name="cognome" type="text" [(ngModel)]="usersList.cognome" class="form-control" placeholder="Cognome utente" required minlength="2" maxlength="30" />
+                        <span style="color:rgb(145, 0, 0) ">
+                            Il cognome deve essere compreso fra 5 e 30 caratteri
+                        </span>
                     </div>
 
-                    <div class="form-group col-md-4">
-                        <label for="dataNascita">Data Nascita Utente:</label>
-                        <input name="dataNascita" [(ngModel)]="usersList.dataNascita" type="date" class="form-control" required #dataNascita="ngModel" required />
-                        <span style="color:red" *ngIf="dataNascita.dirty && dataNascita.invalid">
-                            </span>
+                    <div class="form-group">
+                        <label for="dataNascita"><b>Anno Nascita Utente:</b></label>
+                        <input name="dataNascita" type="date" [(ngModel)]="usersList.dataNascita" class="form-control" placeholder="Anno Nascita utente" required />
                     </div>
 
-                    <div class="form-group col-md-4">
-                        <label for="codiceFiscale">CF Utente: </label>
-                        <input name="codiceFiscale" [(ngModel)]="usersList.codiceFiscale" type="text" class="form-control" required maxlength="16" #codiceFiscale="ngModel" required />
-                        <span style="color:red" *ngIf="codiceFiscale.dirty && codiceFiscale.invalid">
-                                Il CF dell'utente deve essere di 16 caratteri!
-                            </span>
+                    <div class="form-group">
+                        <label for="codiceFiscale"><b>CF Utente:</b></label>
+                        <input name="codiceFiscale" type="text" [(ngModel)]="usersList.codiceFiscale " class="form-control" placeholder="CF utente" required minlength="16" maxlength="16" />
+                        <span style="color:rgb(145, 0, 0) ">
+                            Il CF deve essere di 16 caratteri
+                        </span>
                     </div>
 
-                    <div class="form-group col-md-2">
-                        <label for="email">Email Utente: </label>
-                        <input name="email" [(ngModel)]="usersList.email" type="email" class="form-control" placeholder="Email Utente" required minlength="6" maxlength="20" #email="ngModel" required/>
-                        <span style="color:red " *ngIf="email.dirty && email.invalid ">
-                               La Email deve essere valida!
-                            </span>
+                    <div class="form-group">
+                        <label for="email"><b>Email Utente:</b></label>
+                        <input name="email" type="email" [(ngModel)]="usersList.email" class="form-control" placeholder="Email utente" required />
+                        <span style="color:rgb(145, 0, 0) ">
+                            La email deve essere valida!
+                        </span>
                     </div>
 
-                    <div class="form-row ">
-
-                        <div class="form-group col-md-2">
-                            <label for="username">Username Utente:</label>
-                            <input name="username" [(ngModel)]="usersList.username" type="text" class="form-control" required minlength="5" maxlength="20" #username="ngModel" required/>
-                            <span style="color:red " *ngIf="username.dirty && username.invalid ">
-                                   L'username deve essere di almeno 5 caratteri
-                                </span>
-                        </div>
-
-                        <div class="form-group col-md-4 ">
-                            <label for="password">Password Utente:</label>
-                            <input name="password" [(ngModel)]="usersList.password" type="password" class="form-control" required minlength="6" maxlength="20" #password="ngModel" required />
-                            <span style="color:red" *ngIf="password.dirty && username.invalid ">
-                                   La password deve avere almeno 6 caratteri!
-                                </span>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="role">Role Utente:</label>
-                            <select name="role" class="form-control" [(ngModel)]="usersList.role">
-                                    <option value="Super">Super</option>
-                                    <option value="User">User</option>
-                                </select>
-                        </div>
+                    <div class="form-group">
+                        <label for="username"><b>Username Utente:</b></label>
+                        <input name="username" type="text" [(ngModel)]="usersList.username" class="form-control" placeholder="Username utente" required minlength="3" maxlength="30 " />
+                        <span style="color:rgb(145, 0, 0) ">
+                            L' username deve essere compreso fra 5 e 30 caratteri
+                        </span>
                     </div>
-                </div>
 
-                <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="artForm.invalid">
-                    <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva
-                </button>
+                    <div class="form-group">
+                        <label for="password"><b>Password Utente:</b></label>
+                        <input name="password" type="password " [(ngModel)]="usersList.password" class="form-control" placeholder="Inserisci password" required minlength="5" maxlength="30 " />
+                        <span style="color:rgb(145, 0, 0) ">
+                            La password deve essere compresa fra 5 e 30 caratteri
+                        </span>
+                    </div>
 
-                <button id="btnAbort" class="btn btn-warning form-buttons" (click)="abort()">
+                    <!-- Servirà per la tipologia di utente -->
+                    <div class="form-group">
+                        <label for="role"><b>Tipologia Utente:</b></label>
+                        <select name="role" class="form-control" [(ngModel)]="usersList.role" required>
+                            <option value="" disabled selected>Selezionare la tipologia di utente</option>
+                            <option value="Super">Super</option>
+                            <option value="User">User</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="artForm.invalid">
+                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva
+                    </button>
+
+                    <button id="btnAbort" class="btn btn-warning form-buttons" (click)="abort()">
                         <i class="fa fa-sign-out" aria-hidden="true "></i> Annulla
                     </button>
+                </div>
             </form>
         </div>
     </div>

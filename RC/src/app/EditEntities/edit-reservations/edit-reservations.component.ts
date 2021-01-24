@@ -25,13 +25,11 @@ export class EditReservationsComponent implements OnInit {
   veicolo: Vehicles;
 
   reservationsList: Reservations = {
-    id: 0, 
+    id: 0,
     dataInizio: new Date(),
     dataFine: new Date(),
-    idUtente: 0,
-    cognomeUtente: '',
-    modelloVeicolo: '',
-    targaVeicolo: '',
+    utente: new Users(0, '', '', new Date(), '', '', '', '', ''),
+    veicolo: new Vehicles(0, '', new Date(), '', '', ''),
     approvazione: false,
   };
 
@@ -40,16 +38,18 @@ export class EditReservationsComponent implements OnInit {
   ngOnInit(): void {
 
     this.id = this.route.snapshot.params['id'];
-    this.reservationsList = new Reservations();
-
+    console.log("valore di id -> " + this.id);
+    
     // ottengi i dati della prenotazione
     if (this.id != -1) {
       this.isModifica2 = true;
 
       this.resDataService.getReservationsById(this.id).subscribe(
         response => {
+
           this.reservationsList = response;
           console.log(this.reservationsList);
+
         },
         error => {
           console.log(error.error.messaggio);
@@ -58,54 +58,31 @@ export class EditReservationsComponent implements OnInit {
     } else {
       this.isModifica2 = false;
     }
-
-    // ottengo i dati dell'utente
-    this.resDataService.getUsers().subscribe(
-      response => {
-        this.reservationsList.idUtente = response.id;
-        this.reservationsList.cognomeUtente = response.cognome;
-        console.log(response);
-      },
-      error => {
-        console.log(error);
-      }
-    )
-
-    // ottengo i dati dei veicoli
-    this.resDataService.getVehicles().subscribe(
-      response => {
-        // this.reservationsList.modelloVeicolo = response.modello;
-        this.veicolo = response;
-        console.log(response);
-      },
-      error => {
-        console.log(error);
-      }
-    )
   }
 
   abort() {
     this.router.navigate(['/reservations',]);
   }
 
-  salva() {
+  aggiorna() {
 
     this.conferma = '';
     this.errore = '';
-      // aggiornamento !!!
-      this.resDataService.updReservation(this.reservationsList).subscribe(
-        response => {
-          console.log(response);
-          this.apiMsg = response;
-          this.conferma = this.apiMsg.message;
-          console.log(this.conferma);
-          alert("modifica prenotazione eseguita con successo!");
-          this.router.navigate(['/reservations']);
-        },
-        error => {
-          this.errore = error.error.messaggio;
-          console.log(this.errore);
-        }
-      )
+
+    // aggiornamento prenotazione!!!
+    this.resDataService.updReservation(this.reservationsList).subscribe(
+      response => {
+        console.log(response);
+        this.apiMsg = response;
+        this.conferma = this.apiMsg.message;
+        console.log(this.conferma);
+        alert("modifica prenotazione eseguita con successo!");
+        this.router.navigate(['/reservations']);
+      },
+      error => {
+        this.errore = error.error.messaggio;
+        console.log(this.errore);
+      }
+    )
   }
 }

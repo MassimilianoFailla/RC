@@ -9,10 +9,10 @@ export class AuthappService {
 
   autentica2
 
-  autentica = (UserId: string, Password: string): boolean => {
+  autentica = (Username: string, Password: string): boolean => {
 
-    if (UserId === 'Nicola' && Password === '123_Stella') {
-      sessionStorage.setItem("Utente", UserId);
+    if (Username === 'Massimiliano' && Password === 'cioo92') {
+      sessionStorage.setItem("Utente", Username);
       return true;
     }
     else {

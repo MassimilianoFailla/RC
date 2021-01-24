@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { TablesConfig } from 'src/app/Config/TablesConfig';
+import { Router } from '@angular/router';
 import { Reservations } from 'src/app/Entities/reservation/Reservations';
 import { ApiMsg } from 'src/app/Entities/user/user.component';
 import { Users } from 'src/app/Entities/user/Users';
 import { Vehicles } from 'src/app/Entities/vehicle/Vehicles';
 import { ReservationDataService } from 'src/app/Services/Data/reservation-data-service.service';
+
 @Component({
   selector: 'app-add-reservations',
   templateUrl: './add-reservations.component.html',
@@ -14,50 +14,71 @@ import { ReservationDataService } from 'src/app/Services/Data/reservation-data-s
 })
 export class AddReservationsComponent implements OnInit {
 
-  id: number;
+  idUtente: 7; // per prova
 
   errore: string = '';
   isModifica: boolean = false;
   conferma: string = '';
 
+  targaProva: string;
+  modelloVeicoloProva: string;
+
   apiMsg: ApiMsg;
 
-  user: Users;  // per l'ottenimento dei dati
-  vehicle: Vehicles;   // per l'ottenimento dei dati
+  utente: Users; // da inserire dentro reservations
+  veicolo: Vehicles;  // da inserire dentro reservations
+  
+  listaVeicoli: Vehicles[]; // per trovare la lista dei veicoli
 
   // reservations
   reservationsList: Reservations = {
-    id: 0, 
+    id: 0,
     dataInizio: new Date(),
     dataFine: new Date(),
-    idUtente: 0,
-    cognomeUtente: '',
-    modelloVeicolo: '',
-    targaVeicolo: '',
+    utente: new Users(0, '', '', new Date(), '', '', '', '', ''),
+    veicolo: new Vehicles(0, '', new Date(), '', '', ''),
     approvazione: false,
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private resDataService: ReservationDataService) { }
+  constructor(private router: Router, private resDataService: ReservationDataService) { }
 
   ngOnInit(): void {
 
-    // ottengo i dati dell'utente
-    this.resDataService.getUsers().subscribe(
+      // Otteniamo i dati dei veicoli 
+    this.resDataService.getVehicles().subscribe(
       response => {
-      this.user = response;
-        console.log(this.user);
-        console.log(response);
+        this.listaVeicoli = response;
+        console.log("Lista veicoli -> ", response);
+
+        // trovo il veicolo tramite la targa selezionata ciclando la lista dei veicoli
+        for (let i = 0; i < this.listaVeicoli.length; i++) {
+
+          const targaVeicoli = this.listaVeicoli[i].targa;
+          console.log("Targa veicoli trovati -> ", targaVeicoli);
+
+          // e trovo il veicolo selezionato tramite la targa
+          this.resDataService.getVehiclesByTarga(targaVeicoli).subscribe(
+          response => {
+            this.veicolo = response;
+            console.log("Veicolo trovato: -> ", this.veicolo);
+          },
+          error => {
+            console.log(error);
+          }
+          )
+        }
       },
       error => {
         console.log(error);
       }
     )
 
-    // ottengo i dati dei veicoli
-    this.resDataService.getVehicles().subscribe(
+    //Otteniamo i dati dell'utente, in questo caso la prova con id 7
+    // da implementare la ricerca dell'id dell'utente non appena l'utente si logga
+    this.resDataService.getUserById(1).subscribe(
       response => {
-       this.vehicle = response;
-        console.log(response);
+        this.utente = response;
+        console.log("Dati utente -> ", response);
       },
       error => {
         console.log(error);
@@ -71,14 +92,13 @@ export class AddReservationsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+
     let reservationsList: Reservations = {
       id: form.value.id,
       dataInizio: form.value.dataInizio,
       dataFine: form.value.dataFine,
-      idUtente: form.value.idUtente,
-      cognomeUtente: form.value.cognomeUtente,
-      modelloVeicolo: form.value.modelloVeicolo,
-      targaVeicolo: form.value.targaVeicolo,
+      utente: this.utente,
+      veicolo: this.veicolo,
       approvazione: form.value.approvazione,
     }
 
@@ -97,5 +117,4 @@ export class AddReservationsComponent implements OnInit {
     alert("Nuova prenotazione salvata con successo!");
     this.router.navigate(['/reservations']);
   }
-
 }

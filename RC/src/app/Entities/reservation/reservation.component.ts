@@ -10,21 +10,16 @@ import { Search } from 'src/app/Config/Search';
 import { TablesConfig } from 'src/app/Config/TablesConfig';
 import { ReservationDataService } from 'src/app/Services/Data/reservation-data-service.service';
 import * as _ from 'lodash-es';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 declare var $: any;
 
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
   styleUrls: ['./reservation.component.css'],
-  providers: [NgbModalConfig, NgbModal],
 })
 export class ReservationComponent implements OnInit {
 
   constructor(private router: Router, private reservationDataService: ReservationDataService) { }
-
-  @Output() operation = new EventEmitter<number>();
-  @Input() adBut: number;
 
   conferma: string = '';
   errore: string = '';
@@ -48,12 +43,8 @@ export class ReservationComponent implements OnInit {
         { key: 'id', label: 'ID Prenotazione'},
         { key: 'dataInizio', label: 'Data Inizio Prenotazione'},
         { key: 'dataFine', label: 'Data Fine Prenotazione'},
-        { key: 'idUtente', label: 'ID Utente'},
-        { key: 'cognomeUtente', label: 'Cognome Utente'},
-        { key: 'modelloVeicolo', label: 'Modello Veicolo Prenotato'},
-        { key: 'targaVeicolo', label: 'Targa Veicolo Prenotato'},
+        { key: 'veicolo', label: 'Targa Veicolo Prenotato'},  // per vedere se inseriva i dati all'interno del veicolo
         { key: 'approvazione', label: 'Approvazione' },
-    
       ];
 
    // settaggio dati mockati
@@ -73,7 +64,7 @@ export class ReservationComponent implements OnInit {
   };
 
   columnsUrs: Search = {
-    columns: ['id', 'dataInizio', 'dataFine', 'idUtente', 'cognomeUtente', 'modelloVeicolo', 'targaVeicolo', 'approvazione'],
+    columns: ['id', 'dataInizio', 'dataFine', 'utente', 'veicolo', 'approvazione'],
   };
 
   // configPages
@@ -100,27 +91,8 @@ export class ReservationComponent implements OnInit {
 
   edit(object: any) {
     alert('Stai per modificare una prenotazione...!');
-    this.router.navigate([`${'edit/reservations'}`, {tipo: 3}]);
-    this.reservationDataService.updReservation(object);
-  }
+      this.router.navigate([`edit/reservations/${object.obj.id}`, {tipo: 3}]);
 
-  delete(id: number) {
-    alert("!!! Stai cancellando una prenotazione!!!");
-    this.conferma = '';
-    this.errore = '';
-      this.reservationDataService.delReservationById(id).subscribe(
-        response => {
-          console.log(response);
-          this.apiMsg = response;
-          this.conferma = this.apiMsg.message;
-          console.log(this.conferma);
-          this.router.navigate(['/reservations']);
-        },
-        error => {
-          this.errore = error.error.messaggio;
-          console.log(this.errore);
-        }
-      )
   }
 
   opSuRiga(object: any) {
@@ -128,8 +100,10 @@ export class ReservationComponent implements OnInit {
       this.edit(object);
     }
     else if (object.text === 'delete') {
-      this.reservationDataService.delReservationById(object.obj.id).subscribe();
-      alert("Prenotazione eliminato con successo");
+      if (confirm("Sei sicuro di voler eliminare??")) {
+        this.reservationDataService.delReservationById(object.obj.id).subscribe();
+        alert("Prenotazione eliminata con successo");
+      }
       this.router.navigate(['/reservations']);
     }
   }

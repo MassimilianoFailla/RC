@@ -28,23 +28,7 @@ import { EditVehiclesComponent } from './EditEntities/edit-vehicles/edit-vehicle
 import { EditReservationsComponent } from './EditEntities/edit-reservations/edit-reservations.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
-import { NgbAlertModule, NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbdModalBasic } from './modal-basic/modal-basic.component';
-
-const appRoutes: Routes = [
-  // { path: '**', component: HomeComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent},
-  { path: 'users', component: UserComponent },
-  { path: 'add/user', component: AddUsersComponent},
-  { path: 'edit/users', component: EditUsersComponent},
-  { path: 'vehicles', component: VehicleComponent },
-  { path: 'add/vehicle', component: AddVehiclesComponent},
-  { path: 'edit/vehicles', component: EditVehiclesComponent},
-  { path: 'reservations', component: ReservationComponent },
-  { path: 'add/reservation', component: AddReservationsComponent},
-  { path: 'edit/reservations', component: EditReservationsComponent},
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -70,23 +54,17 @@ const appRoutes: Routes = [
     EditVehiclesComponent,
     EditReservationsComponent,
     RegisterComponent,
-    NgbdModalBasic,
   ],
 
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    NgbPaginationModule, 
-    NgbAlertModule,
     MatSliderModule,
     MatIconModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(
-      appRoutes, {enableTracing: true}
-      ),
-    NgbModule,
+    AppRoutingModule,
   ],
   
   providers: [],

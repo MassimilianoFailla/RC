@@ -18,7 +18,6 @@ export class UserDataService {
 
   getUser(){
   return this.httpClient.get<Users[]>(`http://${this.server}:${this.port2}/api/users/views`);
-  // http://localhost:4000/api/users/views
   }
 
   getUtenti(){
@@ -26,7 +25,7 @@ export class UserDataService {
   }
 
   getUserById(id: number){
-    return this.httpClient.get<Users>(`http://${this.server}:${this.port2}/api/users/users/${id}`);
+    return this.httpClient.get<Users>(`http://${this.server}:${this.port2}/api/users/user-id/${id}`);
   }
 
   delUser(id: number) {

@@ -10,32 +10,57 @@
         <br><br>
 
         <div class="portlet-body form">
-            <form (ngSubmit)="artForm.valid && salva()" #artForm="ngForm">
+            <form (ngSubmit)="artForm.valid && aggiorna()" #artForm="ngForm">
                 <div class="form-group" class="was-validated">
 
                     <div class="form-group col-md-2">
-                        <label for="id">ID Prenotazione:</label>
-                        <input name="id" type="text" [(ngModel)]="reservationsList.id" class="form-control" placeholder="ID Prenotazione" #id="ngModel" />
+                        <label for="id"><b>ID Prenotazione: </b></label>
+                        <input name="id" type="text" [(ngModel)]="reservationsList.id" class="form-control" placeholder="{{reservationsList.id}}" #id="ngModel" readonly/>
+                        <span style="color:rgb(7, 0, 112)" *ngIf="id.dirty && id.invalid">
+                        </span>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="idUtente"><b> ID Utente Prenotazione: </b></label>
+                        <input name="idUtente" type="text" [(ngModel)]="reservationsList.utente.id" class="form-control" placeholder="ID Prenotazione" #idUtente="ngModel" readonly />
+                        <span style="color:rgb(7, 0, 112)" *ngIf="id.dirty && id.invalid">
+                        </span>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="targaVeicolo"><b> Targa Veicolo Prenotazione: </b></label>
+                        <input name="targaVeicolo" type="text" [(ngModel)]="reservationsList.veicolo.targa" class="form-control" placeholder="{{reservationsList.veicolo.targa}}" #targaVeicolo="ngModel" readonly />
                         <span style="color:rgb(7, 0, 112)" *ngIf="id.dirty && id.invalid">
                         </span>
                     </div>
 
                     <div class="form-group col-md-4 ">
-                        <label for="dataInizio">Data Inizio Prenotazione:</label>
+                        <label for="dataInizio"><b>Data Inizio Prenotazione: </b></label>
                         <input name="dataInizio" [(ngModel)]="reservationsList.dataInizio" type="date" class="form-control" required #dataInizio="ngModel" />
                         <span style="color:red " *ngIf="dataInizio.dirty && dataInizio.invalid ">
                         </span>
                     </div>
 
                     <div class="form-group col-md-4 ">
-                        <label for="dataFine">Data Inizio Prenotazione:</label>
+                        <label for="dataFine"> <b>Data Fine Prenotazione: </b></label>
                         <input name="dataFine" [(ngModel)]="reservationsList.dataFine" type="date" class="form-control" required #dataFine="ngModel" />
                         <span style="color:red " *ngIf="dataFine.dirty && dataFine.invalid ">
                         </span>
                     </div>
 
+                    <!-- servirà successivvamente per quando l'utente di tipo super dovrà approvare o meno la prenotazione -->
+
+                    <!-- <div class="form-group">
+                        <label for="approvazione"><b>Approvazione Prenotazione:</b></label>
+                        <select name="approvazione" class="form-control col-2" [(ngModel)]="reservationsList.approvazione" required>
+                            <option value="" disabled selected>Selezionare se approvare o no </option>
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div> -->
+
                 </div>
-                <button type="submit" id="btnAdd " class="btn btn-primary form-buttons" [disabled]="artForm.invalid">
+                <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="artForm.invalid">
                     <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva
                 </button>
 

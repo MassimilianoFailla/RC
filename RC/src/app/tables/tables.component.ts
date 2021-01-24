@@ -21,10 +21,11 @@ export class TablesComponent implements OnInit {
 
   @Output() operation = new EventEmitter<string>(); // event emitter button
   @Output() opRiga = new EventEmitter<any>();     // event emitter per riga
+
   // @Output() opAddButt = new EventEmitter<any>();  // prossima implementazione button add- eventEmitter
 
   @Input() addButton: number;   // numerazione per l'add butt
-  @Input() editButton: number;     // numerazione edit butt
+  @Input() editButton: number;  // numerazione edit butt
 
   // configurazione button
   @Input() addButt: ButtonsConfig = {

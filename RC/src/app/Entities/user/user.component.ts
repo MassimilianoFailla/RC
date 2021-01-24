@@ -16,9 +16,6 @@ export class UserComponent implements OnInit {
  
   constructor(private router: Router, private userDataService: UserDataService) { }
 
-  @Output() operation = new EventEmitter<number>();
-  @Input() adBut: number;
-
   conferma: string = '';
   errore: string = '';
   apiMsg: ApiMsg;
@@ -93,41 +90,24 @@ export class UserComponent implements OnInit {
   //   this.router.navigate([`${'add/user'}`, { tipo: 1 }]);
   // }
 
-  edit() {
+  edit(object: any) {
     alert('Stai per modificare un utente...!');
-    this.router.navigate([`${'edit/users'}`, { tipo: 1 }]);
-  }
+      this.router.navigate([`edit/users/${object.obj.id}`, {tipo: 1}]);
 
-  delete(id: number) {
-    alert("!!! Stai cancellando l'utente!!!");
-    this.conferma = '';
-    this.errore = '';
-      this.userDataService.delUser(id).subscribe(
-        response => {
-          console.log(response);
-          this.apiMsg = response;
-          this.conferma = this.apiMsg.message;
-          console.log(this.conferma);
-          this.router.navigate(['/users']);
-        },
-        error => {
-          this.errore = error.error.messaggio;
-          console.log(this.errore);
-        }
-      )
   }
 
   opSuRiga(object: any) {
     if (object.text === 'edit') {
-      this.edit();
+      this.edit(object);
     }
     else if (object.text === 'delete') {
-      this.userDataService.delUser(object.obj.id).subscribe();
-      alert("Utente eliminato con successo");
+      if (confirm("Sei sicuro di voler eliminare??")) {
+        this.userDataService.delUser(object.obj.id).subscribe();
+        alert("Utente eliminato con successo");
+      }
       this.router.navigate(['/users']);
     }
   }
-
 }
 
 export class ApiMsg {

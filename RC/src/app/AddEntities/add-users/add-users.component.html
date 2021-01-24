@@ -12,15 +12,14 @@
         <!--Inizio del form di inserimento dati-->
         <div class="portlet-body form">
             <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-
                 <div class="form-group" class="was-validated">
 
                     <div class="form-group">
                         <label for="nome"><b>Nome Utente:</b></label>
                         <input name="nome" type="text" [(ngModel)]="usersList.nome" class="form-control" placeholder="Nome utente" required minlength="2" maxlength="30 " />
                         <span style="color:rgb(145, 0, 0) ">
-              Il nome deve essere compreso fra 5 e 30 caratteri
-            </span>
+                            Il nome deve essere compreso fra 5 e 30 caratteri
+                        </span>
                     </div>
 
                     <div class="form-group">
@@ -28,7 +27,7 @@
                         <input name="cognome" type="text" [(ngModel)]="usersList.cognome" class="form-control" placeholder="Cognome utente" required minlength="2" maxlength="30" />
                         <span style="color:rgb(145, 0, 0) ">
                             Il cognome deve essere compreso fra 5 e 30 caratteri
-            </span>
+                        </span>
                     </div>
 
                     <div class="form-group">
@@ -41,15 +40,15 @@
                         <input name="codiceFiscale" type="text" [(ngModel)]="usersList.codiceFiscale " class="form-control" placeholder="CF utente" required minlength="16" maxlength="16" />
                         <span style="color:rgb(145, 0, 0) ">
                             Il CF deve essere di 16 caratteri
-            </span>
+                        </span>
                     </div>
 
                     <div class="form-group">
                         <label for="email"><b>Email Utente:</b></label>
-                        <input name="email" type="email" [(ngModel)]="usersList.email" class="form-control" placeholder="Email utente" required minlength="30" maxlength="40" />
+                        <input name="email" type="email" [(ngModel)]="usersList.email" class="form-control" placeholder="Email utente" required />
                         <span style="color:rgb(145, 0, 0) ">
                             La email deve essere valida!
-            </span>
+                        </span>
                     </div>
 
                     <div class="form-group">
@@ -57,15 +56,15 @@
                         <input name="username" type="text" [(ngModel)]="usersList.username" class="form-control" placeholder="Username utente" required minlength="3" maxlength="30 " />
                         <span style="color:rgb(145, 0, 0) ">
                             L' username deve essere compreso fra 5 e 30 caratteri
-            </span>
+                        </span>
                     </div>
 
                     <div class="form-group">
                         <label for="password"><b>Password Utente:</b></label>
                         <input name="password" type="password " [(ngModel)]="usersList.password" class="form-control" placeholder="Inserisci password" required minlength="5" maxlength="30 " />
                         <span style="color:rgb(145, 0, 0) ">
-              La password deve essere compresa fra 5 e 30 caratteri
-            </span>
+                            La password deve essere compresa fra 5 e 30 caratteri
+                        </span>
                     </div>
 
                     <!-- Servirà per la tipologia di utente -->
@@ -81,11 +80,11 @@
                     <hr class="line-form">
 
                     <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="f.invalid">
-            <i class="fa fa-floppy-o" aria-hidden="true" (click)="onSubmit(f)"></i> Salva
-          </button>
+                        <i class="fa fa-floppy-o" aria-hidden="true" (click)="onSubmit(f)"></i> Salva
+                    </button>
                     <button id="btnAbort" class="btn btn-warning form-buttons" (click)="abort()">
-            <i class="fa fa-sign-out" aria-hidden="true "></i> Annulla
-          </button>
+                        <i class="fa fa-sign-out" aria-hidden="true "></i> Annulla
+                    </button>
 
                 </div>
             </form>

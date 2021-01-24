@@ -33,7 +33,9 @@ export class EditVehiclesComponent implements OnInit {
   ngOnInit(): void {
 
     this.id = this.route.snapshot.params['id'];
-    this.vehiclesList = new Vehicles();
+    console.log("valore di id -> "+this.id); 
+
+    this.vehiclesList = new Vehicles(this.id, '', new Date(), '' , '', '');
 
     // ottengi i dati dell'utente
     if (this.id != -1) {

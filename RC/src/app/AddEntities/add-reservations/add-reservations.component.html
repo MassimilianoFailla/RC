@@ -12,12 +12,6 @@
             <form (ngSubmit)="onSubmit(f)" #f="ngForm">
                 <div class="form-group" class="was-validated">
 
-                    <!-- <div class="form-group ">
-                        <label for="reservationsList.utente.id"><b>ID Utente:</b></label>
-                        <input name="id" type="text" [(ngModel)]="reservationsList.utente.id" class="form-control" placeholder="ID utente" />
-                        <span style="color:rgb(2, 0, 134) "></span>
-                    </div> -->
-
                     <div class="form-group">
                         <label for="dataInizio"><b>Data Inizio Prenotazione:</b></label>
                         <input name="dataInizio" type="date" [(ngModel)]="reservationsList.dataInizio" class="form-control" required />
@@ -28,16 +22,14 @@
                         <input name="dataFine" type="date" [(ngModel)]="reservationsList.dataFine" class="form-control" required />
                     </div>
 
-                    <div class="form-group">
-                        <label for="targa"><b>Targa Veicolo:</b></label>
-                        <select name="targa" class="form-control" [(ngModel)]="reservationsList.targaVeicolo" required>
-                            <option value="" disabled selected></option>
-                            <option value="" disabled selected>Selezionare il modello dell'auto</option>
-                            <option *ngFor="let veicolo of vehicle">{{veicolo.targa}}</option>
+                    <div class="form-group col-md-4">
+                        <label for="targa"><b>Targa Veicolo: </b></label>
+                        <select name="targa" class="form-control" [(ngModel)]="reservationsList.veicolo.targa">
+                            <option value="" disabled selected><b>Selezionare la targa del veicolo</b></option>
+                            <option [ngValue]="listaVeicoli" *ngFor="let veicolo of listaVeicoli">{{veicolo.targa}}
+                            </option>
                         </select>
                     </div>
-
-                    <h4>Basic native select</h4>
 
                     <hr class="line-form">
                     <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="f.invalid">
