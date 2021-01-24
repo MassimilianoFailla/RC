@@ -11,7 +11,7 @@ export class AuthappService {
 
   autentica = (Username: string, Password: string): boolean => {
 
-    if (Username === 'Massimiliano' && Password === 'cioo92') {
+    if (Username === 'Massimiliano' && Password === 'ciao92') {
       sessionStorage.setItem("Utente", Username);
       return true;
     }

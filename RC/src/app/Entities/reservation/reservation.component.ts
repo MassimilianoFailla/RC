@@ -27,7 +27,13 @@ export class ReservationComponent implements OnInit {
   messaggio: string;
 
   // operazioni button
-  operazioni: ButtonsConfig[] = [{
+  operazioni: ButtonsConfig[] = [
+    {
+      text: 'info',
+      customCssClass: 'btn btn-info btn-sm',
+      icon: '',
+    },
+    {
     text: 'edit',
     customCssClass: 'btn btn-secondary btn-sm',
     icon: '',
@@ -36,14 +42,13 @@ export class ReservationComponent implements OnInit {
     text: 'delete',
     customCssClass: 'btn btn-danger btn-sm',
     icon: '',
-  }
+  },
   ];
 
   headerRes = [
         { key: 'id', label: 'ID Prenotazione'},
         { key: 'dataInizio', label: 'Data Inizio Prenotazione'},
         { key: 'dataFine', label: 'Data Fine Prenotazione'},
-        { key: 'veicolo', label: 'Targa Veicolo Prenotato'},  // per vedere se inseriva i dati all'interno del veicolo
         { key: 'approvazione', label: 'Approvazione' },
       ];
 
@@ -64,7 +69,7 @@ export class ReservationComponent implements OnInit {
   };
 
   columnsUrs: Search = {
-    columns: ['id', 'dataInizio', 'dataFine', 'utente', 'veicolo', 'approvazione'],
+    columns: ['id', 'dataInizio', 'dataFine', 'approvazione'],
   };
 
   // configPages
@@ -92,21 +97,31 @@ export class ReservationComponent implements OnInit {
   edit(object: any) {
     alert('Stai per modificare una prenotazione...!');
       this.router.navigate([`edit/reservations/${object.obj.id}`, {tipo: 3}]);
+  }
 
+  info(object: any){
+    alert("INFO PRENOTAZIONE " +`\n\nID -> ${object.obj.id}` +`\nData Inizio Prenotazione -> ${object.obj.dataInizio}` 
+    +`\nData Fine Prenotazione -> ${object.obj.dataFine}` +`\nTarga Veicolo Prenotato -> ${object.obj.veicolo.targa}`
+    +`\nModello Veicolo Prenotato -> ${object.obj.veicolo.modello}` +`\nID Utente Prenotazione -> ${object.obj.utente.id}`
+    +`\nCodice Fiscale Utente -> ${object.obj.utente.codiceFiscale}`);
   }
 
   opSuRiga(object: any) {
     if (object.text === 'edit') {
       this.edit(object);
     }
-    else if (object.text === 'delete') {
+    if (object.text === 'delete') {
       if (confirm("Sei sicuro di voler eliminare??")) {
         this.reservationDataService.delReservationById(object.obj.id).subscribe();
         alert("Prenotazione eliminata con successo");
       }
       this.router.navigate(['/reservations']);
     }
+    if(object.text === 'info'){
+      this.info(object);
+    }
   }
+
 }
 
 export class ApiMsg {

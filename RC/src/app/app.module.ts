@@ -27,7 +27,6 @@ import { EditUsersComponent } from './EditEntities/edit-users/edit-users.compone
 import { EditVehiclesComponent } from './EditEntities/edit-vehicles/edit-vehicles.component';
 import { EditReservationsComponent } from './EditEntities/edit-reservations/edit-reservations.component';
 import { HttpClientModule } from '@angular/common/http';
-import { RegisterComponent } from './register/register.component';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
@@ -53,7 +52,6 @@ import { AppRoutingModule } from './app-routing.module';
     EditUsersComponent,
     EditVehiclesComponent,
     EditReservationsComponent,
-    RegisterComponent,
   ],
 
   imports: [

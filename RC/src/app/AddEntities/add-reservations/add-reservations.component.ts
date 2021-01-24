@@ -75,7 +75,7 @@ export class AddReservationsComponent implements OnInit {
 
     //Otteniamo i dati dell'utente, in questo caso la prova con id 7
     // da implementare la ricerca dell'id dell'utente non appena l'utente si logga
-    this.resDataService.getUserById(1).subscribe(
+    this.resDataService.getUserById(7).subscribe(
       response => {
         this.utente = response;
         console.log("Dati utente -> ", response);
