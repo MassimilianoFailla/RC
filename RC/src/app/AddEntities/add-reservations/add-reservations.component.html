@@ -24,7 +24,7 @@
 
                     <div class="form-group col-md-4">
                         <label for="targa"><b>Targa Veicolo: </b></label>
-                        <select name="targa" class="form-control" [(ngModel)]="reservationsList.veicolo.targa">
+                        <select name="targa" class="form-control" [(ngModel)]="reservationsList.veicolo.targa" required>
                             <option value="" disabled selected><b>Selezionare la targa del veicolo</b></option>
                             <option [ngValue]="listaVeicoli" *ngFor="let veicolo of listaVeicoli">{{veicolo.targa}}
                             </option>

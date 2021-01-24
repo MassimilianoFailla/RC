@@ -100,9 +100,10 @@ export class ReservationComponent implements OnInit {
   }
 
   info(object: any){
-    alert("INFO PRENOTAZIONE " +`\n\nID -> ${object.obj.id}` +`\nData Inizio Prenotazione -> ${object.obj.dataInizio}` 
-    +`\nData Fine Prenotazione -> ${object.obj.dataFine}` +`\nTarga Veicolo Prenotato -> ${object.obj.veicolo.targa}`
+    alert("INFO PRENOTAZIONE " +`\n\nTarga Veicolo Prenotato -> ${object.obj.veicolo.targa}`
     +`\nModello Veicolo Prenotato -> ${object.obj.veicolo.modello}` +`\nID Utente Prenotazione -> ${object.obj.utente.id}`
+    +`\nNome Utente -> ${object.obj.utente.nome}` + `\nCognome Utente -> ${object.obj.utente.cognome}` +
+    `\nData Nascita Utente -> ${object.obj.utente.dataNascita}`
     +`\nCodice Fiscale Utente -> ${object.obj.utente.codiceFiscale}`);
   }
 
