@@ -14,7 +14,7 @@ import { ReservationDataService } from 'src/app/Services/Data/reservation-data-s
 })
 export class AddReservationsComponent implements OnInit {
 
-  idUtente: 7; // per prova
+  idUtente: number; // per prova
 
   errore: string = '';
   isModifica: boolean = false;
@@ -22,6 +22,8 @@ export class AddReservationsComponent implements OnInit {
 
   targaProva: string;
   modelloVeicoloProva: string;
+
+  resProva: Reservations;
 
   apiMsg: ApiMsg;
 
@@ -49,24 +51,6 @@ export class AddReservationsComponent implements OnInit {
       response => {
         this.listaVeicoli = response;
         console.log("Lista veicoli -> ", response);
-
-        // trovo il veicolo tramite la targa selezionata ciclando la lista dei veicoli
-        for (let i = 0; i < this.listaVeicoli.length; i++) {
-
-          const targaVeicoli = this.listaVeicoli[i].targa;
-          console.log("Targa veicoli trovati -> ", targaVeicoli);
-
-          // e trovo il veicolo selezionato tramite la targa
-          this.resDataService.getVehiclesByTarga(targaVeicoli).subscribe(
-          response => {
-            this.veicolo = response;
-            console.log("Veicolo trovato: -> ", this.veicolo);
-          },
-          error => {
-            console.log(error);
-          }
-          )
-        }
       },
       error => {
         console.log(error);
@@ -75,7 +59,7 @@ export class AddReservationsComponent implements OnInit {
 
     //Otteniamo i dati dell'utente, in questo caso la prova con id 7
     // da implementare la ricerca dell'id dell'utente non appena l'utente si logga
-    this.resDataService.getUserById(7).subscribe(
+    this.resDataService.getUserById(1).subscribe(
       response => {
         this.utente = response;
         console.log("Dati utente -> ", response);
