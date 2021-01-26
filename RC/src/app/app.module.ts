@@ -20,14 +20,11 @@ import { UserComponent } from './Entities/user/user.component';
 import { VehicleComponent } from './Entities/vehicle/vehicle.component';
 import { ReservationComponent } from './Entities/reservation/reservation.component';
 import { ButtonComponent } from './button/button.component';
-import { AddUsersComponent } from './AddEntities/add-users/add-users.component';
-import { AddVehiclesComponent } from './AddEntities/add-vehicles/add-vehicles.component';
-import { AddReservationsComponent } from './AddEntities/add-reservations/add-reservations.component';
-import { EditUsersComponent } from './EditEntities/edit-users/edit-users.component';
-import { EditVehiclesComponent } from './EditEntities/edit-vehicles/edit-vehicles.component';
-import { EditReservationsComponent } from './EditEntities/edit-reservations/edit-reservations.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { AddComponent } from './add/add.component';
+import { EditComponent } from './edit/edit.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -46,12 +43,9 @@ import { AppRoutingModule } from './app-routing.module';
     JumbotronComponent,
     NavbarComponent,
     ButtonComponent,
-    AddUsersComponent,
-    AddVehiclesComponent,
-    AddReservationsComponent,
-    EditUsersComponent,
-    EditVehiclesComponent,
-    EditReservationsComponent,
+    AddComponent,
+    EditComponent,
+    RegisterComponent,
   ],
 
   imports: [

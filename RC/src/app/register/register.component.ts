@@ -1,27 +1,20 @@
-import { TablesConfig } from '../../Config/TablesConfig';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Users } from 'src/app/Entities/user/Users';
-import { UserDataService } from 'src/app/Services/Data/user-data-service.service';
-import { ApiMsg } from 'src/app/Entities/user/user.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiMsg } from '../Entities/user/user.component';
+import { Users } from '../Entities/user/Users';
+import { UserDataService } from '../Services/Data/user-data-service.service';
 
 @Component({
-  selector: 'app-add-users',
-  templateUrl: './add-users.component.html',
-  styleUrls: ['./add-users.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
+export class RegisterComponent implements OnInit {
 
-export class AddUsersComponent implements OnInit {
-
-  id: number;
-  header: string;
-  @Input() tables: TablesConfig;
-  
   errore: string = '';
   isModifica: boolean = false;
   conferma: string = '';
-
   apiMsg: ApiMsg;
 
   // utenti
@@ -37,18 +30,19 @@ export class AddUsersComponent implements OnInit {
     role: '',
   };
 
-  constructor(private router: Router, private userDataService: UserDataService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private userDataService: UserDataService) { }
 
   ngOnInit(): void {
-    
   }
 
+
   abort() {
-    alert('stai tornando alla tabella degli utenti')
-    this.router.navigate(['/users']);
+    alert('stai tornando alla home')
+    this.router.navigate(['']);
   }
 
   onSubmit(form: NgForm) {
+
     let usersList: Users = {
       id: form.value.id,
       nome: form.value.nome,
@@ -73,8 +67,7 @@ export class AddUsersComponent implements OnInit {
         console.log(this.errore);
       }
     )
-    alert("Nuovo utente salvato con successo!");
-   this.router.navigate(['/users']);
-
+    alert("Registrazione nuovo utente salvato con successo!");
+    this.router.navigate(['/users']);
   }
 }

@@ -1,0 +1,261 @@
+<p>edit works!</p>
+
+<form *ngIf="tipo === 1">
+
+    <h2> Editing User Page</h2>
+    <section class="container">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="oi oi-pencil"></i>
+                    <span class="caption-subject bold uppercase"><b>DATI UTENTE</b></span>
+                </div>
+            </div>
+            <br><br>
+
+            <div class="portlet-body form">
+                <form (ngSubmit)="artForm.valid && aggiorna()" #artForm="ngForm">
+                    <div class="form-group" class="was-validated">
+
+                        <div class="form-group col-md-2">
+                            <label for="id"><b>ID Utente: </b></label>
+                            <input name="id" type="text" [(ngModel)]="usersList.id" class="form-control" placeholder="ID Utente" #id="ngModel" readonly />
+                            <span style="color:rgb(7, 0, 112)" *ngIf="id.dirty && id.invalid">
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nome"><b>Nome Utente:</b></label>
+                            <input name="nome" type="text" [(ngModel)]="usersList.nome" class="form-control" placeholder="Nome utente" required minlength="2" maxlength="30 " />
+                            <span style="color:rgb(145, 0, 0) ">
+                                Il nome deve essere compreso fra 5 e 30 caratteri
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cognome"><b>Cognome Utente:</b></label>
+                            <input name="cognome" type="text" [(ngModel)]="usersList.cognome" class="form-control" placeholder="Cognome utente" required minlength="2" maxlength="30" />
+                            <span style="color:rgb(145, 0, 0) ">
+                                Il cognome deve essere compreso fra 5 e 30 caratteri
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dataNascita"><b>Anno Nascita Utente:</b></label>
+                            <input name="dataNascita" type="date" [(ngModel)]="usersList.dataNascita" class="form-control" placeholder="Anno Nascita utente" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="codiceFiscale"><b>CF Utente:</b></label>
+                            <input name="codiceFiscale" type="text" [(ngModel)]="usersList.codiceFiscale " class="form-control" placeholder="CF utente" required minlength="16" maxlength="16" />
+                            <span style="color:rgb(145, 0, 0) ">
+                                Il CF deve essere di 16 caratteri
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email"><b>Email Utente:</b></label>
+                            <input name="email" type="email" [(ngModel)]="usersList.email" class="form-control" placeholder="Email utente" required />
+                            <span style="color:rgb(145, 0, 0) ">
+                                La email deve essere valida!
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username"><b>Username Utente:</b></label>
+                            <input name="username" type="text" [(ngModel)]="usersList.username" class="form-control" placeholder="Username utente" required minlength="3" maxlength="30 " />
+                            <span style="color:rgb(145, 0, 0) ">
+                                L' username deve essere compreso fra 5 e 30 caratteri
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password"><b>Password Utente:</b></label>
+                            <input name="password" type="password " [(ngModel)]="usersList.password" class="form-control" placeholder="Inserisci password" required minlength="5" maxlength="30 " />
+                            <span style="color:rgb(145, 0, 0) ">
+                                La password deve essere compresa fra 5 e 30 caratteri
+                            </span>
+                        </div>
+
+                        <!-- Servirà per la tipologia di utente -->
+                        <div class="form-group">
+                            <label for="role"><b>Tipologia Utente:</b></label>
+                            <select name="role" class="form-control" [(ngModel)]="usersList.role" required>
+                                <option value="" disabled selected>Selezionare la tipologia di utente</option>
+                                <option value="Super">Super</option>
+                                <option value="User">User</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="artForm.invalid">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva
+                        </button>
+
+                        <button id="btnAbort" class="btn btn-warning form-buttons" (click)="abort()">
+                            <i class="fa fa-sign-out" aria-hidden="true "></i> Annulla
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <br><br><br><br>
+
+</form>
+
+<form *ngIf="tipo === 2">
+
+    <h2> Editing Vehicle Page</h2>
+    <section class="container">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="oi oi-pencil"></i>
+                    <span class="caption-subject bold uppercase"><b>DATI VEICOLO</b></span>
+                </div>
+            </div>
+            <br><br>
+
+            <div class="portlet-body form">
+                <form (ngSubmit)="artForm.valid && aggiorna()" #artForm="ngForm">
+                    <div class="form-group" class="was-validated">
+
+                        <div class="form-group col-md-2">
+                            <label for="id"><b>ID Veicolo: </b></label>
+                            <input name="id" type="text" [(ngModel)]="vehiclesList.id" class="form-control" placeholder="ID Veicolo" #id="ngModel" readonly />
+                            <span style="color:rgb(7, 0, 112)" *ngIf="id.dirty && id.invalid">
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="casaCostruttrice"><b>Casa Costruttrice Veicolo:</b></label>
+                            <input name="casaCostruttrice" type="text" [(ngModel)]="vehiclesList.casaCostruttrice" class="form-control" placeholder="Casa costruttrice veicolo" minlength=3 maxlength="30" required />
+                            <span style="color:rgb(145, 0, 0)">
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="modello"><b>Modello Veicolo:</b></label>
+                            <input name="modello" type="text" [(ngModel)]="vehiclesList.modello" class="form-control" placeholder="Modello veicolo" minlength="3" maxlength="30" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="annoImmatricolazione"><b>Anno Immatricolazione Veicolo:</b></label>
+                            <input name="annoImmatricolazione" type="date" [(ngModel)]="vehiclesList.annoImmatricolazione" class="form-control" placeholder="Anno Immatricolazione veicolo" required />
+                            <span style="color:rgb(145, 0, 0)">
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="targa"><b>Targa Veicolo:</b></label>
+                            <input name="targa" type="text" [(ngModel)]="vehiclesList.targa" class="form-control" placeholder="Targa veicolo" minlength="5" maxlength="30" required />
+                            <span style="color:rgb(145, 0, 0)">
+                            </span>
+                        </div>
+
+                        <!-- Servirà per la tipologia di veicolo -->
+                        <div class="form-group">
+                            <label for="tipologia"><b>Tipologia Veicolo:</b></label>
+                            <select name="tipologia" class="form-control" [(ngModel)]="vehiclesList.tipologia" required>
+                                <option value="" disabled selected>Selezionare la tipologia del veicolo</option>
+                                <option value="Berlina">Berlina</option>
+                                <option value="Monovolume">Monovolume</option>
+                                <option value="Citycar">Citycar</option>
+                                <option value="Coupé">Coupé</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="artForm.invalid">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva
+                        </button>
+
+                        <button id="btnAbort" class="btn btn-warning form-buttons" (click)="abort()">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i> Annulla
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <br><br><br>
+
+</form>>
+
+<form *ngIf="tipo === 3">
+
+    <h2> Editing Reservations Page</h2>
+    <section class="container">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="oi oi-pencil"></i>
+                    <span class="caption-subject bold uppercase"><b>DATI VEICOLO</b></span>
+                </div>
+            </div>
+            <br><br>
+
+            <div class="portlet-body form">
+                <form (ngSubmit)="artForm.valid && aggiorna()" #artForm="ngForm">
+                    <div class="form-group" class="was-validated">
+
+                        <div class="form-group col-md-2">
+                            <label for="id"><b>ID Prenotazione: </b></label>
+                            <input name="id" type="text" [(ngModel)]="reservationsList.id" class="form-control" placeholder="{{reservationsList.id}}" #id="ngModel" readonly/>
+                            <span style="color:rgb(7, 0, 112)" *ngIf="id.dirty && id.invalid">
+                            </span>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="idUtente"><b> ID Utente Prenotazione: </b></label>
+                            <input name="idUtente" type="text" [(ngModel)]="reservationsList.utente.id" class="form-control" placeholder="ID Prenotazione" #idUtente="ngModel" readonly />
+                            <span style="color:rgb(7, 0, 112)" *ngIf="id.dirty && id.invalid">
+                            </span>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="targaVeicolo"><b> Targa Veicolo Prenotazione: </b></label>
+                            <input name="targaVeicolo" type="text" [(ngModel)]="reservationsList.veicolo.targa" class="form-control" placeholder="{{reservationsList.veicolo.targa}}" #targaVeicolo="ngModel" readonly />
+                            <span style="color:rgb(7, 0, 112)" *ngIf="id.dirty && id.invalid">
+                            </span>
+                        </div>
+
+                        <div class="form-group col-md-4 ">
+                            <label for="dataInizio"><b>Data Inizio Prenotazione: </b></label>
+                            <input name="dataInizio" [(ngModel)]="reservationsList.dataInizio" type="date" class="form-control" required #dataInizio="ngModel" />
+                            <span style="color:red " *ngIf="dataInizio.dirty && dataInizio.invalid ">
+                            </span>
+                        </div>
+
+                        <div class="form-group col-md-4 ">
+                            <label for="dataFine"> <b>Data Fine Prenotazione: </b></label>
+                            <input name="dataFine" [(ngModel)]="reservationsList.dataFine" type="date" class="form-control" required #dataFine="ngModel" />
+                            <span style="color:red " *ngIf="dataFine.dirty && dataFine.invalid ">
+                            </span>
+                        </div>
+
+                        <!-- servirà successivvamente per quando l'utente di tipo super dovrà approvare o meno la prenotazione -->
+
+                        <!-- <div class="form-group">
+                            <label for="approvazione"><b>Approvazione Prenotazione:</b></label>
+                            <select name="approvazione" class="form-control col-2" [(ngModel)]="reservationsList.approvazione" required>
+                                <option value="" disabled selected>Selezionare se approvare o no </option>
+                                <option value="Si">Si</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div> -->
+
+                    </div>
+                    <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="artForm.invalid">
+                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva
+                    </button>
+
+                    <button id="btnAbort " class="btn btn-warning form-buttons " (click)="abort() ">
+                        <i class="fa fa-sign-out " aria-hidden="true "></i> Annulla
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <br><br><br><br>
+
+</form>
