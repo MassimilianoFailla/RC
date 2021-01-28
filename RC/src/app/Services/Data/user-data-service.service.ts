@@ -28,6 +28,10 @@ export class UserDataService {
     return this.httpClient.get<Users>(`http://${this.server}:${this.port2}/api/users/user-id/${id}`);
   }
 
+  getUserByUsername(username: string){
+    return this.httpClient.get<Users>(`http://${this.server}:${this.port2}/api/users/user-name/${username}`);
+  }
+
   delUser(id: number) {
     return this.httpClient.delete<ApiMsg>(`http://${this.server}:${this.port2}/api/users/elimina/${id}`);
   }

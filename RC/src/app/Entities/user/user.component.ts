@@ -4,7 +4,7 @@ import { Orders } from 'src/app/Config/Orders';
 import { Paginations } from 'src/app/Config/Paginations';
 import { Search } from 'src/app/Config/Search';
 import { TablesConfig } from 'src/app/Config/TablesConfig';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserDataService } from 'src/app/Services/Data/user-data-service.service';
 
 @Component({
@@ -14,13 +14,13 @@ import { UserDataService } from 'src/app/Services/Data/user-data-service.service
 })
 export class UserComponent implements OnInit {
  
-  constructor(private router: Router, private userDataService: UserDataService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private userDataService: UserDataService) { }
 
   conferma: string = '';
   errore: string = '';
   apiMsg: ApiMsg;
   messaggio: string;
-  
+  username: string = '';
   // operazioni button
   operazioni: ButtonsConfig[] = [{
     text: 'edit',
@@ -81,7 +81,6 @@ export class UserComponent implements OnInit {
 
     // get utenti dal dbmysql alla tabella
     this.userDataService.getUser().subscribe(data => this.tables.data = data);
-
   }
 
   //  prossima implementazione button add eventEmitter

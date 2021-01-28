@@ -1,21 +1,27 @@
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form">
+            <h3>Login Form </h3>
+            <div class="form-group">
+                <input type="text" class="form-control" id="username" placeholder="Nome Utente" [(ngModel)]="username">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="password">
+            </div>
+            <div class="form-group">
+                <button (click)="gestAut()" class="btnSubmit">Connetti</button>
 
+            </div>
+            <!-- <div class="alert alert-success" role="alert " *ngIf='autenticato === true'>
+                {{autMsg}}
+            </div> -->
+            <div class="form-group">
+                <a href="#" class="ForgetPwd">Password Dimenticata?</a>
+            </div>
+            <div class="alert alert-danger" role="alert " *ngIf='!autenticato'>
+                {{errorMsg}}
+            </div>
 
-<div class="wrapper fadeInDown">
-    <div id="formContent">
-
-      <!-- Login Form -->
-      <form>
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-        <input type="submit" class="fadeIn fourth" value="Log In">
-      </form>
-
-      <!-- Password Dimenticata - Registrati -->
-      <div id="formFooter">
-        <a class="underlineHover"routerLink="/register">Register</a>
-      </div>
-
+        </div>
     </div>
-  </div>
-
-  <br><br><br><br>
+</div><br><br><br><br>

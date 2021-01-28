@@ -20,11 +20,14 @@ import { UserComponent } from './Entities/user/user.component';
 import { VehicleComponent } from './Entities/vehicle/vehicle.component';
 import { ReservationComponent } from './Entities/reservation/reservation.component';
 import { ButtonComponent } from './button/button.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 import { RegisterComponent } from './register/register.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { AuthenticationService } from './Services/authentication.service';
+import { BasicAuthHttpInterceptorService } from './Services/basic-auth-http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,7 @@ import { RegisterComponent } from './register/register.component';
     AddComponent,
     EditComponent,
     RegisterComponent,
+    WelcomeComponent,
   ],
 
   imports: [
@@ -59,7 +63,11 @@ import { RegisterComponent } from './register/register.component';
     AppRoutingModule,
   ],
   
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
