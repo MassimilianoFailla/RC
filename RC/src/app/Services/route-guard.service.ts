@@ -17,7 +17,6 @@ export class RouteGuardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-    // debugger
     this.token = this.auth.getAuthToken();
 
     const helper = new JwtHelperService();
@@ -26,11 +25,6 @@ export class RouteGuardService implements CanActivate {
 
     console.log("decoded token ", decodedToken);
     console.log("Ruoli token decoded", this.ruoli);
-    
-    // if(this.ruoli === null){
-    //   console.log("Errore role null!");
-    //   alert("Role nullo!");
-    // }
 
     if (!this.auth.isLogged()) {
       this.route.navigate(['login']);

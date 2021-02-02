@@ -70,6 +70,9 @@ export class AddComponent implements OnInit {
 
     this.tipo = Number(this.route.snapshot.paramMap.get('tipo'));
     this.idUtente = Number(this.route.snapshot.paramMap.get('id'));
+    const usernameUser = this.route.snapshot.paramMap.get('username');
+
+    console.log("Id utente in sessione -> ", this.idUtente);
 
     if (this.tipo === 3) {
       // Otteniamo i dati dei veicoli 

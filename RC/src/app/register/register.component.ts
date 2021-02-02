@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
 
   abort() {
     alert('stai tornando alla home')
-    this.router.navigate(['']);
+    this.router.navigate(['/home']);
   }
 
   onSubmit(form: NgForm) {
@@ -68,6 +68,6 @@ export class RegisterComponent implements OnInit {
       }
     )
     alert("Registrazione nuovo utente salvato con successo!");
-    this.router.navigate(['/users']);
+    this.router.navigate(['/home']);
   }
 }

@@ -22,7 +22,7 @@ const appRoutes: Routes = [
     { path: 'logout', component: LogoutComponent},
     { path: 'home', component: HomeComponent},
     { path:'home/:username', component : HomeUserComponent},
-    { path: 'register', component: RegisterComponent, canActivate: [RouteGuardService], data: {roles: ['Super', 'User']}},
+    { path: 'register', component: RegisterComponent},
     { path: 'users', component: UserComponent, canActivate: [RouteGuardService], data: {roles: ['Super']}},
     { path: 'add/user', component: AddComponent, canActivate: [RouteGuardService], data: {roles: ['Super']}},
     { path: 'edit/users/:id', component: EditComponent, canActivate: [RouteGuardService], data: {roles: ['Super']}},
@@ -33,6 +33,7 @@ const appRoutes: Routes = [
     { path: 'add/reservation', component: AddComponent, canActivate: [RouteGuardService], data: {roles: ['User']}},
     { path: 'edit/reservations/:id', component: EditComponent, canActivate: [RouteGuardService], data: {roles: ['Super']}},
     { path: 'forbidden', component: ForbiddenComponent},
+
     // { path: 'users', component: UserComponent},
     // { path: 'vehicles', component: VehicleComponent},
     // { path: 'reservations', component: ReservationComponent},
