@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthenticationService } from './authentication.service';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { exit } from 'process';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +16,17 @@ export class RouteGuardService implements CanActivate {
   constructor(private auth: AuthenticationService, private route: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-
+    // debugger
     this.token = this.auth.getAuthToken();
 
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(this.token);
+    this.role = decodedToken['authorities'];
 
-    this.role = decodedToken['token'];  // << quale valore mettere?
-
+    if(this.role === null){
+      console.log("Errore role null!");
+    }
+    else 
     if (!this.auth.isLogged()) {
       this.route.navigate(['login']);
       return false;

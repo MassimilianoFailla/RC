@@ -12,11 +12,11 @@ export class AuthenticationService {
 
   authenticate(username: string, password: string) {
     return this.httpClient.post<any>('http://localhost:4000/authenticate', { username, password }).pipe(
-      map(userData => {
+      map(data => {
         sessionStorage.setItem('username', username);
-        let tokenStr = "Bearer " + userData.token;
+        let tokenStr = "Bearer " + data.token;
         sessionStorage.setItem('token', tokenStr);
-        return userData;
+        return data;
       }
       )
       // mettere in sessione l'utente 
