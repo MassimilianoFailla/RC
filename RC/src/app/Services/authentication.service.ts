@@ -1,8 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-export const CONST_AUTH_TOKEN = "AuthToken";
-export const CONST_UTENTE = "Utente";
 
 @Injectable({
   providedIn: 'root'
@@ -12,45 +10,50 @@ export class AuthenticationService {
 
   constructor(private httpClient: HttpClient) { }
 
-  authenticate(username: string, password: string){
-    return this.httpClient.post<any>('http://localhost:4000/authenticate', {username, password}).pipe(
+  authenticate(username: string, password: string) {
+    return this.httpClient.post<any>('http://localhost:4000/authenticate', { username, password }).pipe(
       map(userData => {
         sessionStorage.setItem('username', username);
-        let tokenStr = "Bearer " +userData.token;
+        let tokenStr = "Bearer " + userData.token;
         sessionStorage.setItem('token', tokenStr);
         return userData;
       }
-        )
+      )
+      // mettere in sessione l'utente 
+
+      // get(user)  per vedere
     )
   }
 
-  isUserLoggedIn(){
+  // creare un metodo di recupero dell'utente in sessione per le varie operazioni
+
+  clearAll() {
+    alert("Uscita in corso...");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("username");
+    
+  }
+
+  isUserLoggedIn() {
     let user = sessionStorage.getItem('username')
     console.log(!(user === null));
     return !(user === null);
   }
 
-  getAuthToken()
-  {
+  getAuthToken() {
     if (this.isUserLoggedIn())
-      return sessionStorage.getItem(CONST_AUTH_TOKEN);
+      return sessionStorage.getItem('token');
     else
       return "";
   }
 
-  isLogged()
-  {
-    return (sessionStorage.getItem(CONST_UTENTE) != null) ? true : false;
+  isLogged() {
+    return (sessionStorage.getItem('username') != null) ? true : false;
   }
 
-  logout(){
-    sessionStorage.removeItem('username')
-  }
+
 }
 
-
-
-export class JwtResponse{
-  constructor(public jwttoken: string)
-  {}
+export class JwtResponse {
+  constructor(public jwttoken: string) { }
 }

@@ -30,20 +30,27 @@ export class ReservationComponent implements OnInit {
   operazioni: ButtonsConfig[] = [
     {
       text: 'info',
-      customCssClass: 'btn btn-info btn-sm',
+      customCssClass: 'btn btn-outline-info btn-sm',
       icon: '',
     },
     {
-    text: 'edit',
-    customCssClass: 'btn btn-secondary btn-sm',
+      text: 'edit',
+      customCssClass: 'btn btn-outline-secondary btn-sm',
+      icon: '',
+    },
+    {
+      text: 'delete',
+      customCssClass: 'btn btn-outline-danger btn-sm',
+      icon: '',
+    }
+    ];
+
+   // operazione di aggiunta, button
+   add: ButtonsConfig = {
+    text: 'New Reservation',
+    customCssClass: 'btn btn-outline-secondary btn-sm',
     icon: '',
-  },
-  {
-    text: 'delete',
-    customCssClass: 'btn btn-danger btn-sm',
-    icon: '',
-  },
-  ];
+  }
 
   headerRes = [
         { key: 'id', label: 'ID Prenotazione'},
@@ -89,10 +96,17 @@ export class ReservationComponent implements OnInit {
   };
 
   // prossima implementazione button add
-  // addNewData(){
-  //   alert('Stai per aggiungere una nuova Prenotazione!');
-  //   this.router.navigate([`${'add/reservation'}`, { tipo: 3 }]);
-  // }
+  addNewData(object: any){
+    alert('Stai per aggiungere una nuova Prenotazione!');
+    this.router.navigate([`${'add/reservation'}`, { tipo: 3 }]);
+  }
+
+  aggiunta(object: any){
+    if(object.text === 'New Reservation'){
+      this.addNewData(object);
+    }
+  }
+
 
   edit(object: any) {
     alert('Stai per modificare una prenotazione...!');

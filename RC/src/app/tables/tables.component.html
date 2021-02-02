@@ -1,4 +1,9 @@
-<table class="table table-striped table-dark table-sm">
+<div>
+    <app-button [button]="logoutButton" (click)="logout(logoutUsr)"></app-button>
+</div>
+
+<br><br>
+<table class="table table-striped table-dark table-sm center" align="center">
     <thead class="thead-dark">
         <tr>
             <th *ngFor="let column of tables.headers">
@@ -6,7 +11,7 @@
                 {{column.label}}
             </th>
             <td>
-                <app-button [button]="addButt" (click)="addEl(addButton)"></app-button>
+                <app-button [button]="addElement" (click)="aggiunta(addComp, $event)"></app-button>
             </td>
         </tr>
     </thead>
@@ -16,7 +21,8 @@
                 {{row[column.key]}}
             </td>
             <td *ngFor="let operazioniSuRiga of gestRighe">
-                <app-button [button]="operazioniSuRiga" (click)="opSuRiga(operazioniSuRiga, row, editButton)"></app-button>
+                <app-button [button]="operazioniSuRiga" (click)="opSuRiga(operazioniSuRiga, row, editButton)">
+                </app-button>
             </td>
         </tr>
     </tbody>

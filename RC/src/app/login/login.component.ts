@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthappService } from '../Services/authapp.service';
 import { AuthenticationService } from '../Services/authentication.service';
 
 @Component({
@@ -28,25 +27,12 @@ export class LoginComponent implements OnInit {
         data => {
           console.log(data);
           this.autenticato = true;
-          this.route.navigate(['welcome', this.username]);
+          this.route.navigate(['home/', this.username]);
         },
         error => {
           console.log(error);
           this.autenticato = false;
         }
       )
-
-    /*
-    if (this.BasicAuth.autentica(this.userid, this.password))
-    {
-        this.autenticato = true;
-        this.route.navigate(['welcome', this.userid])
-    }
-    else
-    {
-        this.autenticato = false;
-    }
-    */
-
   }
 }

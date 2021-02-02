@@ -1,8 +1,10 @@
+import { AddComponent } from './../add/add.component';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TablesConfig } from '../Config/TablesConfig';
 import * as _ from 'lodash-es';
 import { ButtonsConfig } from '../Config/ButtonsConfig';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '../Services/authentication.service';
 declare var $: any;
 
 @Component({
@@ -12,26 +14,24 @@ declare var $: any;
 })
 export class TablesComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthenticationService) { }
 
   // unica configurazione tabella
   @Input() tables: TablesConfig;
 
   @Input() gestRighe: ButtonsConfig[];    // operazione riga per la tabella
-
+  @Input() addElement: ButtonsConfig;
   @Output() operation = new EventEmitter<string>(); // event emitter button
   @Output() opRiga = new EventEmitter<any>();     // event emitter per riga
+  @Output() addComp = new EventEmitter<any>();  // event emitter per l'aggiunta
+  logoutUsr = new EventEmitter<any>();    // event emitter per il logout
 
-  // @Output() opAddButt = new EventEmitter<any>();  // prossima implementazione button add- eventEmitter
-
-  @Input() addButton: number;   // numerazione per l'add butt
   @Input() editButton: number;  // numerazione edit butt
 
-  // configurazione button
-  @Input() addButt: ButtonsConfig = {
-    text: 'New Data',
-    customCssClass: 'btn btn-secondary btn-sm',
-    icon: ''
+  @Input() logoutButton: ButtonsConfig = {
+    text: 'Logout',
+    customCssClass: 'btn btn-outline-secondary btn-sm',
+    icon: '',
   };
 
   // per l'ordinamento
@@ -74,7 +74,7 @@ export class TablesComponent implements OnInit {
     // paginazione
     this.perPage = this.tables.pagination.itemPerPage;
     this.selectedPage = 0;
-    
+
   }
 
   // sorting
@@ -90,28 +90,23 @@ export class TablesComponent implements OnInit {
     }
   }
 
-  // per i vari casi di add element, in base al tipo di dato
-  addEl(addButton: number) {
+  logout(object: any) {
+    // per il logout
+    this.authService.clearAll();
+    this.router.navigate(['home']);
+  }
 
-    switch (this.addButton) {
-      case 1:
-        alert('Add Users!');
-        this.router.navigate([`${'add/user'}`, { tipo: 1 }]);
-        break;
-      case 2:
-        alert('Add Vehicles!');
-        this.router.navigate([`${'add/vehicle'}`, { tipo: 2 }]);
-        break;
-      case 3:
-        alert('Add Reservation!');
-        this.router.navigate([`${'add/reservation'}`, { tipo: 3 }]);
-        break;
-      case 0:
-        alert('!!! ERROR !!!')
-        break;
+  // gestione operazione di aggiunta di un nuovo elemento all'interno della tabella
+  aggiunta(addComp: any, object: any) {
+    this.tempOB = object;
+    this.tempOP = addComp.text;
+    if (addComp.ref) {
+      $(addComp.ref).modal('show');
+    } else {
+      this.addComp.emit({ text: addComp.text, obj: object });
     }
   }
-  
+
   // gestione operazione per riga
   opSuRiga(opriga: any, object: any, editButton: number) {
     this.tempOB = object;

@@ -29,7 +29,7 @@ export class UserDataService {
   }
 
   getUserByUsername(username: string){
-    return this.httpClient.get<Users>(`http://${this.server}:${this.port2}/api/users/user-name/${username}`);
+    return this.httpClient.get<Users>(`http://${this.server}:${this.port2}/api/users/user/${username}`);
   }
 
   delUser(id: number) {

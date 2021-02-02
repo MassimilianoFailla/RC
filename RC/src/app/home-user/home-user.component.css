@@ -1,3 +1,25 @@
+h2 {
+    text-align: center;
+    color: rgb(88, 88, 88);
+}
+
+h3 {
+    text-align: center;
+    color: #444;
+}
+
+b {
+    color: rgb(0, 1, 80);
+}
+
+h4 {
+    text-align: left;
+    /* color: rgb(38, 0, 143); */
+    height: 5%;
+    /* width: 20%; */
+    margin-left: 40%;
+}
+
 .full-width-table {
     width: 100%;
 }
@@ -11,7 +33,7 @@ table {
     width: auto;
     margin: auto;
     text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serifà;
+    font-family: Verdana, Geneva, Tahoma, sans-serifà
 }
 
 th {
@@ -29,14 +51,14 @@ select {
     align-items: center;
 }
 
-div {
-    text-align: center;
-}
-
 pagination-controls {
     text-align: center;
 }
 
 table .btn {
     margin: 2px;
+}
+
+div.dati {
+    text-align: left;
 }

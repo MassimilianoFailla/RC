@@ -17,6 +17,7 @@ import { Reservations } from '../Entities/reservation/Reservations';
 export class AddComponent implements OnInit {
 
   tipo: number;
+  idUtente: number;
   errore: string = '';
   isModifica: boolean = false;
   conferma: string = '';
@@ -68,6 +69,7 @@ export class AddComponent implements OnInit {
   ngOnInit(): void {
 
     this.tipo = Number(this.route.snapshot.paramMap.get('tipo'));
+    this.idUtente = Number(this.route.snapshot.paramMap.get('id'));
 
     if (this.tipo === 3) {
       // Otteniamo i dati dei veicoli 
@@ -81,7 +83,7 @@ export class AddComponent implements OnInit {
         }
       )
 
-      //Otteniamo i dati dell'utente, in questo caso la prova con id 7
+      //Otteniamo i dati dell'utente, in questo caso la prova con id 1
       // da implementare la ricerca dell'id dell'utente non appena l'utente si logga
       this.reservationDataService.getUserById(1).subscribe(
         response => {
@@ -113,7 +115,6 @@ export class AddComponent implements OnInit {
         username: form.value.username,
         password: form.value.password,
         role: form.value.role,
-
       }
       this.userDataService.insUser(usersList).subscribe(
         response => {
@@ -130,7 +131,6 @@ export class AddComponent implements OnInit {
       alert("Nuovo utente salvato con successo!");
       this.router.navigate(['/users']);
     }
-
 
     if (this.tipo === 2) {
 

@@ -1,2 +1,4 @@
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 <h1>Vehicles Table</h1>
-<app-tables [tables]="tables" [gestRighe]="operazioni" (opRiga)="opSuRiga($event)" [addButton]=2 [editButton]=2></app-tables>
+<app-tables [tables]="tables" [gestRighe]="operazioni" (opRiga)="opSuRiga($event)" [editButton]=2 [addElement]="add" (addComp)="addNewData($event)"></app-tables>

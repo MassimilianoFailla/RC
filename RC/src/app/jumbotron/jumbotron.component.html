@@ -1,20 +1,31 @@
 <div class="jumbotron jumbotron-billboard">
-	<div class="img"></div>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<h2>{{Titolo}}</h2>
-				<p>{{SottoTitolo}}</p>
-				<ng-container *ngIf="Show">
-					<a class="nav-link" routerLink="/login"> <button [ngClass]="buttonLogin.customCssClass">
-						<mat-icon> {{buttonLogin.icon}} </mat-icon> {{buttonLogin.text}}
-					  </button></a>
-					  <a class="nav-link" routerLink="/register"> <button [ngClass]="buttonRegister.customCssClass">
-						<mat-icon> {{buttonRegister.icon}} </mat-icon> {{buttonRegister.text}}
-					  </button></a>
-					<!-- <a href="" id="SignIn" class="btn btn-success btn-lg">Registrati</a> -->
-				</ng-container>
-			</div>
-		</div>
-	</div>
+    <div class="img"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 *ngIf="username == null">{{Titolo}}</h2>
+                <h2 *ngIf="username != null">{{Titolo}} "{{username | uppercase}}"</h2>
+                <p>{{SottoTitolo}}</p>
+
+                <div *ngIf="username == null">
+                    <button [ngClass]="buttonLogin.customCssClass" routerLink="/login">
+                        <mat-icon> {{buttonLogin.icon}} </mat-icon> {{buttonLogin.text}}
+                    </button>
+                </div>
+                <br>
+                <div *ngIf="username != null">
+                    <button [ngClass]="buttonLogout.customCssClass" (click)="logoutUser()">
+                        <mat-icon> {{buttonLogout.icon}} </mat-icon> {{buttonLogout.text}}
+                    </button>
+                </div>
+
+                <div *ngIf="username == null">
+                    <button [ngClass]="buttonRegister.customCssClass " routerLink="/register">
+                    <mat-icon> {{buttonRegister.icon}} </mat-icon> {{buttonRegister.text}}
+                </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>

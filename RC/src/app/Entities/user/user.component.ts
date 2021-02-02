@@ -21,18 +21,26 @@ export class UserComponent implements OnInit {
   apiMsg: ApiMsg;
   messaggio: string;
   username: string = '';
+
   // operazioni button
   operazioni: ButtonsConfig[] = [{
-    text: 'edit',
-    customCssClass: 'btn btn-secondary btn-sm',
-    icon: '',
-  },
-  {
-    text: 'delete',
-    customCssClass: 'btn btn-danger btn-sm',
+      text: 'edit',
+      customCssClass: 'btn btn-outline-secondary btn-sm',
+      icon: '',
+    },
+    {
+      text: 'delete',
+      customCssClass: 'btn btn-outline-danger btn-sm',
+      icon: '',
+    }
+    ];
+
+  // operazione di aggiunta, button
+  add: ButtonsConfig = {
+    text: 'New User',
+    customCssClass: 'btn btn-outline-secondary btn-sm',
     icon: '',
   }
-  ];
 
   // settaggio headers
   headerUsr = [
@@ -84,15 +92,20 @@ export class UserComponent implements OnInit {
   }
 
   //  prossima implementazione button add eventEmitter
-  // addNewData(){
-  //   alert('Stai per aggiungere un nuovo Utente!');
-  //   this.router.navigate([`${'add/user'}`, { tipo: 1 }]);
-  // }
+  addNewData(object: any){
+    alert('Stai per aggiungere un nuovo Utente!');
+    this.router.navigate([`${'add/user'}`, { tipo: 1 }]);
+  }
 
   edit(object: any) {
     alert('Stai per modificare un utente...!');
       this.router.navigate([`edit/users/${object.obj.id}`, {tipo: 1}]);
+  }
 
+  aggiunta(object: any){
+    if(object.text === 'New User'){
+      this.addNewData(object);
+    }
   }
 
   opSuRiga(object: any) {

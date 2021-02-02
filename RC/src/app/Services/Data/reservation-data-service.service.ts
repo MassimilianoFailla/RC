@@ -47,6 +47,10 @@ export class ReservationDataService {
     return this.httpClient.get<Reservations>(`http://${this.server}:${this.port2}/api/reservations/reservation-id/${id}`);
   }
 
+  getReservationsByIdUser(idUtente: number) {
+    return this.httpClient.get<Reservations[]>(`http://${this.server}:${this.port2}/api/reservations/reservation-user/${idUtente}`);
+  }
+
   updReservation(reservation: Reservations) {
     return this.httpClient.put<ApiMsg>(`http://${this.server}:${this.port2}/api/reservations/modifica/${reservation.id}`, reservation);
   }

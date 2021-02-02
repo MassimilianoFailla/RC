@@ -24,15 +24,22 @@ export class VehicleComponent implements OnInit {
 
   operazioni: ButtonsConfig[] = [{
     text: 'edit',
-    customCssClass: 'btn btn-secondary btn-sm',
+    customCssClass: 'btn btn-outline-secondary btn-sm',
     icon: '',
   },
   {
     text: 'delete',
-    customCssClass: 'btn btn-danger btn-sm',
+    customCssClass: 'btn btn-outline-danger btn-sm',
     icon: '',
   }
   ];
+
+  // operazione di aggiunta, button
+  add: ButtonsConfig = {
+    text: 'New Vehicle',
+    customCssClass: 'btn btn-outline-secondary btn-sm',
+    icon: '',
+  }
 
   // creo la key e la label per i veicoli
   headerVehi = [
@@ -80,10 +87,16 @@ export class VehicleComponent implements OnInit {
   }
 
   // prossima implementazione button add - eventEmitter
-  // addNewData(){
-  //   alert('Stai per aggiungere un nuovo Veicolo!');
-  //   this.router.navigate([`${'add/vehicle'}`, { tipo: 2 }]);
-  // }
+  addNewData(object: any){
+    alert('Stai per aggiungere un nuovo Veicolo!');
+    this.router.navigate([`${'add/vehicle'}`, { tipo: 2 }]);
+  }
+
+  aggiunta(object: any){
+    if(object.text === 'New Vehicle'){
+      this.addNewData(object);
+    }
+  }
 
   edit(object: any) {
     alert('Stai per modificare un veicolo...!');
