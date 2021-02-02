@@ -16,27 +16,26 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { HomeUserComponent } from './home-user/home-user.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
-import { Ruoli } from 'src/models/Ruoli';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent},
     { path: 'logout', component: LogoutComponent},
     { path: 'home', component: HomeComponent},
     { path:'home/:username', component : HomeUserComponent},
-    { path: 'register', component: RegisterComponent},
-    { path: 'users', component: UserComponent, canActivate: [RouteGuardService], data: {roles: [Ruoli.super]}},
-    // { path: 'users', component: UserComponent},
-    { path: 'add/user', component: AddComponent},
-    { path: 'edit/users/:id', component: EditComponent},
-    { path: 'vehicles', component: VehicleComponent, canActivate: [RouteGuardService], data: {roles: [Ruoli.super]}},
-    // { path: 'vehicles', component: VehicleComponent},
-    { path: 'add/vehicle', component: AddComponent},
-    { path: 'edit/vehicles/:id', component: EditComponent},
-    { path: 'reservations', component: ReservationComponent, canActivate: [RouteGuardService], data: {roles: [Ruoli.super]}},
-    // { path: 'reservations', component: ReservationComponent},
-    { path: 'add/reservation', component: AddComponent},
-    { path: 'edit/reservations/:id', component: EditComponent},
+    { path: 'register', component: RegisterComponent, canActivate: [RouteGuardService], data: {roles: ['Super', 'User']}},
+    { path: 'users', component: UserComponent, canActivate: [RouteGuardService], data: {roles: ['Super']}},
+    { path: 'add/user', component: AddComponent, canActivate: [RouteGuardService], data: {roles: ['Super']}},
+    { path: 'edit/users/:id', component: EditComponent, canActivate: [RouteGuardService], data: {roles: ['Super']}},
+    { path: 'vehicles', component: VehicleComponent, canActivate: [RouteGuardService], data: {roles: ['Super', 'User']}},
+    { path: 'add/vehicle', component: AddComponent, canActivate: [RouteGuardService], data: {roles: ['Super']}},
+    { path: 'edit/vehicles/:id', component: EditComponent, canActivate: [RouteGuardService], data: {roles: ['Super']}},
+    { path: 'reservations', component: ReservationComponent, canActivate: [RouteGuardService], data: {roles: ['Super']}},
+    { path: 'add/reservation', component: AddComponent, canActivate: [RouteGuardService], data: {roles: ['User']}},
+    { path: 'edit/reservations/:id', component: EditComponent, canActivate: [RouteGuardService], data: {roles: ['Super']}},
     { path: 'forbidden', component: ForbiddenComponent},
+    // { path: 'users', component: UserComponent},
+    // { path: 'vehicles', component: VehicleComponent},
+    // { path: 'reservations', component: ReservationComponent},
   ];
   
 
