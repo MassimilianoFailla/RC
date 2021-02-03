@@ -28,15 +28,25 @@ export class HomeUserComponent implements OnInit {
   @Input() username = '';
   @Input() table: TablesConfig;
   @Input() headers: MyHeaders;
-  @Output() addComp = new EventEmitter<any>();  // event emitter per l'aggiunta
   @Input() addElement: ButtonsConfig;
   @Input() userJumbo: Users;
 
-  
   // operazione di aggiunta, button
   add: ButtonsConfig = {
     text: 'New Reservation',
     customCssClass: 'btn btn-outline-secondary btn-sm',
+    icon: '',
+  }
+
+  deleteButton: ButtonsConfig = {
+    text: 'delete',
+    customCssClass: 'btn btn-outline-danger btn-sm',
+    icon: '',
+  }
+
+  approvaButton: ButtonsConfig = {
+    text: 'approva',
+    customCssClass: 'btn btn-outline-success btn-sm',
     icon: '',
   }
 
@@ -65,21 +75,22 @@ export class HomeUserComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.username = this.route.snapshot.params['username'];
-    console.log(this.username);
+    this.username = sessionStorage.getItem('username');
+    // this.route.snapshot.params['username'];
+    console.log("Username trovato con session storage: ",this.username);
 
     // mi trovo l'utente tramite lo username
-    const userTrovato = this.userService.getUserByUsername(this.username).subscribe(
+    this.userService.getUserByUsername(this.username).subscribe(
       response => {
         this.user = response;
-        console.log("utente -> ", this.user);
+        console.log("utente trovato con lo username-> ", this.user);
 
         // controllo il ruolo dell'utente
         if(this.user.role === 'Super'){
           console.log("Id utente super -> ", this.user.id)
 
           // trovo tutte le prenotazioni visualizzabili dall'utente di tipo super
-          this.resService.getReservations().subscribe(
+        this.resService.getReservations().subscribe(
             response => {
               this.listaReservations = response;
               console.log("Prenotazioni trovate per l'utente di tipo Suser -> ", this.listaReservations);
@@ -112,6 +123,16 @@ export class HomeUserComponent implements OnInit {
     this.router.navigate([`${'add/reservation'}`, { tipo: 3 }]);
   }
 
+  deleteData(object: any){
+    alert("INFO PRENOTAZIONE " +`\n\nTarga Veicolo Prenotato -> ${object.obj.veicolo.targa}`
+    +`\nModello Veicolo Prenotato -> ${object.obj.veicolo.modello}` +`\nID Utente Prenotazione -> ${object.obj.utente.id}`
+    +`\nCodice Fiscale Utente -> ${object.obj.utente.codiceFiscale}`);
+  }
+
+  approvaData(Object: any){
+    alert("button da implementare");
+  }
+
   aggiuntaNuovaPrenotazione(object: any){
     if(object.text === 'New User'){
       this.addNewData(object);
@@ -140,7 +161,6 @@ export class HomeUserComponent implements OnInit {
     { key: 'dataFine', label: 'Fine Prenotazione'},
     { key: 'id_utente', label: 'ID Utente'},
     { key: 'approvazione', label: 'Approvazione' },
-    {key: 'veicolo', label: ''},
 
   ];
 

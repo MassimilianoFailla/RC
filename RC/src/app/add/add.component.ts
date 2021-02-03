@@ -23,6 +23,7 @@ export class AddComponent implements OnInit {
   conferma: string = '';
   form: FormGroup;
 
+  usernameUtente: string; 
   apiMsg: ApiMsg;
 
   // utenti
@@ -70,7 +71,9 @@ export class AddComponent implements OnInit {
 
     this.tipo = Number(this.route.snapshot.paramMap.get('tipo'));
     this.idUtente = Number(this.route.snapshot.paramMap.get('id'));
-    const usernameUser = this.route.snapshot.paramMap.get('username');
+
+    this.usernameUtente = sessionStorage.getItem('username');
+    console.log("Username della sessione -> ", this.usernameUtente);
 
     console.log("Id utente in sessione -> ", this.idUtente);
 
@@ -88,7 +91,7 @@ export class AddComponent implements OnInit {
 
       //Otteniamo i dati dell'utente, in questo caso la prova con id 1
       // da implementare la ricerca dell'id dell'utente non appena l'utente si logga
-      this.reservationDataService.getUserById(1).subscribe(
+      this.userDataService.getUserByUsername(this.usernameUtente).subscribe(
         response => {
           this.utente = response;
           console.log("Dati utente -> ", response);
@@ -102,7 +105,7 @@ export class AddComponent implements OnInit {
 
   abort() {
     alert('stai tornando alla home')
-    this.router.navigate(['']);
+    this.router.navigate(['home/', this.usernameUtente]);
   }
 
   onSubmit(form: NgForm) {
@@ -132,7 +135,7 @@ export class AddComponent implements OnInit {
         }
       )
       alert("Nuovo utente salvato con successo!");
-      this.router.navigate(['/users']);
+      this.router.navigate(['/home/', this.usernameUtente]);
     }
 
     if (this.tipo === 2) {
@@ -151,7 +154,7 @@ export class AddComponent implements OnInit {
           console.log(response);
           this.apiMsg = response;
           this.conferma = this.apiMsg.message;
-          console.log(this.conferma);
+          console.log(this.conferma); 
         },
         error => {
           this.errore = error.error.messaggio;
@@ -159,7 +162,7 @@ export class AddComponent implements OnInit {
         }
       )
       alert("Nuovo veicolo salvato con successo!");
-      this.router.navigate(['/vehicles']);
+      this.router.navigate(['/home/', this.usernameUtente]);
     }
 
     if (this.tipo === 3) {
@@ -186,7 +189,7 @@ export class AddComponent implements OnInit {
         }
       )
       alert("Nuova prenotazione salvata con successo!");
-      this.router.navigate(['/reservations']);
+      this.router.navigate(['/home/', this.usernameUtente]);
     }
   }
 }

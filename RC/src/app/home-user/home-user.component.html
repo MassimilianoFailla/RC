@@ -1,6 +1,5 @@
 <app-jumbotron [Titolo]="'Benvenuto'"></app-jumbotron>
-<h4> Tipologia utente: <b>{{user.role}} </b> <b>  |  </b> Nominativo: <b>{{user.nome}}, {{user.cognome}} </b></h4>
-
+<h4> Tipologia utente: <b>{{user.role}} </b> <b> | </b> Nominativo: <b>{{user.nome}}, {{user.cognome}} </b></h4>
 
 <br><br><br>
 <h2> Lista Prenotazioni</h2>
@@ -22,8 +21,12 @@
             <td>{{item.dataInizio}}</td>
             <td>{{item.dataFine}}</td>
             <td>{{item.utente.id}}</td>
-            <td>{{item.approvazione}}</td>
-            <td></td>
+                <td>
+                    <app-button [button]="deleteButton" (click)="deleteData($event)" *ngIf="user.role=== 'Super'"></app-button>
+                </td>
+                <td>
+                    <app-button [button]="approvaButton" (click)="approvaData($event)" *ngIf="user.role=== 'Super'"></app-button>
+                </td>
         </tr>
     </tbody>
 </table>

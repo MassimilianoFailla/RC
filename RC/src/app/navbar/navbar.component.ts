@@ -56,7 +56,7 @@ export class NavbarComponent implements OnInit {
   
     ngOnInit(): void {
 
-      this.username = this.route.snapshot.params['username'];
+      this.username = sessionStorage.getItem('username');
       console.log("Username navbar", this.username);
   
       // mi trovo l'utente tramite lo username

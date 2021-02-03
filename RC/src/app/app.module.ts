@@ -25,8 +25,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 import { RegisterComponent } from './register/register.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { AuthenticationService } from './Services/authentication.service';
 import { BasicAuthHttpInterceptorService } from './Services/basic-auth-http-interceptor.service';
 import { HomeUserComponent } from './home-user/home-user.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -52,7 +50,6 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     AddComponent,
     EditComponent,
     RegisterComponent,
-    WelcomeComponent,
     HomeUserComponent,
     LogoutComponent,
     ForbiddenComponent,

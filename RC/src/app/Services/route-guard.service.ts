@@ -21,6 +21,11 @@ export class RouteGuardService implements CanActivate {
 
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(this.token);
+    if(decodedToken === null){
+      alert("Si prega di fare il login in quanto non si hanno i permessi necessari")
+      this.route.navigate(['login']);
+    }
+    
     this.ruoli = decodedToken['authorities'];
 
     console.log("decoded token ", decodedToken);
@@ -31,8 +36,10 @@ export class RouteGuardService implements CanActivate {
       return false;
     }
     else {
-      if (route.data.roles == null || route.data.roles.length === 0)
+      if (route.data.roles == null || route.data.roles.length === 0){
+      
         return true;
+    }
       else if (this.ruoli.some(r => route.data.roles.includes(r)))
         return true;
       else {

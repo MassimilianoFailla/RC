@@ -58,12 +58,15 @@ export class EditComponent implements OnInit {
     approvazione: false,
   };
 
+  username: string; 
+
   constructor(private route: ActivatedRoute, private router: Router, private userDataService: UserDataService, private vehicleDataService: VehicleDataService,
     private reservationDataService: ReservationDataService) { }
 
   ngOnInit(): void {
 
     this.tipo = Number(this.route.snapshot.paramMap.get('tipo'));
+    this.username = sessionStorage.getItem('username');
 
     if (this.tipo === 1) {
       // utente
@@ -144,7 +147,7 @@ export class EditComponent implements OnInit {
 
   abort() {
     alert("Stai per tornare alla home!");
-    this.router.navigate(['',]);
+    this.router.navigate(['/home/', this.username]);
   }
 
 
@@ -162,7 +165,7 @@ export class EditComponent implements OnInit {
           this.conferma = this.apiMsg.message;
           console.log(this.conferma);
           alert("modifica utente eseguita con successo!");
-          this.router.navigate(['/users']);
+          this.router.navigate(['/home/', this.username]);
         },
         error => {
           this.errore = error.error.messaggio;
@@ -183,7 +186,7 @@ export class EditComponent implements OnInit {
           this.conferma = this.apiMsg.message;
           console.log(this.conferma);
           alert("modifica veicolo eseguita con successo!");
-          this.router.navigate(['/vehicles']);
+          this.router.navigate(['/home/', this.username]);
         },
         error => {
           this.errore = error.error.messaggio;
@@ -207,7 +210,7 @@ export class EditComponent implements OnInit {
           this.conferma = this.apiMsg.message;
           console.log(this.conferma);
           alert("modifica prenotazione eseguita con successo!");
-          this.router.navigate(['/reservations']);
+          this.router.navigate(['/home', this.username]);
         },
         error => {
           this.errore = error.error.messaggio;

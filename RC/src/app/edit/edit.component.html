@@ -69,7 +69,7 @@
 
                         <div class="form-group">
                             <label for="password"><b>Password Utente:</b></label>
-                            <input name="password" type="password " [(ngModel)]="usersList.password" class="form-control" placeholder="Inserisci password" required minlength="5" maxlength="30 " />
+                            <input name="password" type="password " [(ngModel)]="usersList.password" class="form-control" placeholder="Inserisci password" #password="ngModel" readonly />
                             <span style="color:rgb(145, 0, 0) ">
                                 La password deve essere compresa fra 5 e 30 caratteri
                             </span>
@@ -86,7 +86,7 @@
                         </div>
 
                         <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="artForm.invalid">
-                            <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva
+                            <i class="fa fa-floppy-o" aria-hidden="true" (click)="aggiorna()"></i> Salva
                         </button>
 
                         <button id="btnAbort" class="btn btn-warning form-buttons" (click)="abort()">
@@ -164,7 +164,7 @@
                         </div>
 
                         <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="artForm.invalid">
-                            <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva
+                            <i class="fa fa-floppy-o" aria-hidden="true" ></i> Salva
                         </button>
 
                         <button id="btnAbort" class="btn btn-warning form-buttons" (click)="abort()">
@@ -244,7 +244,7 @@
 
                     </div>
                     <button type="submit" id="btnAdd" class="btn btn-primary form-buttons" [disabled]="artForm.invalid">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Salva
+                        <i class="fa fa-floppy-o" aria-hidden="true" (click)="aggiorna()"></i> Salva
                     </button>
 
                     <button id="btnAbort " class="btn btn-warning form-buttons " (click)="abort() ">

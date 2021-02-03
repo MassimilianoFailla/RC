@@ -30,11 +30,14 @@ export class RegisterComponent implements OnInit {
     role: '',
   };
 
+  username: string; 
+
   constructor(private route: ActivatedRoute, private router: Router, private userDataService: UserDataService) { }
 
   ngOnInit(): void {
-  }
 
+    this.username = sessionStorage.getItem('username');
+  }
 
   abort() {
     alert('stai tornando alla home')
@@ -53,8 +56,8 @@ export class RegisterComponent implements OnInit {
       username: form.value.username,
       password: form.value.password,
       role: form.value.role,
-
     }
+
     this.userDataService.insUser(usersList).subscribe(
       response => {
         console.log(response);
@@ -69,5 +72,6 @@ export class RegisterComponent implements OnInit {
     )
     alert("Registrazione nuovo utente salvato con successo!");
     this.router.navigate(['/home']);
+
   }
 }

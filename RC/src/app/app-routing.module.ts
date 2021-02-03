@@ -12,7 +12,6 @@ import { ReservationComponent } from './Entities/reservation/reservation.compone
 import { UserComponent } from './Entities/user/user.component';
 import { VehicleComponent } from './Entities/vehicle/vehicle.component';
 import { AddComponent } from './add/add.component';
-import { WelcomeComponent } from './welcome/welcome.component';
 import { HomeUserComponent } from './home-user/home-user.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
@@ -21,8 +20,8 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent},
     { path: 'logout', component: LogoutComponent},
     { path: 'home', component: HomeComponent},
-    { path:'home/:username', component : HomeUserComponent},
-    { path: 'register', component: RegisterComponent},
+    { path:'home/:username', component : HomeUserComponent, canActivate: [RouteGuardService], data: {roles: ['Super', 'User']}},
+    { path: 'register', component: RegisterComponent },
     { path: 'users', component: UserComponent, canActivate: [RouteGuardService], data: {roles: ['Super']}},
     { path: 'add/user', component: AddComponent, canActivate: [RouteGuardService], data: {roles: ['Super']}},
     { path: 'edit/users/:id', component: EditComponent, canActivate: [RouteGuardService], data: {roles: ['Super']}},
@@ -33,9 +32,9 @@ const appRoutes: Routes = [
     { path: 'add/reservation', component: AddComponent, canActivate: [RouteGuardService], data: {roles: ['User']}},
     { path: 'edit/reservations/:id', component: EditComponent, canActivate: [RouteGuardService], data: {roles: ['Super']}},
     { path: 'forbidden', component: ForbiddenComponent},
-
-    // { path: 'users', component: UserComponent},
+    
     // { path: 'vehicles', component: VehicleComponent},
+    // { path: 'users', component: UserComponent},
     // { path: 'reservations', component: ReservationComponent},
   ];
   

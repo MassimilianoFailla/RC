@@ -19,16 +19,11 @@ export class AuthenticationService {
         return data;
       }
       )
-      // mettere in sessione l'utente 
 
-      // get(user)  per vedere
     )
   }
 
-  // creare un metodo di recupero dell'utente in sessione per le varie operazioni
-
   clearAll() {
-    alert("Uscita in corso...");
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("username");
     
